@@ -16,7 +16,98 @@ class _homeState extends State<home> {
       appBar: AppBar(
         title: Text("Dr.Mobile"),
       ),
-      drawer: Drawer(),
+      drawer: Drawer(
+          child: ListView(
+        children: [
+          UserAccountsDrawerHeader(
+            accountName: Text("Bvk Bhattarai"),
+            accountEmail: Text("bvk@gmail.com"),
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: new NetworkImage('images/mobile1.png'),
+            ),
+          ),
+          InkWell(
+            child: ListTile(
+                leading: Icon(
+                  Icons.info_outline_rounded,
+                  size: 22,
+                  color: Colors.green,
+                ),
+                title: Text(
+                  "Register as volunteer",
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 22,
+                  ),
+                )),
+          ),
+          InkWell(
+            child: ListTile(
+                leading: Icon(
+                  Icons.info_outline_rounded,
+                  size: 22,
+                  color: Colors.green,
+                ),
+                title: Text(
+                  "Register as Staff",
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 22,
+                  ),
+                )),
+          ),
+          InkWell(
+            child: ListTile(
+                leading: Icon(
+                  Icons.info_outline_rounded,
+                  size: 22,
+                  color: Colors.green,
+                ),
+                title: Text(
+                  "About us",
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 22,
+                  ),
+                )),
+          ),
+          InkWell(
+            child: ListTile(
+                leading: Icon(
+                  Icons.info_outline_rounded,
+                  size: 22,
+                  color: Colors.green,
+                ),
+                title: Text(
+                  "Contct us",
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 22,
+                  ),
+                )),
+          ),
+          InkWell(
+            child: ListTile(
+                leading: Icon(
+                  Icons.info_outline_rounded,
+                  size: 22,
+                  color: Colors.green,
+                ),
+                title: Text(
+                  "Rate us",
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 22,
+                  ),
+                )),
+          ),
+        ],
+      )),
       body: ListView(
         children: [
           Row(
