@@ -16,7 +16,13 @@ class _sendPresccriptionState extends State<sendPresccription> {
   // For first Image
   Future getPhotoCamera() async {
     final pickedImage = await picker.getImage(source: ImageSource.camera);
-
+    if (pickedImage != null) {
+      _image = File(pickedImage.path);
+    } else {
+      print("Selected");
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => sendPresccription()));
+    }
     setState(() {
       _image = File(pickedImage.path);
     });

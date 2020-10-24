@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:drmobile/login/registration/login.dart';
 import 'package:flutter/material.dart';
 import 'package:drmobile/home.dart';
 
@@ -13,7 +14,8 @@ class _splashState extends State<splash> {
     super.initState();
     Timer(Duration(seconds: 3), () {
       //this page will be displayed for 3 seconds and moves to home screen.
-      Navigator.push(context, MaterialPageRoute(builder: (context) => home()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => SignInScreen()));
     });
   }
 

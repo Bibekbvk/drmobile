@@ -29,7 +29,7 @@ class _homeState extends State<home> {
           InkWell(
             child: ListTile(
                 leading: Icon(
-                  Icons.info_outline_rounded,
+                  Icons.add_link,
                   size: 22,
                   color: Colors.green,
                 ),
@@ -45,7 +45,7 @@ class _homeState extends State<home> {
           InkWell(
             child: ListTile(
                 leading: Icon(
-                  Icons.info_outline_rounded,
+                  Icons.person_add_alt_1_rounded,
                   size: 22,
                   color: Colors.green,
                 ),
@@ -61,7 +61,7 @@ class _homeState extends State<home> {
           InkWell(
             child: ListTile(
                 leading: Icon(
-                  Icons.info_outline_rounded,
+                  Icons.info,
                   size: 22,
                   color: Colors.green,
                 ),
@@ -77,7 +77,7 @@ class _homeState extends State<home> {
           InkWell(
             child: ListTile(
                 leading: Icon(
-                  Icons.info_outline_rounded,
+                  Icons.contact_page_rounded,
                   size: 22,
                   color: Colors.green,
                 ),
@@ -93,7 +93,7 @@ class _homeState extends State<home> {
           InkWell(
             child: ListTile(
                 leading: Icon(
-                  Icons.info_outline_rounded,
+                  Icons.star,
                   size: 22,
                   color: Colors.green,
                 ),
@@ -114,25 +114,30 @@ class _homeState extends State<home> {
             children: [
               Column(
                 children: [
-                  Icon(Icons.dry_cleaning),
+                  Icon(Icons.local_hospital_rounded, size: 44),
                   Text("Diagnosis"),
-                  Icon(Icons.warning_amber_rounded),
+                  Icon(Icons.cast_for_education_rounded, size: 44),
                   Text("Sex Education"),
+                  Icon(Icons.contact_phone_rounded, size: 44),
                   Text("Emergency No.")
                 ],
               ),
               Column(
                 children: [
+                  Icon(Icons.medical_services_rounded, size: 44),
                   Text("Buy Medicine"),
-                  Text("Health Volunteer"),
-                  Text("Contact Directly")
+                  Icon(Icons.medical_services_outlined, size: 44),
+                  Text("Volunteer"),
+                  Icon(Icons.code_rounded, size: 44),
+                  Text("Contact")
                 ],
               ),
               Column(
                 children: [
+                  Icon(Icons.baby_changing_station_rounded, size: 44),
                   Text("Abortion"),
                   InkWell(
-                    child: Icon(Icons.upload_rounded),
+                    child: Icon(Icons.upload_rounded, size: 44),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -141,7 +146,8 @@ class _homeState extends State<home> {
                     },
                   ),
                   Text("Send Prescription"),
-                  Text("Help/About us")
+                  Icon(Icons.help_center_rounded, size: 44),
+                  Text("Help")
                 ],
               )
             ],
@@ -229,7 +235,11 @@ class _homeState extends State<home> {
             children: [
               Icon(Icons.warning_amber_outlined),
               Text("Emergency??"),
-              Text("Our volunteer are here to help you")
+              Text("Our volunteer are here to help you"),
+              FlatButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.call_end_rounded),
+                  label: Text("Call Them"))
             ],
           )
         ],
