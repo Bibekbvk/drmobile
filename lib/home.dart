@@ -1,5 +1,8 @@
 import 'dart:ui';
 
+import 'package:drmobile/drawer/feedback.dart';
+import 'package:drmobile/login/registration/registration.dart';
+import 'package:drmobile/login/registration/volunteer.dart';
 import 'package:drmobile/menu/prescription.dart';
 import 'package:flutter/material.dart';
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -27,21 +30,24 @@ class _homeState extends State<home> {
             ),
           ),
           InkWell(
-            child: ListTile(
-                leading: Icon(
-                  Icons.add_link,
-                  size: 22,
-                  color: Colors.green,
-                ),
-                title: Text(
-                  "Register as volunteer",
-                  style: TextStyle(
+              child: ListTile(
+                  leading: Icon(
+                    Icons.add_link,
+                    size: 22,
                     color: Colors.green,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 22,
                   ),
-                )),
-          ),
+                  title: Text(
+                    "Register as volunteer",
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 22,
+                    ),
+                  )),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => volunteerReg()));
+              }),
           InkWell(
             child: ListTile(
                 leading: Icon(
@@ -49,14 +55,21 @@ class _homeState extends State<home> {
                   size: 22,
                   color: Colors.green,
                 ),
-                title: Text(
-                  "Register as Staff",
-                  style: TextStyle(
-                    color: Colors.green,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 22,
-                  ),
-                )),
+                title: InkWell(
+                    child: Text(
+                      "Register as Staff",
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 22,
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => registerStaff()));
+                    })),
           ),
           InkWell(
             child: ListTile(
@@ -74,6 +87,25 @@ class _homeState extends State<home> {
                   ),
                 )),
           ),
+          InkWell(
+              child: ListTile(
+                  leading: Icon(
+                    Icons.feedback_outlined,
+                    size: 22,
+                    color: Colors.green,
+                  ),
+                  title: Text(
+                    "Send Feedback",
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 22,
+                    ),
+                  )),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => feedback()));
+              }),
           InkWell(
             child: ListTile(
                 leading: Icon(
@@ -111,6 +143,7 @@ class _homeState extends State<home> {
       body: ListView(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 children: [
