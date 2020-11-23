@@ -5,12 +5,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class sendPresccription extends StatefulWidget {
+class volunteerReg extends StatefulWidget {
   @override
-  _sendPresccriptionState createState() => _sendPresccriptionState();
+  _volunteerRegState createState() => _volunteerRegState();
 }
 
-class _sendPresccriptionState extends State<sendPresccription> {
+class _volunteerRegState extends State<volunteerReg> {
   File _image;
   File _image1;
   File _image2;
@@ -23,8 +23,8 @@ class _sendPresccriptionState extends State<sendPresccription> {
       _image = File(pickedImage.path);
     } else {
       print("Selected");
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => sendPresccription()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => volunteerReg()));
     }
     setState(() {
       _image = File(pickedImage.path);
@@ -74,12 +74,12 @@ class _sendPresccriptionState extends State<sendPresccription> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Prescription")),
+      appBar: AppBar(),
       body: ListView(
         children: [
           Container(
               child: Text(
-                  "You can send the photo or scan copy of prescription for odering medicine our staff will connect with you after we receive the prescription, you may have to show the original prescrption during the delivary, you will get delivary within 2-24 hour")),
+                  "Please Upload the document, we will verify document and contact you after our aggrement you will be listed and start working with us")),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
