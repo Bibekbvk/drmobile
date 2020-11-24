@@ -146,8 +146,17 @@ class _homeState extends State<home> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
+                
                 children: [
-                  Icon(Icons.local_hospital_rounded, size: 44),
+                  Container(
+                    
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      border: Border.all(color:Colors.green, width: 2),
+                      
+                    ),
+                    
+                    child: Icon(Icons.local_hospital_rounded, size: 44,)),
                   Text("Diagnosis"),
                   Icon(Icons.cast_for_education_rounded, size: 44),
                   Text("Sex Education"),
