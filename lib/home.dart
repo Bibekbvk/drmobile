@@ -4,6 +4,9 @@ import 'package:drmobile/drawer/feedback.dart';
 import 'package:drmobile/login/registration/registration.dart';
 import 'package:drmobile/login/registration/volunteer.dart';
 import 'package:drmobile/menu/prescription.dart';
+import 'package:drmobile/staff_section/staffList.dart';
+import 'package:drmobile/staff_section/staff_list.dart';
+import 'package:drmobile/staff_section/stafflatest.dart';
 import 'package:flutter/material.dart';
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -223,10 +226,18 @@ class _homeState extends State<home> {
             child: Row(
               children: [
                 Column(children: [
-                  Container(
-                    height: 80,
-                    width: 60,
-                    child: Image.asset('images/dr.jpg'),
+                  InkWell(
+                                      child: Container(
+                      height: 80,
+                      width: 60,
+                      child: Image.asset('images/dr.jpg'),
+                    ),
+                    onTap: (){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProductListPage("")));
+                    },
                   ),
                   Text('MBBS Doctor'),
                   RaisedButton(child: Text("Invite"), onPressed: () {})

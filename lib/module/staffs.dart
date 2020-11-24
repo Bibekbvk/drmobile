@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Staffs{
   final String staff_id;
-  final name;
+  final String name;
   final String staff_type;
   final String location;
   final String fee;
