@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:drmobile/drawer/feedback.dart';
 import 'package:drmobile/login/registration/registration.dart';
 import 'package:drmobile/login/registration/volunteer.dart';
+import 'package:drmobile/medicine/medicineList.dart';
 import 'package:drmobile/menu/prescription.dart';
 import 'package:drmobile/staff_section/staffList.dart';
 import 'package:drmobile/staff_section/staff_list.dart';
@@ -169,7 +170,10 @@ class _homeState extends State<home> {
               ),
               Column(
                 children: [
-                  Icon(Icons.medical_services_rounded, size: 44),
+                  InkWell(child: Icon(Icons.medical_services_rounded, size: 44),
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder:(context)=> medicineList()));
+                  },),
                   Text("Buy Medicine"),
                   Icon(Icons.medical_services_outlined, size: 44),
                   Text("Volunteer"),

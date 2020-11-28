@@ -1,9 +1,15 @@
+import 'package:drmobile/database.dart';
 import 'package:flutter/material.dart';
 
 class feedback extends StatefulWidget {
   @override
   _feedbackState createState() => _feedbackState();
 }
+
+DatabaseService db = DatabaseService();
+TextEditingController feedbacks = new TextEditingController();
+TextEditingController contact = new TextEditingController();
+TextEditingController name = new TextEditingController();
 
 class _feedbackState extends State<feedback> {
   @override
@@ -25,6 +31,7 @@ class _feedbackState extends State<feedback> {
               Container(
                 padding: EdgeInsets.all(20),
                 child: TextFormField(
+                  controller: name,
                   maxLines: 1,
                   decoration: InputDecoration(
                       labelText: "Name",
@@ -36,6 +43,7 @@ class _feedbackState extends State<feedback> {
               Container(
                 padding: EdgeInsets.all(20),
                 child: TextFormField(
+                  controller: contact,
                   maxLines: 1,
                   decoration: InputDecoration(
                       labelText: "Mobile number / Email",
@@ -50,6 +58,7 @@ class _feedbackState extends State<feedback> {
               Container(
                 padding: EdgeInsets.all(20),
                 child: TextFormField(
+                  controller: feedbacks,
                   maxLines: 10,
                   decoration: InputDecoration(
                       labelText: "Feedback",
@@ -58,9 +67,46 @@ class _feedbackState extends State<feedback> {
                 ),
               ),
               FlatButton.icon(
-                  icon: Icon(Icons.send_outlined), label: Text("Send"))
+                  icon: Icon(Icons.send_outlined),
+                  label: Text("Send"),
+                  onPressed: () async {
+                    if (feedbacks.text == '') {
+                      _showDialogEmptyFeedback();
+                    } else {
+                      var res = await db.insertFeedback(
+                          "userid", contact.text, name.text, feedbacks.text);
+                    }
+                  })
             ],
           )
         ]));
+  }
+
+  _showDialogEmptyFeedback() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text(
+            "Message",
+            style: TextStyle(color: Colors.purple[400], fontSize: 14),
+          ),
+          content: new Text(
+            "Feedback is Empty",
+            style: TextStyle(color: Colors.purple[400], fontSize: 14),
+          ),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

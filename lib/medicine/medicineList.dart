@@ -1,25 +1,23 @@
 
-
-
 import 'package:drmobile/database.dart';
+import 'package:drmobile/module/medicine.dart';
 import 'package:drmobile/module/staffs.dart';
-import 'package:drmobile/staff_section/StaffListReusable.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
-class ProductListPage extends StatefulWidget {
+
+class medicineList extends StatefulWidget {
   @override
-  final String category;
+  
 
-  ProductListPage(this.category);
+  
 
-  _ProductListPageState createState() => _ProductListPageState();
+  _medicineListState createState() => _medicineListState();
 }
 
-class _ProductListPageState extends State<ProductListPage> {
+class _medicineListState extends State<medicineList> {
   DatabaseService db = DatabaseService();
-  List<Staffs> staffList = new List();
+  List<Medicine> medList = new List();
   ScrollController _scrollController = new ScrollController();
 
 
@@ -33,15 +31,15 @@ class _ProductListPageState extends State<ProductListPage> {
 
 
     super.initState();
-    fetch(widget.category, offset);
+    fetch(offset);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
         if (currentDataLength >= 10) {
           print("List bigger than 10");
 
-          offset = staffList.length;
-          fetch(widget.category, offset);
+          offset = medList.length;
+          fetch(offset);
         }
 
         print("called again");
@@ -60,17 +58,23 @@ class _ProductListPageState extends State<ProductListPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+      //  leading: TextField(
+
+      //  ),
+
+       ),
       body: ListView.builder(
         controller: _scrollController,
-        itemCount: staffList.length,
+        itemCount: medList.length,
         itemBuilder: (BuildContext context, int index) {
+        
          return Container(
+           
            padding: EdgeInsets.all(10),
            color: Colors.black54,
             child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            // crossAxisAlignment: CrossAxisAlignment.start,
+             mainAxisAlignment: MainAxisAlignment.spaceEvenly,        
             children: [
              
                 Column(
@@ -85,17 +89,17 @@ class _ProductListPageState extends State<ProductListPage> {
                   border:Border.all(color: Colors.green, width: 4),
                   borderRadius: BorderRadius.circular(22)
                   ),
-                  child: Image.network(staffList[index].photo,  fit: BoxFit.fill )
+                  child: Image.network(medList[index].images,  fit: BoxFit.fill )
                ),
                Container(
                  width:100,
-                  child:Text("${staffList[index].name}", style: TextStyle(
+                  child:Text("${medList[index].brand_name}", style: TextStyle(
                     fontSize: 12, color:Colors.lightGreen, fontWeight:FontWeight.w300
                   ),),
                ),
                   Container(
                      width:70,
-                     child:Text("${staffList[index].staff_type}", style: TextStyle(
+                     child:Text("${medList[index].company}", style: TextStyle(
                     fontSize: 8, color:Colors.lightGreen, fontWeight:FontWeight.w800
                   ),),
                   )
@@ -112,9 +116,9 @@ class _ProductListPageState extends State<ProductListPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                           children:[ 
-                            Text("Name:${staffList[index].reg_no}"),
-                            Text("Fees/day:${staffList[index].fee}"),
-                            Text("Location:${staffList[index].location}"),
+                            Text("Name:${medList[index].brand_name}"),
+                            Text("Fees/day:${medList[index].price}"),
+                            Text("Location:${medList[index].company}"),
                          
                          Container(
                            child: RaisedButton(
@@ -122,7 +126,7 @@ class _ProductListPageState extends State<ProductListPage> {
                              color: Colors.orange,
                              onPressed: (){
 
-                               print("Name:${staffList[index].reg_no}");
+                               print("Name:${medList[index].generic_name}");
                              },
                            ),
                          ),
@@ -157,18 +161,18 @@ class _ProductListPageState extends State<ProductListPage> {
 
   }
 
-  fetch(String category, int offset) async {
+  fetch(int offset) async {
     print("in fetch");
 
-    var data = await db.staff();
+    var data = await db.medicine();
     currentDataLength = data.length;
     print("below data");
 
     print("out of loop");
 
     setState(() {
-      for (Staffs p in data) {
-        staffList.add(p);
+      for (Medicine p in data) {
+        medList.add(p);
       }
     });
   }
