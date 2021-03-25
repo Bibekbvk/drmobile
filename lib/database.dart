@@ -2,10 +2,13 @@ import 'package:drmobile/constant.dart';
 import 'package:drmobile/drawer/feedback.dart';
 import 'package:drmobile/emergency.dart';
 import 'package:drmobile/menu/abortion.dart';
+import 'package:drmobile/menu/volunteer.dart';
 import 'package:drmobile/module/Feedbacks.dart';
 import 'package:drmobile/module/abortioninfo.dart';
 import 'package:drmobile/module/medicine.dart';
+import 'package:drmobile/module/sexeducationinfo.dart';
 import 'package:drmobile/module/staffs.dart';
+import 'package:drmobile/module/volunteerinfo.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -109,6 +112,8 @@ class DatabaseService {
     return emergencys;
   }
   
+
+     // abortion details 
     Future<List<Abr>> abortion() async {
         var data = await http.get(
           "$BASE_URL/api/abortion",
@@ -133,6 +138,58 @@ class DatabaseService {
       }
     
 
+           //volunteer details
+
+        Future<List<Volunteer>> volunteer() async {
+        var data = await http.get(
+          "$BASE_URL/api/volunteer",
+        );
+    
+        var jsonData = json.decode((data.body));
+    
+        List<Volunteer> volunteer = [];
+        for (var each in jsonData) {
+          Volunteer vlDetails = Volunteer(
+            V_ID: each['V_ID'],
+            name: each['name'],
+            location: each['location'],
+            contact: each['contact'],
+            details: each['details'],
+            email: each['email'],
+            image: each['image'],
+           
+          );
+          volunteer.add(vlDetails);
+        }
+        return volunteer;
+      }
+
+      
+
+
+       Future<List<SexEducation>> sexeducation() async {
+        var data = await http.get(
+          "$BASE_URL/api/sexeducation",
+        );
+    
+        var jsonData = json.decode((data.body));
+    
+        List<SexEducation> sexeducation = [];
+        for (var each in jsonData) {
+          SexEducation seDetails = SexEducation(
+            topic: each['topic'],
+            article1: each['article1'],
+            date: each['date'],
+            image1: each['image1'],
+            article2: each['article2'],
+            image2: each['image2'],
+          
+           
+          );
+          sexeducation.add(seDetails);
+        }
+        return sexeducation;
+      }
 
 
 

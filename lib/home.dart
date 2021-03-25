@@ -8,10 +8,14 @@ import 'package:drmobile/medicine/medicineList.dart';
 import 'package:drmobile/menu/abortion.dart';
 import 'package:drmobile/menu/diagnosis.dart';
 import 'package:drmobile/menu/prescription.dart';
+import 'package:drmobile/module/sexeducationinfo.dart';
 import 'package:drmobile/staff_section/staffList.dart';
 import 'package:drmobile/staff_section/staff_list.dart';
 import 'package:drmobile/staff_section/stafflatest.dart';
 import 'package:flutter/material.dart';
+
+import 'menu/sexeducation.dart';
+import 'menu/volunteer.dart';
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class home extends StatefulWidget {
@@ -176,7 +180,25 @@ class _homeState extends State<home> {
                   ),
 
                   Text("Diagnosis"),
-                  Icon(Icons.cast_for_education_rounded, size: 44),
+                  
+
+                  InkWell(
+                     child:   Icon(Icons.cast_for_education_rounded, size: 44), 
+                        onTap: (){
+                            
+
+                             Navigator.push(context, MaterialPageRoute(builder:(context)=> sexeducationpage()));
+                  }
+
+
+                        
+
+
+                  ),
+              
+              
+              
+               
                   Text("Sex Education"),
                  InkWell(
                    
@@ -197,7 +219,19 @@ class _homeState extends State<home> {
                     Navigator.push(context, MaterialPageRoute(builder:(context)=> medicineList()));
                   },),
                   Text("Buy Medicine"),
-                  Icon(Icons.medical_services_outlined, size: 44),
+                  InkWell(
+                  child:      Icon(Icons.medical_services_outlined, size: 44) ,
+                  onTap: (){
+                  
+
+                   Navigator.push(context, MaterialPageRoute(builder:(context)=> volunteer()));
+
+
+                  },
+
+
+                  ),
+            
                   Text("Volunteer"),
                   Icon(Icons.code_rounded, size: 44),
                   Text("Contact")
