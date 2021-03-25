@@ -6,6 +6,7 @@ import 'package:drmobile/login/registration/registration.dart';
 import 'package:drmobile/login/registration/volunteer.dart';
 import 'package:drmobile/medicine/medicineList.dart';
 import 'package:drmobile/menu/abortion.dart';
+import 'package:drmobile/menu/contact.dart';
 import 'package:drmobile/menu/diagnosis.dart';
 import 'package:drmobile/menu/prescription.dart';
 import 'package:drmobile/module/sexeducationinfo.dart';
@@ -14,6 +15,7 @@ import 'package:drmobile/staff_section/staff_list.dart';
 import 'package:drmobile/staff_section/stafflatest.dart';
 import 'package:flutter/material.dart';
 
+import 'menu/Help.dart';
 import 'menu/sexeducation.dart';
 import 'menu/volunteer.dart';
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -233,7 +235,18 @@ class _homeState extends State<home> {
                   ),
             
                   Text("Volunteer"),
-                  Icon(Icons.code_rounded, size: 44),
+
+                  InkWell(
+                    child: Icon(Icons.code_rounded, size: 44) ,
+                    onTap:() {
+                            Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => contactpage()));
+
+                    },
+                  ),                 
+                 
                   Text("Contact")
                 ],
               ),
@@ -253,11 +266,17 @@ class _homeState extends State<home> {
                   InkWell(
                     child: Icon(Icons.upload_rounded, size: 44),
                     onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder:(context)=> sendPresccription()));
                      
                     },
                   ),
                   Text("Send Prescription"),
-                  Icon(Icons.help_center_rounded, size: 44),
+
+
+                  InkWell(child: Icon(Icons.help_center_rounded, size: 44),
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder:(context)=> help()));
+                  },),
                   Text("Help")
                 ],
               )

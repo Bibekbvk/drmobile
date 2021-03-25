@@ -5,6 +5,7 @@ import 'package:drmobile/menu/abortion.dart';
 import 'package:drmobile/menu/volunteer.dart';
 import 'package:drmobile/module/Feedbacks.dart';
 import 'package:drmobile/module/abortioninfo.dart';
+import 'package:drmobile/module/helpinfo.dart';
 import 'package:drmobile/module/medicine.dart';
 import 'package:drmobile/module/sexeducationinfo.dart';
 import 'package:drmobile/module/staffs.dart';
@@ -190,6 +191,29 @@ class DatabaseService {
         }
         return sexeducation;
       }
+            
+        Future<List<Help>> help() async {
+        var data = await http.get(
+          "$BASE_URL/api/help",
+        );
+    
+        var jsonData = json.decode((data.body));
+    
+        List<Help> help = [];
+        for (var each in jsonData) {
+          Help helpDetails = Help(
+            topic: each['topic'],
+            image: each['image'],
+            details: each['details'],
+       
+          
+           
+          );
+          help.add(helpDetails);
+        }
+        return help;
+      }
+
 
 
 
