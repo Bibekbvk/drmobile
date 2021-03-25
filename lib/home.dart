@@ -1,9 +1,12 @@
 import 'dart:ui';
 
 import 'package:drmobile/drawer/feedback.dart';
+import 'package:drmobile/emergency.dart';
 import 'package:drmobile/login/registration/registration.dart';
 import 'package:drmobile/login/registration/volunteer.dart';
 import 'package:drmobile/medicine/medicineList.dart';
+import 'package:drmobile/menu/abortion.dart';
+import 'package:drmobile/menu/diagnosis.dart';
 import 'package:drmobile/menu/prescription.dart';
 import 'package:drmobile/staff_section/staffList.dart';
 import 'package:drmobile/staff_section/staff_list.dart';
@@ -160,11 +163,30 @@ class _homeState extends State<home> {
                       
                     ),
                     
-                    child: Icon(Icons.local_hospital_rounded, size: 44,)),
+                     
+                  child:InkWell(
+                  child:Icon(Icons.local_hospital_rounded, size: 44,),
+                   onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder:(context)=> diagnosis()));
+                  }
+                  ),
+                  
+                  
+                  
+                  ),
+
                   Text("Diagnosis"),
                   Icon(Icons.cast_for_education_rounded, size: 44),
                   Text("Sex Education"),
-                  Icon(Icons.contact_phone_rounded, size: 44),
+                 InkWell(
+                   
+                     child:Icon(Icons.contact_phone_rounded, size: 44,
+                     ),
+                    
+                     onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder:(context)=> emergency()));
+                  }
+                 ), 
                   Text("Emergency No.")
                 ],
               ),
@@ -182,16 +204,22 @@ class _homeState extends State<home> {
                 ],
               ),
               Column(
+
                 children: [
-                  Icon(Icons.baby_changing_station_rounded, size: 44),
+                  InkWell(
+                    child:  Icon(Icons.baby_changing_station_rounded, size: 44),
+                     onTap: (){
+                            Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => abortion()));
+                     },
+                  ),
                   Text("Abortion"),
                   InkWell(
                     child: Icon(Icons.upload_rounded, size: 44),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => sendPresccription()));
+                     
                     },
                   ),
                   Text("Send Prescription"),
@@ -231,9 +259,10 @@ class _homeState extends State<home> {
               children: [
                 Column(children: [
                   InkWell(
-                                      child: Container(
-                      height: 80,
-                      width: 60,
+                      child: Container(
+                      height: 300,
+                      width: 250,
+                      color:Colors.blueAccent,
                       child: Image.asset('images/dr.jpg'),
                     ),
                     onTap: (){
@@ -244,12 +273,15 @@ class _homeState extends State<home> {
                     },
                   ),
                   Text('MBBS Doctor'),
+                  SizedBox(
+                    width: 15
+                  ),
                   RaisedButton(child: Text("Invite"), onPressed: () {})
                 ]),
                 Column(children: [
                   Container(
-                    height: 80,
-                    width: 60,
+                    height: 200,
+                    width: 160,
                     child: Image.asset('images/dr.jpg'),
                   ),
                   Text('Health Assistance'),
@@ -257,8 +289,8 @@ class _homeState extends State<home> {
                 ]),
                 Column(children: [
                   Container(
-                    height: 80,
-                    width: 60,
+                    height: 200,
+                    width: 160,
                     child: Image.asset('images/dr.jpg'),
                   ),
                   Text('Staff Nurse'),

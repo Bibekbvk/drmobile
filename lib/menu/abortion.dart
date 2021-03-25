@@ -1,23 +1,27 @@
 
 import 'package:drmobile/database.dart';
-import 'package:drmobile/module/medicine.dart';
-import 'package:drmobile/module/staffs.dart';
+import 'package:drmobile/module/abortioninfo.dart';
+
 import 'package:flutter/material.dart';
 
 
 
-class medicineList extends StatefulWidget {
+
+
+
+
+class abortion extends StatefulWidget {
   @override
   
 
   
 
-  _medicineListState createState() => _medicineListState();
+  _abortionState createState() => _abortionState();
 }
 
-class _medicineListState extends State<medicineList> {
+class _abortionState extends State<abortion> {
   DatabaseService db = DatabaseService();
-  List<Medicine> medList = new List();
+  List<Abr> abList = new List();
   ScrollController _scrollController = new ScrollController();
 
 
@@ -38,7 +42,7 @@ class _medicineListState extends State<medicineList> {
         if (currentDataLength >= 10) {
           print("List bigger than 10");
 
-          offset = medList.length;
+          offset = abList.length;
           fetch(offset);
         }
 
@@ -66,7 +70,7 @@ class _medicineListState extends State<medicineList> {
        ),
       body: ListView.builder(
         controller: _scrollController,
-        itemCount: medList.length,
+        itemCount: abList.length,
         itemBuilder: (BuildContext context, int index) {
         
          return Container(
@@ -89,20 +93,9 @@ class _medicineListState extends State<medicineList> {
                   border:Border.all(color: Colors.green, width: 4),
                   borderRadius: BorderRadius.circular(22)
                   ),
-                  child: Image.network(medList[index].images,  fit: BoxFit.cover )
+                  child: Image.network(abList[index].images,  fit: BoxFit.cover )
                ),
-               Container(
-                 width:100,
-                  child:Text("${medList[index].brand_name}", style: TextStyle(
-                    fontSize: 12, color:Colors.lightGreen, fontWeight:FontWeight.w300
-                  ),),
-               ),
-                  Container(
-                     width:70,
-                     child:Text("${medList[index].company}", style: TextStyle(
-                    fontSize: 8, color:Colors.lightGreen, fontWeight:FontWeight.w800
-                  ),),
-                  )
+             
                            
 
                                  ] ),
@@ -116,9 +109,9 @@ class _medicineListState extends State<medicineList> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                           children:[ 
-                            Text("Name:${medList[index].brand_name}"),
-                            Text("Fees/day:${medList[index].price}"),
-                            Text("Location:${medList[index].company}"),
+                            Text("Name:${abList[index].contact}"),
+                            Text("Fees/day:${abList[index].details}"),
+                            Text("Location:${abList[index].location}"),
                          
                          Container(
                            child: RaisedButton(
@@ -126,7 +119,7 @@ class _medicineListState extends State<medicineList> {
                              color: Colors.orange,
                              onPressed: (){
 
-                               print("Name:${medList[index].generic_name}");
+                               //print("Name:${medList[index].generic_name}");
                              },
                            ),
                          ),
@@ -164,15 +157,15 @@ class _medicineListState extends State<medicineList> {
   fetch(int offset) async {
     print("in fetch");
 
-    var data = await db.medicine();
+    var data = await db.abortion();
     currentDataLength = data.length;
     print("below data");
 
     print("out of loop");
 
     setState(() {
-      for (Medicine p in data) {
-        medList.add(p);
+      for (Abr p in data) {
+        abList.add(p);
       }
     });
   }

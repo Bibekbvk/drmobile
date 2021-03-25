@@ -1,23 +1,23 @@
 
 import 'package:drmobile/database.dart';
-import 'package:drmobile/module/medicine.dart';
-import 'package:drmobile/module/staffs.dart';
+import 'package:drmobile/module/emergencyinfo.dart';
+
 import 'package:flutter/material.dart';
 
 
 
-class medicineList extends StatefulWidget {
+class emergency extends StatefulWidget {
   @override
   
 
   
 
-  _medicineListState createState() => _medicineListState();
+  _emergencyState createState() => _emergencyState();
 }
 
-class _medicineListState extends State<medicineList> {
+class _emergencyState extends State<emergency> {
   DatabaseService db = DatabaseService();
-  List<Medicine> medList = new List();
+  List<EMR> eList = new List();
   ScrollController _scrollController = new ScrollController();
 
 
@@ -38,7 +38,7 @@ class _medicineListState extends State<medicineList> {
         if (currentDataLength >= 10) {
           print("List bigger than 10");
 
-          offset = medList.length;
+          offset = eList.length;
           fetch(offset);
         }
 
@@ -66,7 +66,7 @@ class _medicineListState extends State<medicineList> {
        ),
       body: ListView.builder(
         controller: _scrollController,
-        itemCount: medList.length,
+        itemCount: eList.length,
         itemBuilder: (BuildContext context, int index) {
         
          return Container(
@@ -82,24 +82,24 @@ class _medicineListState extends State<medicineList> {
                                 children:[ 
                                   Container(
                                     padding: EdgeInsets.all(5
-                                    ),
+                                   ),
                   height: 120,
                   width: 100,
                   decoration: BoxDecoration(
                   border:Border.all(color: Colors.green, width: 4),
                   borderRadius: BorderRadius.circular(22)
                   ),
-                  child: Image.network(medList[index].images,  fit: BoxFit.cover )
+                  child: Text("${eList[index].Name}")
                ),
                Container(
                  width:100,
-                  child:Text("${medList[index].brand_name}", style: TextStyle(
+                  child:Text("${eList[index].Contact1}", style: TextStyle(
                     fontSize: 12, color:Colors.lightGreen, fontWeight:FontWeight.w300
                   ),),
                ),
                   Container(
                      width:70,
-                     child:Text("${medList[index].company}", style: TextStyle(
+                     child:Text("${eList[index].Contact2}", style: TextStyle(
                     fontSize: 8, color:Colors.lightGreen, fontWeight:FontWeight.w800
                   ),),
                   )
@@ -116,20 +116,10 @@ class _medicineListState extends State<medicineList> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                           children:[ 
-                            Text("Name:${medList[index].brand_name}"),
-                            Text("Fees/day:${medList[index].price}"),
-                            Text("Location:${medList[index].company}"),
+                            Text("Name:${eList[index].Location}"),
+                        
                          
-                         Container(
-                           child: RaisedButton(
-                             child:Text("Buy"),
-                             color: Colors.orange,
-                             onPressed: (){
-
-                               print("Name:${medList[index].generic_name}");
-                             },
-                           ),
-                         ),
+                      
                              Divider(
                                color: Colors.greenAccent,
                                height: 2,
@@ -164,16 +154,17 @@ class _medicineListState extends State<medicineList> {
   fetch(int offset) async {
     print("in fetch");
 
-    var data = await db.medicine();
+    var data = await db.emergency();
     currentDataLength = data.length;
     print("below data");
 
     print("out of loop");
 
     setState(() {
-      for (Medicine p in data) {
-        medList.add(p);
+      for (EMR p in data) {
+        eList.add(p);
       }
     });
   }
 }
+

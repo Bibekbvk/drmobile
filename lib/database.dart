@@ -1,11 +1,18 @@
 import 'package:drmobile/constant.dart';
 import 'package:drmobile/drawer/feedback.dart';
+import 'package:drmobile/emergency.dart';
+import 'package:drmobile/menu/abortion.dart';
 import 'package:drmobile/module/Feedbacks.dart';
+import 'package:drmobile/module/abortioninfo.dart';
 import 'package:drmobile/module/medicine.dart';
 import 'package:drmobile/module/staffs.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
+import 'emergency.dart';
+import 'emergency.dart';
+import 'module/emergencyinfo.dart';
 class DatabaseService {
   
 
@@ -75,21 +82,81 @@ class DatabaseService {
     }
     return medicines;
   }
-   Future<String> insertFeedback(String uid, String contact, String name, String feedback) async {
-    //var encodeduuid = Uri.encodeComponent(uuid)c
-    //var encodeProduct_id = Uri.encodeComponent(product_id);
+
+
+
+   // Emergency number 
+
+    Future<List<EMR>> emergency() async {
     var data = await http.get(
-      "$BASE_URL/api/insertFeedback?user_id=${uid}&contact=${contact}&name=${name}&feedback=${feedback}",
+      "$BASE_URL/api/emergency",
     );
-    print(data.body);
+
     var jsonData = json.decode((data.body));
-    String val = jsonData["error"];
-    if (val == null) {
-      val = "";
+
+    List<EMR> emergencys = [];
+    for (var each in jsonData) {
+      EMR emergencyDetails = EMR(
+        E_ID: each['E_ID'],
+        Name: each['Name'],
+        Contact1: each['Contact1'],
+        Contact2: each['Contact2'],
+        Location: each['location'],
+       
+      );
+      emergencys.add(emergencyDetails);
     }
-    print(val);
-    return val;
+    return emergencys;
   }
   
-  
+    Future<List<Abr>> abortion() async {
+        var data = await http.get(
+          "$BASE_URL/api/abortion",
+        );
+    
+        var jsonData = json.decode((data.body));
+    
+        List<Abr> abortion = [];
+        for (var each in jsonData) {
+          Abr abDetails = Abr(
+            Place_id: each['place_ID'],
+            name: each['name'],
+            location: each['location'],
+            contact: each['contact'],
+            details: each['details'],
+            images: each['images'],
+           
+          );
+          abortion.add(abDetails);
+        }
+        return abortion;
+      }
+    
+
+
+
+
+    
+    
+    
+       Future<String> insertFeedback(String uid, String contact, String name, String feedback) async {
+        //var encodeduuid = Uri.encodeComponent(uuid)c
+        //var encodeProduct_id = Uri.encodeComponent(product_id);
+        var data = await http.get(
+          "$BASE_URL/api/insertFeedback?user_id=${uid}&contact=${contact}&name=${name}&feedback=${feedback}",
+        );
+        print(data.body);
+        var jsonData = json.decode((data.body));
+        String val = jsonData["error"];
+        if (val == null) {
+          val = "";
+        }
+        print(val);
+        return val;
+      }
+      
+      
+    }
+    
+    class Abortion {
 }
