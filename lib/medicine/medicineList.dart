@@ -89,7 +89,9 @@ class _medicineListState extends State<medicineList> {
                   border:Border.all(color: Colors.green, width: 4),
                   borderRadius: BorderRadius.circular(22)
                   ),
-                  child: Image.network(medList[index].images,  fit: BoxFit.cover )
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    child: Image.network(medList[index].images,  fit: BoxFit.cover ))
                ),
                Container(
                  width:100,

@@ -1,23 +1,29 @@
 import 'package:drmobile/database.dart';
 import 'package:flutter/material.dart';
 
-class feedback extends StatefulWidget {
+class userRegistration extends StatefulWidget {
   @override
-  _feedbackState createState() => _feedbackState();
+  _userRegistrationState createState() => _userRegistrationState();
 }
 
 DatabaseService db = DatabaseService();
-TextEditingController feedbacks = new TextEditingController();
-TextEditingController contact = new TextEditingController();
+TextEditingController userRegistrations = new TextEditingController();
+TextEditingController contact1 = new TextEditingController();
 TextEditingController name = new TextEditingController();
+TextEditingController contact2 = new TextEditingController();
+TextEditingController location = new TextEditingController();
+TextEditingController password = new TextEditingController();
+TextEditingController email = new TextEditingController();
 
-class _feedbackState extends State<feedback> {
+
+
+class _userRegistrationState extends State<userRegistration> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Feedback"),
-          actions: [Icon(Icons.feedback)],
+          title: Text("userRegistration"),
+          actions: [Icon(Icons.add)],
         ),
         body: ListView(children: [
           Container(
@@ -39,11 +45,11 @@ class _feedbackState extends State<feedback> {
                           borderRadius: BorderRadius.circular(11))),
                 ),
               ),
-              Text("Contact"),
+              Text("Email"),
               Container(
                 padding: EdgeInsets.all(20),
                 child: TextFormField(
-                  controller: contact,
+                  controller: email,
                   maxLines: 1,
                   decoration: InputDecoration(
                       labelText: "Mobile number / Email",
@@ -54,27 +60,85 @@ class _feedbackState extends State<feedback> {
               SizedBox(
                 height: 20,
               ),
-              Text("Your feedback"),
+
+                Text("Contact1"),
               Container(
                 padding: EdgeInsets.all(20),
                 child: TextFormField(
-                  controller: feedbacks,
-                  maxLines: 10,
+                  controller: contact1,
+                  maxLines: 1,
                   decoration: InputDecoration(
-                      labelText: "Feedback",
+                      labelText: "contact1",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(11))),
                 ),
               ),
+                SizedBox(
+                height: 20,
+              ),
+
+                Text("Contact2"),
+              Container(
+                padding: EdgeInsets.all(20),
+                child: TextFormField(
+                  controller: contact2,
+                  maxLines: 1,
+                  decoration: InputDecoration(
+                      labelText: "contact2",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(11))),
+                ),
+                     
+
+              ),
+
+               
+
+
+
+              SizedBox(
+                height: 20,
+              ),
+              Text("location"),
+              Container(
+                padding: EdgeInsets.all(20),
+                child: TextFormField(
+                  controller: location,
+                  maxLines: 10,
+                  decoration: InputDecoration(
+                      labelText: "location",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(11))),
+                ),
+              ),
+ 
+   SizedBox(
+                height: 20,
+              ),
+              Text("location"),
+              Container(
+                padding: EdgeInsets.all(20),
+                child: TextFormField(
+                  controller: password,
+                  maxLines: 1,
+                  decoration: InputDecoration(
+                      labelText: "location",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(11))),
+                ),
+              ),
+
+
+
               FlatButton.icon(
                   icon: Icon(Icons.send_outlined),
                   label: Text("Send"),
                   onPressed: () async {
-                    if (feedbacks.text == '') {
-                      _showDialogEmptyFeedback();
+                    if (password.text == '') {
+                      _showDialogEmptyuserRegistration();
                     } else {
-                      var res = await db.insertFeedback(
-                          "userid", contact.text, name.text, feedbacks.text);
+                      var res = await db.userRegistration(
+                          "userid", name.text, email.text, contact1.text, contact2.text, location.text, password.text);
                       print("${res}ressss");
 
                           if(res==200){
@@ -101,7 +165,7 @@ class _feedbackState extends State<feedback> {
         ]));
   }
 
-  _showDialogEmptyFeedback() {
+  _showDialogEmptyuserRegistration() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -112,7 +176,7 @@ class _feedbackState extends State<feedback> {
             style: TextStyle(color: Colors.purple[400], fontSize: 14),
           ),
           content: new Text(
-            "Feedback is Empty",
+            "userRegistration is Empty",
             style: TextStyle(color: Colors.purple[400], fontSize: 14),
           ),
           actions: <Widget>[

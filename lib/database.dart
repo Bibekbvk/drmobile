@@ -1,9 +1,11 @@
 import 'package:drmobile/constant.dart';
 import 'package:drmobile/drawer/feedback.dart';
 import 'package:drmobile/emergency.dart';
+import 'package:drmobile/login/userRegistration.dart';
 import 'package:drmobile/menu/abortion.dart';
 import 'package:drmobile/menu/volunteer.dart';
 import 'package:drmobile/module/Feedbacks.dart';
+import 'package:drmobile/module/Medicalitem.dart';
 import 'package:drmobile/module/abortioninfo.dart';
 import 'package:drmobile/module/helpinfo.dart';
 import 'package:drmobile/module/medicine.dart';
@@ -23,9 +25,9 @@ class DatabaseService {
   Future<List<Feedbacks>> fetchAllCategory() async {
     var data = await http
         .get("$BASE_URL/api/allcategories");
-
+    print("${data.statusCode} stautsass");
     var jsonData = json.decode((data.body)); 
-  
+    
 
     List<Feedbacks> feedbacks = [];
     for (var each in jsonData) {
@@ -87,6 +89,31 @@ class DatabaseService {
     return medicines;
   }
 
+  
+   Future<List<MedicalItem>> medical() async {
+    var data = await http.get(
+      "$BASE_URL/api/medical",
+    );
+
+    var jsonData = json.decode((data.body));
+
+    List<MedicalItem> medicals = [];
+    for (var each in jsonData) {
+      MedicalItem medicalDetails = MedicalItem(
+        itm_id: each['itm_id'],
+        name: each['name'],
+        otherName: each['otherName'],
+        company: each['company'],
+        price: each['price'],
+        quantity: each['quantity'],
+         description: each['description'],
+         tags: each['tags'],
+         images: each['images']
+      );
+      medicals.add(medicalDetails);
+    }
+    return medicals;
+  }
 
 
    // Emergency number 
@@ -220,24 +247,59 @@ class DatabaseService {
     
     
     
-       Future<String> insertFeedback(String uid, String contact, String name, String feedback) async {
+       Future<int> insertFeedback(String uid, String contact, String name, String feedback) async {
         //var encodeduuid = Uri.encodeComponent(uuid)c
         //var encodeProduct_id = Uri.encodeComponent(product_id);
         var data = await http.get(
           "$BASE_URL/api/insertFeedback?user_id=${uid}&contact=${contact}&name=${name}&feedback=${feedback}",
         );
-        print(data.body);
+        int code= data.statusCode;  
         var jsonData = json.decode((data.body));
         String val = jsonData["error"];
         if (val == null) {
           val = "";
         }
         print(val);
-        return val;
+        return code;
+      }
+
+
+
+        Future<int> userRegistration(String u_id, String name, String email, String contact1, String contact2, String location, String password ) async {
+        //var encodeduuid = Uri.encodeComponent(uuid)c
+        //var encodeProduct_id = Uri.encodeComponent(product_id);
+        var data = await http.get(
+          "$BASE_URL/api/register?u_id=${u_id}&name=${name}&email=${email}&contact1=${contact1}&contact2=${contact2}&location=${location}&password=${password}",
+        );
+        int code= data.statusCode;  
+        var jsonData = json.decode((data.body));
+        String val = jsonData["error"];
+        if (val == null) {
+          val = "";
+        }
+        print(val);
+        return code;
       }
       
+     
+
+       Future<int> insertlogin(String email, String password) async {
+        //var encodeduuid = Uri.encodeComponent(uuid)c
+        //var encodeProduct_id = Uri.encodeComponent(product_id);
+        var data = await http.get(
+          "$BASE_URL/api/login?email=${email}&password=${password}"
+        );
+       
+        return data.statusCode;
+      }
+
+
       
     }
+
+    
+
+
     
     class Abortion {
 }
