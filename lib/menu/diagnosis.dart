@@ -19,7 +19,7 @@ class _diagnosisState extends State<diagnosis> {
            Container(
               child: Column(children: [
                InkWell(
-                   child:Icon(FontAwesomeIcons.lungs, size: 44),
+                  child:Image.asset('images/respiratory.jpg', height: 100, width: 100,)
                    
                )
 
@@ -30,33 +30,11 @@ class _diagnosisState extends State<diagnosis> {
 
            ),
          
-             Container(
-              child: Column(children: [
-               InkWell(
-                   child:Icon(FontAwesomeIcons.lungs, size: 44),
-                   
-               )
+           
 
-                
+            
 
-              ],),
-
-
-           ),
-
-             Container(
-              child: Column(children: [
-               InkWell(
-                   child:Icon(FontAwesomeIcons.heart, size: 44),
-                   
-               )
-
-                
-
-              ],),
-
-
-           )
+           
 
 
 

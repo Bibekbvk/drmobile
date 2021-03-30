@@ -6,6 +6,7 @@ import 'package:drmobile/module/medicine.dart';
 import 'package:drmobile/module/sexeducationinfo.dart';
 import 'package:drmobile/module/staffs.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 
 
@@ -79,11 +80,11 @@ class _sexeducationpageState extends State<sexeducationpage> {
             child: Column(
              mainAxisAlignment: MainAxisAlignment.spaceEvenly,        
             children: [
-                   Text("${sexeducationList[index].topic}", style: TextStyle(color: Colors.blue.shade900, fontSize: 33),),
+                   Text("${sexeducationList[index].topic}", style: TextStyle(color: Colors.blue.shade900, fontSize: 22, ),),
                    
-                    Image.network(sexeducationList[index].image1,  fit: BoxFit.cover ),
+                  Image.network(sexeducationList[index].image1,  fit: BoxFit.cover ),
                
-                   Text("Posted On:${sexeducationList[index].date}", style: TextStyle(  fontSize: 19),),
+                   Text("Posted On:${sexeducationList[index].date}", style: TextStyle(  fontSize: 11),),
                 
                    Text("${sexeducationList[index].article1}"),
                    Text("${sexeducationList[index].date}"),
