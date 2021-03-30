@@ -1,4 +1,6 @@
 import 'package:drmobile/menu/SkinDisease.dart';
+import 'package:drmobile/menu/eye.dart';
+import 'package:drmobile/menu/other.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -137,7 +139,9 @@ class _diagnosisState extends State<diagnosis> {
           Container(
               child: Column(children: [
                InkWell(
-                  child:Image.asset('images/eye.jpg', height: 100, width: 100,)
+                  child:Image.asset('images/eye.jpg', height: 100, width: 100,),
+                  onTap:(){Navigator.push(context, MaterialPageRoute( builder:(context)=>eye()));
+                  }
                    
                ) 
 
@@ -148,8 +152,11 @@ class _diagnosisState extends State<diagnosis> {
               Container(
               child: Column(children: [
                InkWell(
-                  child:Image.asset('images/other.png', height: 100, width: 100,)
-                   
+                  child:Image.asset('images/other.png', height: 100, width: 100,),
+                     onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => otherdisease()));
+              }
                ) 
 
               ],)

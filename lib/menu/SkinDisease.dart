@@ -147,7 +147,7 @@ class _skindiseaseState extends State<skindisease> {
             Container(
                   child: Column(children: [
                    InkWell(
-                      child:Image.asset('images/cp1.jpg', height: 130, width: 170,)
+                      child:Image.asset('images/cp2.jpg', height: 130, width: 170,)
                        
                    ) 
 
@@ -180,7 +180,433 @@ class _skindiseaseState extends State<skindisease> {
             Container(
                   child: Column(children: [
                    InkWell(
-                      child:Image.asset('images/cp3.jpg', height: 130, width: 170,)
+                      child:Image.asset('images/cp4.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+
+
+
+
+
+
+
+            ],),
+
+
+
+            
+
+
+            
+                Row(
+                
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+
+
+                 Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/eczema1.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+            Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/eczema2.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+
+
+
+            ],),
+
+
+            
+                Row(
+                
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+
+
+                 Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/eczema3.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+            Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/eczema4.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+
+
+
+
+            ],),
+
+            
+
+
+            
+                Row(
+                
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+
+
+                 Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/herpes1.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+            Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/herpes2.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+
+
+
+            ],),
+
+
+            
+                Row(
+                
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+
+
+                 Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/herpes3.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+            Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/herpes4.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+
+
+
+
+
+
+
+            ],),
+
+
+           
+
+
+            
+                Row(
+                
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+
+
+                 Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/sk1.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+            Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/sk2.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+
+
+
+            ],),
+
+
+            
+                Row(
+                
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+
+
+                 Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/sk3.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+            Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/sk4.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+
+
+
+
+
+
+
+            ],),
+
+
+
+            
+
+
+            
+                Row(
+                
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+
+
+                 Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/scabies1.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+            Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/scabies2.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+
+
+
+            ],),
+
+
+            
+                Row(
+                
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+
+
+                 Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/scabies3.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+            Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/scabies4.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+
+
+
+
+
+
+
+            ],),
+
+
+
+            
+
+
+            
+                Row(
+                
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+
+
+                 Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/psoriasis.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+            Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/psoriasis2.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+
+
+
+            ],),
+
+
+            
+                Row(
+                
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+
+
+                 Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/psoriasis3.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+            Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/psoriasis4.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+
+
+
+            ],),
+
+           Row(
+                
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+
+
+                 Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/v1.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+            Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/v2.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+
+
+
+            ],),
+
+            Row(
+                
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+
+
+                 Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/v3.jpg', height: 130, width: 170,)
+                       
+                   ) 
+
+                  ],)
+
+             ),
+            Container(
+                  child: Column(children: [
+                   InkWell(
+                      child:Image.asset('images/v4.jpg', height: 130, width: 170,)
                        
                    ) 
 
@@ -197,10 +623,14 @@ class _skindiseaseState extends State<skindisease> {
             ],)
 
 
+        
 
 
 
 
+
+
+            
 
 
 
