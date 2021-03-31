@@ -1,6 +1,9 @@
+import 'package:drmobile/circulatory.dart';
+import 'package:drmobile/digestive.dart';
 import 'package:drmobile/menu/SkinDisease.dart';
 import 'package:drmobile/menu/eye.dart';
 import 'package:drmobile/menu/other.dart';
+import 'package:drmobile/nervoussystem.dart';
 import 'package:drmobile/reproductiv.dart';
 import 'package:drmobile/respiratory.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +27,11 @@ class _diagnosisState extends State<diagnosis> {
            Container(
               child: Column(children: [
                InkWell(
-                  child:Image.asset('images/respiratory.jpg', height: 100, width: 100,)
-                   
+                  child:Image.asset('images/respiratory.jpg', height: 100, width: 100,),
+                   onTap:(){Navigator.push(context, MaterialPageRoute( builder:(context)=>respiratory()));
+                  }
+                                      
+
                ) 
 
               ],)
@@ -34,8 +40,9 @@ class _diagnosisState extends State<diagnosis> {
           Container(
               child: Column(children: [
                InkWell(
-                  child:Image.asset('images/digestive.jpg', height: 100, width: 100,)
-                   
+                  child:Image.asset('images/digestive.jpg', height: 100, width: 100,),
+                    onTap:(){Navigator.push(context, MaterialPageRoute( builder:(context)=>digestive()));
+                  }
                ) 
 
               ],)
@@ -46,7 +53,9 @@ class _diagnosisState extends State<diagnosis> {
               child: Column(children: [
                InkWell(
                   child:Image.asset('images/circulatory.png', height: 100, width: 100,),
-                    
+                    onTap:(){Navigator.push(context, MaterialPageRoute( builder:(context)=>circulatory()));
+                  }                   
+
                ) 
 
               ],)
@@ -82,7 +91,9 @@ class _diagnosisState extends State<diagnosis> {
           Container(
               child: Column(children: [
                InkWell(
-                  child:Image.asset('images/nervous.jpg', height: 100, width: 100,)
+                  child:Image.asset('images/nervous.jpg', height: 100, width: 100,),
+                                       onTap:(){Navigator.push(context, MaterialPageRoute( builder:(context)=>nervoussystem()));
+                  }
                    
                ) 
 
@@ -109,7 +120,7 @@ class _diagnosisState extends State<diagnosis> {
   children: [
     
            Text("Endocrine", style: TextStyle(color: Colors.blueGrey),),
-           Text("Nervous"),
+           Text("Brain/\nNervous related\n disease"),
            Text("Reproductive"),
   ]
           
