@@ -263,6 +263,46 @@ class DatabaseService {
         return code;
       }
 
+       Future<int> insertRegistration( String uid,String image1, String image2, String image3, String description) async {
+        //var encodeduuid = Uri.encodeComponent(uuid)c
+        //var encodeProduct_id = Uri.encodeComponent(product_id);
+        var data = await http.get(
+          "$BASE_URL/api/insertStaffRegistration?U_id=${uid}&image1=${image1}&image2=${image2}&image3=${image3}&description=${description}",
+        );
+        int code= data.statusCode;  
+        var jsonData = json.decode((data.body));
+        String val = jsonData["error"];
+        if (val == null) {
+          val = "";
+        }
+        print(val);
+        return code;
+      }
+
+
+
+
+
+       Future<int> insertInvite(String I_id ,String uid, String name, String staffID, String contact) async {
+        //var encodeduuid = Uri.encodeComponent(uuid)c
+        //var encodeProduct_id = Uri.encodeComponent(product_id);
+        var data = await http.get(
+          "$BASE_URL/api/insertInvite?I_id=${I_id}&user_id=${uid}&name=${name}&staff_id=${staffID}&contact=${contact}",
+        );
+        int code= data.statusCode;  
+        var jsonData = json.decode((data.body));
+        String val = jsonData["error"];
+        if (val == null) {
+          val = "";
+        }
+        print(val);
+        return code;
+      }
+
+
+
+
+
 
 
         Future<int> userRegistration(String u_id, String name, String email, String contact1, String contact2, String location, String password ) async {
@@ -284,11 +324,14 @@ class DatabaseService {
      
 
        Future<int> insertlogin(String email, String password) async {
-        //var encodeduuid = Uri.encodeComponent(uuid)c
-        //var encodeProduct_id = Uri.encodeComponent(product_id);
+      
         var data = await http.get(
           "$BASE_URL/api/login?email=${email}&password=${password}"
         );
+
+        var jsonData = json.decode((data.body));
+       
+        userid=jsonData[0]['u_id'];
        
         return data.statusCode;
       }

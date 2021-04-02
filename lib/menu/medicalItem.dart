@@ -117,8 +117,8 @@ class _medicalItemListState extends State<medicalItemList> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                           children:[ 
-                            Text("Name:${medList[index].otherName}"),
-                            Text("Fees/day:${medList[index].price}"),
+                            Text("Name${medList[index].otherName}"),
+                            Text("Price:${medList[index].price}"),
                             Text("Location:${medList[index].company}"),
                          
                          Container(

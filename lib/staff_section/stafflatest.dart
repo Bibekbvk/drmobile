@@ -2,26 +2,31 @@
 
 
 import 'package:drmobile/database.dart';
+import 'package:drmobile/login/registration/login.dart';
+import 'package:drmobile/login/userRegistration.dart';
+import 'package:drmobile/menu/Help.dart';
 import 'package:drmobile/module/staffs.dart';
 import 'package:drmobile/staff_section/StaffListReusable.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../constant.dart';
 
-class ProductListPage extends StatefulWidget {
+
+class staffList extends StatefulWidget {
   @override
   final String category;
 
-  ProductListPage(this.category);
+  staffList(this.category);
 
-  _ProductListPageState createState() => _ProductListPageState();
+  _staffListState createState() => _staffListState();
 }
 
-class _ProductListPageState extends State<ProductListPage> {
+class _staffListState extends State<staffList> {
   DatabaseService db = DatabaseService();
   List<Staffs> staffList = new List();
   ScrollController _scrollController = new ScrollController();
-
+  TextEditingController search = new TextEditingController();
 
 
   int offset = 0;
@@ -60,32 +65,73 @@ class _ProductListPageState extends State<ProductListPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+       title: Center(
+                  child: Row(
+                    children: [
+                      Expanded(flex: 7,
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white60,
+                                                  borderRadius: BorderRadius.circular(90)
+                                                ),
+                          
+                         
+                          child: TextFormField(
+             style: TextStyle(color: Colors.black),
+                            controller: search,
+                            maxLines: 1,
+                            
+                            decoration: InputDecoration(
+                              fillColor: Colors.red,
+                                
+                                hintText: "Search",
+                                labelText: "Mobile number / Email",
+                               ),
+                          ),
+                        ),
+                      ),
+
+                      Expanded(child: IconButton(icon:Icon(Icons.search,color: Colors.white,),)),
+                    ],
+                  ),
+                
+        ),
+      ),
       body: ListView.builder(
         controller: _scrollController,
         itemCount: staffList.length,
         itemBuilder: (BuildContext context, int index) {
+
+          
          return Container(
+           
            padding: EdgeInsets.all(10),
            color: Colors.black54,
             child: Row(
+
+
              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
              
                 Column(
+                  
                   crossAxisAlignment: CrossAxisAlignment.start,
                                 children:[ 
+
+                                  
                                   Container(
-                                    padding: EdgeInsets.all(5
-                                    ),
+                                  
                   height: 120,
                   width: 100,
                   decoration: BoxDecoration(
-                  border:Border.all(color: Colors.green, width: 4),
+                  border:Border.all(color: Colors.green, width: 5),
                   borderRadius: BorderRadius.circular(22)
                   ),
-                  child: Image.network(staffList[index].photo,  fit: BoxFit.fill )
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.network(staffList[index].photo,  fit: BoxFit.fill ))
                ),
                Container(
                  width:100,
@@ -112,7 +158,7 @@ class _ProductListPageState extends State<ProductListPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                           children:[ 
-                            Text("Name:${staffList[index].reg_no}"),
+                            Text("Name:${staffList[index].name}"),
                             Text("Fees/day:${staffList[index].fee}"),
                             Text("Location:${staffList[index].location}"),
                          
@@ -120,10 +166,44 @@ class _ProductListPageState extends State<ProductListPage> {
                            child: RaisedButton(
                              child:Text("Invite"),
                              color: Colors.orange,
-                             onPressed: (){
+                            onPressed: () async {
+                    if (staffList[index].staff_id == '') {
+                                  showDialog(
+    context: context,
+    builder: (context) =>
+        AlertDialog(
 
-                               print("Name:${staffList[index].reg_no}");
-                             },
+          title:Text("Staff Id is absense")
+
+
+        ),
+  );
+
+
+                    } else {
+                      var res = await db.insertInvite( "Invitation",
+                          "$userid", staffList[index].name, staffList[index].staff_id, staffList[index].name);
+                      print("${res}ressss");
+
+                          if(res==200){
+                           showDialog(
+    context: context,
+    builder: (context) =>
+        AlertDialog(
+
+          title:Text("Successful")
+
+
+        ),
+  );
+
+                        print("success");
+
+                          }else{
+                            print("failure");
+                          }
+                    }
+                  },
                            ),
                          ),
                              Divider(

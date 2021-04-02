@@ -8,12 +8,14 @@ import 'package:drmobile/medicine/medicineList.dart';
 import 'package:drmobile/menu/abortion.dart';
 import 'package:drmobile/menu/contact.dart';
 import 'package:drmobile/menu/diagnosis.dart';
+import 'package:drmobile/menu/medicalItem.dart';
 import 'package:drmobile/menu/prescription.dart';
 import 'package:drmobile/module/sexeducationinfo.dart';
 import 'package:drmobile/staff_section/staffList.dart';
 import 'package:drmobile/staff_section/staff_list.dart';
 import 'package:drmobile/staff_section/stafflatest.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'menu/Help.dart';
 import 'menu/sexeducation.dart';
@@ -237,17 +239,17 @@ class _homeState extends State<home> {
                   Text("Volunteer"),
 
                   InkWell(
-                    child: Icon(Icons.code_rounded, size: 44) ,
+                    child: Icon(FontAwesomeIcons.cartArrowDown,size: 44) ,
                     onTap:() {
                             Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => contactpage()));
+                              builder: (context) => medicalItemList()));
 
                     },
                   ),                 
                  
-                  Text("Contact")
+                  Text("Surgical items")
                 ],
               ),
               Column(
@@ -313,16 +315,16 @@ class _homeState extends State<home> {
                 Column(children: [
                   InkWell(
                       child: Container(
-                      height: 300,
-                      width: 250,
-                      color:Colors.blueAccent,
-                      child: Image.asset('images/dr.jpg'),
+                      height: 200,
+                      width: 200,
+                     
+                      child: Image.asset('images/dr.png'),
                     ),
                     onTap: (){
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ProductListPage("")));
+                              builder: (context) => staffList("")));
                     },
                   ),
                   Text('MBBS Doctor'),
@@ -335,7 +337,7 @@ class _homeState extends State<home> {
                   Container(
                     height: 200,
                     width: 160,
-                    child: Image.asset('images/dr.jpg'),
+                    child: Image.asset('images/ha.png'),
                   ),
                   Text('Health Assistance'),
                   RaisedButton(child: Text("Invite"), onPressed: () {})
@@ -343,17 +345,17 @@ class _homeState extends State<home> {
                 Column(children: [
                   Container(
                     height: 200,
-                    width: 160,
-                    child: Image.asset('images/dr.jpg'),
+                    width: 200,
+                    child: Image.asset('images/nurse.jpg'),
                   ),
                   Text('Staff Nurse'),
                   RaisedButton(child: Text("Invite"), onPressed: () {})
                 ]),
                 Column(children: [
                   Container(
-                    height: 80,
-                    width: 60,
-                    child: Image.asset('images/dr.jpg'),
+                    height: 200,
+                    width: 160,
+                    child: Image.asset('images/anm.jpg'),
                   ),
                   Text('Assitance Nurse Mid-wifery'),
                   RaisedButton(child: Text("Invite"), onPressed: () {})
@@ -361,9 +363,9 @@ class _homeState extends State<home> {
                 Column(children: [
                   Container(
                     decoration: BoxDecoration(),
-                    height: 80,
-                    width: 60,
-                    child: Image.asset('images/dr.jpg'),
+                    height: 200,
+                    width: 200,
+                    child: Image.asset('images/cma.jpg'),
                   ),
                   Text('CMA'),
                   RaisedButton(child: Text("Invite"), onPressed: () {})
