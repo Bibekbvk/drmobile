@@ -25,10 +25,23 @@ class _FinalDiagnosisSkinState extends State<FinalDiagnosisSkin> {
                         child: ListView(
                           children: [
                             Container(
+                              height: 40,
+                              width: 300,
+                              decoration: BoxDecoration(
+                                color: Colors.blueAccent,
+                                borderRadius:BorderRadius.circular(1)
+                              ),
                               padding: EdgeInsets.all(10),
-        child: Text("Probable Disease:${widget.name}")),
+        child: Text("Probable Disease:${widget.name}", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900),)),
         Container(
-          child:Text("")
+          child:Text("Treatment: \n${widget.treatment}")
+        ),
+        Container(
+          decoration: BoxDecoration(
+
+            borderRadius: BorderRadius.circular(22)
+          ),
+         child: Image.asset("${widget.image}"),
         ),
           Container(
             padding: EdgeInsets.all(20),

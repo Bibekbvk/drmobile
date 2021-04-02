@@ -33,7 +33,7 @@ class _skindiseaseState extends State<skindisease> {
                       child:Image.asset('images/abscess.jpg', height: 130, width: 170,),
                       onTap:(){
                            Navigator.push(
-          context, MaterialPageRoute(builder: (context) => FinalDiagnosisSkin(name:"Abscess", description:"This is description", treatment:"this is treatment", other:"This is other", image:"this is image")));
+          context, MaterialPageRoute(builder: (context) => FinalDiagnosisSkin(name:"Abscess", description:"This is description", treatment:"this is treatment", other:"This is other", image: "images/dr.png")));
      }
                    ) 
 
