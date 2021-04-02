@@ -84,7 +84,7 @@ class _staffListState extends State<staffList> {
                   child: IconButton(
 
                     onPressed: (){
-                                   Navigator.push(context, MaterialPageRoute( builder: (context)=>searchStaff(search.text)));
+                                   Navigator.push(context, MaterialPageRoute( builder: (context)=>Sstaffs(name:search.text)));
 
 
 

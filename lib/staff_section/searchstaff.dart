@@ -4,23 +4,25 @@ import 'package:drmobile/login/userRegistration.dart';
 import 'package:drmobile/menu/Help.dart';
 import 'package:drmobile/module/staffs.dart';
 
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../constant.dart';
 
-class searchStaff extends StatefulWidget {
+class Sstaffs extends StatefulWidget {
   @override
-  final String category;
+  final String name;
 
-  searchStaff(this.category);
+  Sstaffs({this.name});
 
-  _searchStaffState createState() => _searchStaffState();
+  _SstaffsState createState() => _SstaffsState();
 }
 
-class _searchStaffState extends State<searchStaff> {
+class _SstaffsState extends State<Sstaffs> {
+
   DatabaseService db = DatabaseService();
-  List<Staffs> searchStaff = new List();
+  List<Staffs> Sstaffs = new List();
   ScrollController _scrollController = new ScrollController();
   TextEditingController search = new TextEditingController();
 
@@ -31,15 +33,15 @@ class _searchStaffState extends State<searchStaff> {
   @override
   void initState() {
     super.initState();
-    fetch(widget.category, offset);
+    fetch(widget.name, offset);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
         if (currentDataLength >= 10) {
           print("List bigger than 10");
 
-          offset = searchStaff.length;
-          fetch(widget.category, offset);
+          offset = Sstaffs.length;
+          fetch(widget.name, offset);
         }
 
         print("called again");
@@ -56,51 +58,52 @@ class _searchStaffState extends State<searchStaff> {
 
   @override
   Widget build(BuildContext context) {
+      print("${widget.name}naaaaam morororororor");
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          // child: Row(
-          //   children: [
-          //     Expanded(
-          //       flex: 7,
-          //       child: Container(
-          //         decoration: BoxDecoration(
-          //             color: Colors.white60,
-          //             borderRadius: BorderRadius.circular(90)),
-          //         child: TextFormField(
-          //           style: TextStyle(color: Colors.black),
-          //           controller: search,
-          //           maxLines: 1,
-          //           decoration: InputDecoration(
-          //             fillColor: Colors.red,
-          //             hintText: "Search",
-          //             labelText: "Mobile number / Email",
-          //           ),
-          //         ),
-          //       ),
-          //     ),
-          //     Expanded(
-          //         child: IconButton(
+          child: Row(
+            children: [
+              Expanded(
+                flex: 7,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white60,
+                      borderRadius: BorderRadius.circular(90)),
+                  child: TextFormField(
+                    style: TextStyle(color: Colors.black),
+                    controller: search,
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                      fillColor: Colors.red,
+                      hintText: "Search",
+                      labelText: "Mobile number / Email",
+                    ),
+                  ),
+                ),
+              ),
+              // Expanded(
+              //     child: IconButton(
 
-          //           onPressed: (){
-          //                          Navigator.push(context, MaterialPageRoute( builder: (context)=>searchStaff()));
-
-
+              //       onPressed: (){
+              //                      Navigator.push(context, MaterialPageRoute( builder: (context)=>Sstaffs(category:search.text)));
 
 
-          //           },
-          //       icon: Icon(
-          //         Icons.search,
-          //         color: Colors.white,
-          //       ),
-          //     )),
-          //   ],
-          // ),
+
+
+              //       },
+              //   icon: Icon(
+              //     Icons.search,
+              //     color: Colors.white,
+              //   ),
+              // )),
+            ],
+          ),
         ),
       ),
       body: ListView.builder(
         controller: _scrollController,
-        itemCount: searchStaff.length,
+        itemCount: Sstaffs.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
             padding: EdgeInsets.all(10),
@@ -118,12 +121,12 @@ class _searchStaffState extends State<searchStaff> {
                           borderRadius: BorderRadius.circular(22)),
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.network(searchStaff[index].photo,
+                          child: Image.network(Sstaffs[index].photo,
                               fit: BoxFit.fill))),
                   Container(
                     width: 100,
                     child: Text(
-                      "${searchStaff[index].name}",
+                      "${Sstaffs[index].name}",
                       style: TextStyle(
                           fontSize: 12,
                           color: Colors.lightGreen,
@@ -133,7 +136,7 @@ class _searchStaffState extends State<searchStaff> {
                   Container(
                     width: 70,
                     child: Text(
-                      "${searchStaff[index].staff_type}",
+                      "${Sstaffs[index].staff_type}",
                       style: TextStyle(
                           fontSize: 8,
                           color: Colors.lightGreen,
@@ -150,27 +153,23 @@ class _searchStaffState extends State<searchStaff> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("Name:${searchStaff[index].name}"),
-                            Text("Fees/day:${searchStaff[index].fee}"),
-                            Text("Location:${searchStaff[index].location}"),
+                            Text("Name:${Sstaffs[index].name}"),
+                            Text("Fees/day:${Sstaffs[index].fee}"),
+                            Text("Location:${Sstaffs[index].location}"),
                             Container(
                               child: RaisedButton(
                                 child: Text("Invite"),
                                 color: Colors.orange,
                                 onPressed: () async {
-                                  if (searchStaff[index].staff_id == '') {
+                                  if (Sstaffs[index].staff_id == '') {
                                     showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
                                           title: Text("Staff Id is absense")),
                                     );
                                   } else {
-                                    var res = await db.insertInvite(
-                                        "Invitation",
-                                        "$userid",
-                                        searchStaff[index].name,
-                                        searchStaff[index].staff_id,
-                                        searchStaff[index].name);
+                                    var res = await db.searchstaff(
+                                       widget.name);
                                     print("${res}ressss");
 
                                     if (res == 200) {
@@ -206,7 +205,7 @@ class _searchStaffState extends State<searchStaff> {
   fetch(String category, int offset) async {
     print("in fetch");
 
-    var data = await db.staff();
+    var data = await db.searchstaff(widget.name);
     currentDataLength = data.length;
     print("below data");
 
@@ -214,7 +213,7 @@ class _searchStaffState extends State<searchStaff> {
 
     setState(() {
       for (Staffs p in data) {
-        searchStaff.add(p);
+        Sstaffs.add(p);
       }
     });
   }

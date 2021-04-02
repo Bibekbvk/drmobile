@@ -63,6 +63,34 @@ class DatabaseService {
     }
     return staffs;
   }
+
+
+   Future<List<Staffs>> searchstaff(String staffname) async {
+    var data = await http.get(
+      "$BASE_URL/api/searchStaff?name=${staffname}",
+    );
+
+    var jsonData = json.decode((data.body));
+
+    List<Staffs> Sstaffs = [];
+    for (var each in jsonData) {
+      Staffs searchstaffsList = Staffs(
+        staff_id: each['staff_id'],
+        name: each['name'],
+        staff_type: each['staff_type'],
+        location: each['location'],
+        fee: each['fee'],
+        reg_no: each['reg_no'],
+         photo: each['photo'],
+      );
+      Sstaffs.add(searchstaffsList);
+    }
+    return Sstaffs;
+  }
+
+
+
+
    // For Medicine Details
    Future<List<Medicine>> medicine() async {
     var data = await http.get(

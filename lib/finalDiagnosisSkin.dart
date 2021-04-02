@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
 
-class FinalDiagnosis extends StatefulWidget {
-  final String symptoms;
+class FinalDiagnosisSkin extends StatefulWidget {
+  final String name;
   final String description;
-  final String img;
+  final String treatment;
+  final String other;
+  final String image;
   
+  const FinalDiagnosisSkin({Key key, this.name, this.description, this.treatment, this.other, this.image}) : super(key: key);
 
-  const FinalDiagnosis({Key key, this.symptoms, this.description, this.img}) : super(key: key);
   @override
-  _FinalDiagnosisState createState() => _FinalDiagnosisState();
+  _FinalDiagnosisSkinState createState() => _FinalDiagnosisSkinState();
 }
 
-class _FinalDiagnosisState extends State<FinalDiagnosis> {
+class _FinalDiagnosisSkinState extends State<FinalDiagnosisSkin> {
   @override
   Widget build(BuildContext context) {
     
@@ -24,8 +26,10 @@ class _FinalDiagnosisState extends State<FinalDiagnosis> {
                           children: [
                             Container(
                               padding: EdgeInsets.all(10),
-        child: Text("${widget.symptoms}")),
-        Image.asset("${widget.img}"),
+        child: Text("Probable Disease:${widget.name}")),
+        Container(
+          child:Text("")
+        ),
           Container(
             padding: EdgeInsets.all(20),
         child: Text("${widget.description}"),

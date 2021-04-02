@@ -1,3 +1,4 @@
+import 'package:drmobile/finalDiagnosisSkin.dart';
 import 'package:flutter/material.dart';
 
 
@@ -29,8 +30,11 @@ class _skindiseaseState extends State<skindisease> {
                  Container(
                   child: Column(children: [
                    InkWell(
-                      child:Image.asset('images/abscess.jpg', height: 130, width: 170,)
-                       
+                      child:Image.asset('images/abscess.jpg', height: 130, width: 170,),
+                      onTap:(){
+                           Navigator.push(
+          context, MaterialPageRoute(builder: (context) => FinalDiagnosisSkin(name:"Abscess", description:"This is description", treatment:"this is treatment", other:"This is other", image:"this is image")));
+     }
                    ) 
 
                   ],)
@@ -244,7 +248,12 @@ class _skindiseaseState extends State<skindisease> {
                  Container(
                   child: Column(children: [
                    InkWell(
-                      child:Image.asset('images/eczema3.jpg', height: 130, width: 170,)
+                      child:Image.asset('images/eczema3.jpg', height: 130, width: 170,),
+                       onTap: (){
+
+     //   Navigator.push(
+       //   context, MaterialPageRoute(builder: (context) => FinalDiagnosisSkin(symptoms:text,description: "$desc",img: "$img")));
+     },
                        
                    ) 
 

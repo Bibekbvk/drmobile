@@ -70,79 +70,84 @@ class _volunteerState extends State<volunteer> {
         itemCount: volunteerList.length,
         itemBuilder: (BuildContext context, int index) {
         
-         return Container(
-           
-           padding: EdgeInsets.all(10),
-           color: Colors.black54,
-            child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceEvenly,        
-            children: [
-             
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                                children:[ 
-                                  Container(
-                                    padding: EdgeInsets.all(5
-                                    ),
-                  height: 120,
-                  width: 100,
-                  decoration: BoxDecoration(
-                  border:Border.all(color: Colors.green, width: 4),
-                  borderRadius: BorderRadius.circular(22)
-                  ),
-                  child: Image.network(volunteerList[index].image,  fit: BoxFit.cover )
-               ),
-               Container(
-                 width:100,
-                  child:Text("${volunteerList[index].name}", style: TextStyle(
-                    fontSize: 12, color:Colors.lightGreen, fontWeight:FontWeight.w300
-                  ),),
-               ),
-                  Container(
-                     width:70,
-                     child:Text("${volunteerList[index].location}", style: TextStyle(
-                    fontSize: 8, color:Colors.lightGreen, fontWeight:FontWeight.w800
-                  ),),
-                  )
-                           
-
-                                 ] ),
-             
-                 Expanded(
-                   flex:7,
-                    child: Container(
-                     width: 150,
-                     height: 200,
-                   child:Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                          children:[ 
-                            Text("Name:${volunteerList[index].details}"),
-                            Text("Fees/day:${volunteerList[index].contact}"),
-                            Text("Location:${volunteerList[index].type}"),
-                         
-                       
-                             Divider(
-                               color: Colors.greenAccent,
-                               height: 2,
-                               thickness: 2,
-                             ) 
-                     ]
+         return Column(
+           children: [
+             Text("hi"),
+             Container(
+               
+               padding: EdgeInsets.all(10),
+               color: Colors.black54,
+                child: Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,        
+                children: [
+                 
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                                    children:[ 
+                                      Container(
+                                        padding: EdgeInsets.all(5
+                                        ),
+                      height: 120,
+                      width: 100,
+                      decoration: BoxDecoration(
+                      border:Border.all(color: Colors.green, width: 4),
+                      borderRadius: BorderRadius.circular(22)
+                      ),
+                      child: Image.network(volunteerList[index].image,  fit: BoxFit.cover )
+                   ),
+                   Container(
+                     width:100,
+                      child:Text("${volunteerList[index].name}", style: TextStyle(
+                        fontSize: 12, color:Colors.lightGreen, fontWeight:FontWeight.w300
+                      ),),
+                   ),
+                      Container(
+                         width:70,
+                         child:Text("${volunteerList[index].location}", style: TextStyle(
+                        fontSize: 8, color:Colors.lightGreen, fontWeight:FontWeight.w800
+                      ),),
+                      )
                                
-                    
-                   )
-               ),
-                 ),
-             
-              
-            ],
 
-            
-          
-             
-           ),
-             
+                                     ] ),
+                 
+                     Expanded(
+                       flex:7,
+                        child: Container(
+                         width: 150,
+                         height: 200,
+                       child:Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                              children:[ 
+                                Text("Name:${volunteerList[index].details}"),
+                                Text("Fees/day:${volunteerList[index].contact}"),
+                                Text("Location:${volunteerList[index].type}"),
+                             
+                           
+                                 Divider(
+                                   color: Colors.greenAccent,
+                                   height: 2,
+                                   thickness: 2,
+                                 ) 
+                         ]
+                                   
+                        
+                       )
+                   ),
+                     ),
+                 
+                  
+                ],
+
+                
+              
+                 
+               ),
+                 
         
+             ),
+           ],
          );
      
         
