@@ -59,88 +59,52 @@ class _emergencyState extends State<emergency> {
 
     return Scaffold(
       appBar: AppBar(
-      //  leading: TextField(
-
-      //  ),
-
+        title: Text("Emergency Number"),
+       
        ),
       body: ListView.builder(
         controller: _scrollController,
         itemCount: eList.length,
         itemBuilder: (BuildContext context, int index) {
         
-         return Container(
-           
-           padding: EdgeInsets.all(10),
-           color: Colors.black54,
-            child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceEvenly,        
+         return Column(
             children: [
-             
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                                children:[ 
-                                  Container(
-                                    padding: EdgeInsets.all(5
-                                   ),
-                  height: 120,
-                  width: 100,
-                  decoration: BoxDecoration(
-                  border:Border.all(color: Colors.green, width: 4),
-                  borderRadius: BorderRadius.circular(22)
-                  ),
-                  child: Text("${eList[index].Name}")
-               ),
-               Container(
-                 width:100,
-                  child:Text("${eList[index].Contact1}", style: TextStyle(
-                    fontSize: 12, color:Colors.lightGreen, fontWeight:FontWeight.w300
-                  ),),
-               ),
-                  Container(
-                     width:70,
-                     child:Text("${eList[index].Contact2}", style: TextStyle(
-                    fontSize: 8, color:Colors.lightGreen, fontWeight:FontWeight.w800
-                  ),),
-                  )
-                           
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.greenAccent,
+                  
 
-                                 ] ),
-             
-                 Expanded(
-                   flex:7,
-                    child: Container(
-                     width: 150,
-                     height: 200,
-                   child:Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                          children:[ 
-                            Text("Name:${eList[index].Location}"),
-                        
-                         
-                      
-                             Divider(
-                               color: Colors.greenAccent,
-                               height: 2,
-                               thickness: 2,
-                             ) 
-                     ]
-                               
-                    
-                   )
-               ),
-                 ),
-             
-              
+                ),
+                
+                child: 
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 150,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      color: Colors.white60,
+                      borderRadius: BorderRadius.circular(11)),
+                    child: Text("${eList[index].Name}\n${eList[index].Location} ", style:  TextStyle(color: Colors.indigoAccent, fontSize: 16),)),
+
+                  Container(
+                    height: 100,
+                    width: 150,
+                     decoration: BoxDecoration(
+                      color: Colors.white60,
+                      borderRadius: BorderRadius.circular(6)),
+                    child: Text("Contact No: \n\n${eList[index].Contact1} / ${eList[index].Contact1}", style:  TextStyle(color: Colors.indigoAccent, fontSize: 16),))
+                ],
+              ),),
+              SizedBox(
+                child: Container(
+                  color: Colors.orange
+                )
+              )
             ],
 
-            
-          
-             
-           ),
-             
-        
+
          );
      
         

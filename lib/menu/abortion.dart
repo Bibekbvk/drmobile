@@ -109,20 +109,12 @@ class _abortionState extends State<abortion> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                           children:[ 
-                            Text("Name:${abList[index].contact}"),
-                            Text("Fees/day:${abList[index].details}"),
+                            Text("Name:${abList[index].name}"),
+                            Text("Contact:${abList[index].contact}"),
                             Text("Location:${abList[index].location}"),
+                            Text("Details:${abList[index].details}"),
                          
-                         Container(
-                           child: RaisedButton(
-                             child:Text("Buy"),
-                             color: Colors.orange,
-                             onPressed: (){
-
-                               //print("Name:${medList[index].generic_name}");
-                             },
-                           ),
-                         ),
+                         
                              Divider(
                                color: Colors.greenAccent,
                                height: 2,

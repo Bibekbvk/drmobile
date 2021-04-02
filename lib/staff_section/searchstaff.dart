@@ -3,25 +3,24 @@ import 'package:drmobile/login/registration/login.dart';
 import 'package:drmobile/login/userRegistration.dart';
 import 'package:drmobile/menu/Help.dart';
 import 'package:drmobile/module/staffs.dart';
-import 'package:drmobile/staff_section/searchstaff.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../constant.dart';
 
-class staffList extends StatefulWidget {
+class searchStaff extends StatefulWidget {
   @override
   final String category;
 
-  staffList(this.category);
+  searchStaff(this.category);
 
-  _staffListState createState() => _staffListState();
+  _searchStaffState createState() => _searchStaffState();
 }
 
-class _staffListState extends State<staffList> {
+class _searchStaffState extends State<searchStaff> {
   DatabaseService db = DatabaseService();
-  List<Staffs> staffList = new List();
+  List<Staffs> searchStaff = new List();
   ScrollController _scrollController = new ScrollController();
   TextEditingController search = new TextEditingController();
 
@@ -39,7 +38,7 @@ class _staffListState extends State<staffList> {
         if (currentDataLength >= 10) {
           print("List bigger than 10");
 
-          offset = staffList.length;
+          offset = searchStaff.length;
           fetch(widget.category, offset);
         }
 
@@ -60,48 +59,48 @@ class _staffListState extends State<staffList> {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Row(
-            children: [
-              Expanded(
-                flex: 7,
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white60,
-                      borderRadius: BorderRadius.circular(90)),
-                  child: TextFormField(
-                    style: TextStyle(color: Colors.black),
-                    controller: search,
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      fillColor: Colors.red,
-                      hintText: "Search",
-                      labelText: "Mobile number / Email",
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                  child: IconButton(
+          // child: Row(
+          //   children: [
+          //     Expanded(
+          //       flex: 7,
+          //       child: Container(
+          //         decoration: BoxDecoration(
+          //             color: Colors.white60,
+          //             borderRadius: BorderRadius.circular(90)),
+          //         child: TextFormField(
+          //           style: TextStyle(color: Colors.black),
+          //           controller: search,
+          //           maxLines: 1,
+          //           decoration: InputDecoration(
+          //             fillColor: Colors.red,
+          //             hintText: "Search",
+          //             labelText: "Mobile number / Email",
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //     Expanded(
+          //         child: IconButton(
 
-                    onPressed: (){
-                                   Navigator.push(context, MaterialPageRoute( builder: (context)=>searchStaff(search.text)));
-
-
+          //           onPressed: (){
+          //                          Navigator.push(context, MaterialPageRoute( builder: (context)=>searchStaff()));
 
 
-                    },
-                icon: Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-              )),
-            ],
-          ),
+
+
+          //           },
+          //       icon: Icon(
+          //         Icons.search,
+          //         color: Colors.white,
+          //       ),
+          //     )),
+          //   ],
+          // ),
         ),
       ),
       body: ListView.builder(
         controller: _scrollController,
-        itemCount: staffList.length,
+        itemCount: searchStaff.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
             padding: EdgeInsets.all(10),
@@ -119,12 +118,12 @@ class _staffListState extends State<staffList> {
                           borderRadius: BorderRadius.circular(22)),
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.network(staffList[index].photo,
+                          child: Image.network(searchStaff[index].photo,
                               fit: BoxFit.fill))),
                   Container(
                     width: 100,
                     child: Text(
-                      "${staffList[index].name}",
+                      "${searchStaff[index].name}",
                       style: TextStyle(
                           fontSize: 12,
                           color: Colors.lightGreen,
@@ -134,7 +133,7 @@ class _staffListState extends State<staffList> {
                   Container(
                     width: 70,
                     child: Text(
-                      "${staffList[index].staff_type}",
+                      "${searchStaff[index].staff_type}",
                       style: TextStyle(
                           fontSize: 8,
                           color: Colors.lightGreen,
@@ -151,15 +150,15 @@ class _staffListState extends State<staffList> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("Name:${staffList[index].name}"),
-                            Text("Fees/day:${staffList[index].fee}"),
-                            Text("Location:${staffList[index].location}"),
+                            Text("Name:${searchStaff[index].name}"),
+                            Text("Fees/day:${searchStaff[index].fee}"),
+                            Text("Location:${searchStaff[index].location}"),
                             Container(
                               child: RaisedButton(
                                 child: Text("Invite"),
                                 color: Colors.orange,
                                 onPressed: () async {
-                                  if (staffList[index].staff_id == '') {
+                                  if (searchStaff[index].staff_id == '') {
                                     showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
@@ -169,9 +168,9 @@ class _staffListState extends State<staffList> {
                                     var res = await db.insertInvite(
                                         "Invitation",
                                         "$userid",
-                                        staffList[index].name,
-                                        staffList[index].staff_id,
-                                        staffList[index].name);
+                                        searchStaff[index].name,
+                                        searchStaff[index].staff_id,
+                                        searchStaff[index].name);
                                     print("${res}ressss");
 
                                     if (res == 200) {
@@ -215,7 +214,7 @@ class _staffListState extends State<staffList> {
 
     setState(() {
       for (Staffs p in data) {
-        staffList.add(p);
+        searchStaff.add(p);
       }
     });
   }

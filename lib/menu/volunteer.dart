@@ -121,16 +121,7 @@ class _volunteerState extends State<volunteer> {
                             Text("Fees/day:${volunteerList[index].contact}"),
                             Text("Location:${volunteerList[index].type}"),
                          
-                         Container(
-                           child: RaisedButton(
-                             child:Text("Buy"),
-                             color: Colors.orange,
-                             onPressed: (){
-
-                               print("Name:${volunteerList[index].email}");
-                             },
-                           ),
-                         ),
+                       
                              Divider(
                                color: Colors.greenAccent,
                                height: 2,

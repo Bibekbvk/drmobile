@@ -11,8 +11,7 @@ import 'package:drmobile/menu/diagnosis.dart';
 import 'package:drmobile/menu/medicalItem.dart';
 import 'package:drmobile/menu/prescription.dart';
 import 'package:drmobile/module/sexeducationinfo.dart';
-import 'package:drmobile/staff_section/staffList.dart';
-import 'package:drmobile/staff_section/staff_list.dart';
+
 import 'package:drmobile/staff_section/stafflatest.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -37,13 +36,7 @@ class _homeState extends State<home> {
       drawer: Drawer(
           child: ListView(
         children: [
-          UserAccountsDrawerHeader(
-            accountName: Text("Bvk Bhattarai"),
-            accountEmail: Text("bvk@gmail.com"),
-            currentAccountPicture: CircleAvatar(
-              backgroundImage: new NetworkImage('images/mobile1.png'),
-            ),
-          ),
+         
           InkWell(
               child: ListTile(
                   leading: Icon(
@@ -101,8 +94,13 @@ class _homeState extends State<home> {
                     fontSize: 22,
                   ),
                 )),
+                 onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => contactpage()));
+              }
           ),
           InkWell(
+            
               child: ListTile(
                   leading: Icon(
                     Icons.feedback_outlined,
@@ -116,6 +114,7 @@ class _homeState extends State<home> {
                       fontWeight: FontWeight.w900,
                       fontSize: 22,
                     ),
+                    
                   )),
               onTap: () {
                 Navigator.push(context,
@@ -136,6 +135,10 @@ class _homeState extends State<home> {
                     fontSize: 22,
                   ),
                 )),
+                 onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => contactpage()));
+              }
           ),
           InkWell(
             child: ListTile(
@@ -152,6 +155,10 @@ class _homeState extends State<home> {
                     fontSize: 22,
                   ),
                 )),
+                 onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => feedback()));
+              }
           ),
         ],
       )),
