@@ -34,7 +34,17 @@ class _FinalDiagnosisSkinState extends State<FinalDiagnosisSkin> {
                               padding: EdgeInsets.all(10),
         child: Text("Probable Disease:${widget.name}", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900),)),
         Container(
+          padding: EdgeInsets.all(10),
           child:Text("Treatment: \n${widget.treatment}")
+        ),
+
+        Container(
+          decoration: BoxDecoration(
+            
+          ),
+          padding: EdgeInsets.all(10),
+
+          child: Text("${widget.other}")
         ),
         Container(
           decoration: BoxDecoration(
