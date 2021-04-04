@@ -1,12 +1,12 @@
 import 'package:drmobile/diagnosisfolder/finalDiagnosisNervous.dart';
 import 'package:flutter/material.dart';
 
-class nervoussystem extends StatefulWidget {
+class endocrinesystem extends StatefulWidget {
   @override
-  _nervoussystemState createState() => _nervoussystemState();
+  _endocrinesystemState createState() => _endocrinesystemState();
 }
 
-class _nervoussystemState extends State<nervoussystem> {
+class _endocrinesystemState extends State<endocrinesystem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,4 +1,5 @@
 import 'package:drmobile/circulatory.dart';
+import 'package:drmobile/diagnosisfolder/endocrinesystem.dart';
 import 'package:drmobile/diagnosisfolder/quickDiagnosis.dart';
 import 'package:drmobile/digestive.dart';
 import 'package:drmobile/menu/SkinDisease.dart';
@@ -82,8 +83,9 @@ class _diagnosisState extends State<diagnosis> {
            Container(
               child: Column(children: [
                InkWell(
-                  child:Image.asset('images/endocrine.jpg', height: 100, width: 100,)
-                   
+                  child:Image.asset('images/endocrine.jpg', height: 100, width: 100,),
+                    onTap:(){Navigator.push(context, MaterialPageRoute( builder:(context)=>endocrinesystem()));
+                  }
                ) 
 
               ],)
