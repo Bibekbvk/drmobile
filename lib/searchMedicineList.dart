@@ -2,26 +2,28 @@ import 'package:drmobile/database.dart';
 import 'package:drmobile/login/registration/login.dart';
 import 'package:drmobile/login/userRegistration.dart';
 import 'package:drmobile/menu/Help.dart';
+import 'package:drmobile/module/medicine.dart';
 import 'package:drmobile/module/staffs.dart';
-import 'package:drmobile/staff_section/searchstaff.dart';
+
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../constant.dart';
+import 'constant.dart';
 
-class staffList extends StatefulWidget {
+class searMedicine extends StatefulWidget {
   @override
-  final String category;
+  final String name;
 
-  staffList(this.category);
+  searMedicine({this.name});
 
-  _staffListState createState() => _staffListState();
+  _searMedicineState createState() => _searMedicineState();
 }
 
-class _staffListState extends State<staffList> {
+class _searMedicineState extends State<searMedicine> {
+
   DatabaseService db = DatabaseService();
-  List<Staffs> staffList = new List();
+  List<Medicine> seMedicine = new List();
   ScrollController _scrollController = new ScrollController();
   TextEditingController search = new TextEditingController();
 
@@ -32,15 +34,15 @@ class _staffListState extends State<staffList> {
   @override
   void initState() {
     super.initState();
-    fetch(widget.category, offset);
+    fetch(widget.name, offset);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
         if (currentDataLength >= 10) {
           print("List bigger than 10");
 
-          offset = staffList.length;
-          fetch(widget.category, offset);
+          offset = seMedicine.length;
+          fetch(widget.name, offset);
         }
 
         print("called again");
@@ -57,6 +59,7 @@ class _staffListState extends State<staffList> {
 
   @override
   Widget build(BuildContext context) {
+      print("${widget.name}naaaaam morororororor");
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -80,26 +83,28 @@ class _staffListState extends State<staffList> {
                   ),
                 ),
               ),
-              Expanded(
-                  child: IconButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Sstaffs(name: search.text)));
-                },
-                icon: Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-              )),
+              // Expanded(
+              //     child: IconButton(
+
+              //       onPressed: (){
+              //                      Navigator.push(context, MaterialPageRoute( builder: (context)=>searMedicine(category:search.text)));
+
+
+
+
+              //       },
+              //   icon: Icon(
+              //     Icons.search,
+              //     color: Colors.white,
+              //   ),
+              // )),
             ],
           ),
         ),
       ),
       body: ListView.builder(
         controller: _scrollController,
-        itemCount: staffList.length,
+        itemCount: seMedicine.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
             padding: EdgeInsets.all(10),
@@ -117,12 +122,12 @@ class _staffListState extends State<staffList> {
                           borderRadius: BorderRadius.circular(22)),
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.network(staffList[index].photo,
+                          child: Image.network(seMedicine[index].images,
                               fit: BoxFit.fill))),
                   Container(
                     width: 100,
                     child: Text(
-                      "${staffList[index].name}",
+                      "${seMedicine[index].generic_name}",
                       style: TextStyle(
                           fontSize: 12,
                           color: Colors.lightGreen,
@@ -132,7 +137,7 @@ class _staffListState extends State<staffList> {
                   Container(
                     width: 70,
                     child: Text(
-                      "${staffList[index].staff_type}",
+                      "${seMedicine[index].price}",
                       style: TextStyle(
                           fontSize: 8,
                           color: Colors.lightGreen,
@@ -149,27 +154,23 @@ class _staffListState extends State<staffList> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("Name:${staffList[index].name}"),
-                            Text("Fees/day:${staffList[index].fee}"),
-                            Text("Location:${staffList[index].location}"),
+                            Text("Name:${seMedicine[index].quantity}"),
+                            Text("Fees/day:${seMedicine[index].description}"),
+                            Text("Location:${seMedicine[index].generic_name}"),
                             Container(
                               child: RaisedButton(
                                 child: Text("Invite"),
                                 color: Colors.orange,
                                 onPressed: () async {
-                                  if (staffList[index].staff_id == '') {
+                                  if (seMedicine[index].med_id == '') {
                                     showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
                                           title: Text("Staff Id is absense")),
                                     );
                                   } else {
-                                    var res = await db.insertInvite(
-                                        "Invitation",
-                                        "$userid",
-                                        staffList[index].name,
-                                        staffList[index].staff_id,
-                                        staffList[index].name);
+                                    var res = await db.searchstaff(
+                                       widget.name);
                                     print("${res}ressss");
 
                                     if (res == 200) {
@@ -197,7 +198,7 @@ class _staffListState extends State<staffList> {
               ],
             ),
           );
-        },
+        }, 
       ),
     );
   }
@@ -205,15 +206,15 @@ class _staffListState extends State<staffList> {
   fetch(String category, int offset) async {
     print("in fetch");
 
-    var data = await db.staff();
+    var data = await db.searchMedicine(widget.name);
     currentDataLength = data.length;
     print("below data");
 
     print("out of loop");
 
     setState(() {
-      for (Staffs p in data) {
-        staffList.add(p);
+      for (Medicine p in data) {
+        seMedicine.add(p);
       }
     });
   }

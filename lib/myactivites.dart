@@ -1,4 +1,5 @@
 import 'package:drmobile/myActivitiesFolder/myInvitation.dart';
+import 'package:drmobile/myActivitiesFolder/myItems.dart';
 import 'package:flutter/material.dart';
 import 'constant.dart';
 
@@ -63,6 +64,14 @@ class _myActivitiesState extends State<myActivities> {
 
 
            ),
+
+             onTap: (){
+                                   Navigator.push(context, MaterialPageRoute( builder: (context)=>myitems("2")));
+
+
+
+
+                    },
              ),
 
                SizedBox(

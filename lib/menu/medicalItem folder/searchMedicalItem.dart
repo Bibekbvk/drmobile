@@ -10,9 +10,9 @@ import 'package:flutter/material.dart';
 class medicalItemList extends StatefulWidget {
   @override
   
- final String category;
+ final String name;
 
-  medicalItemList(this.category);
+  medicalItemList({this.name});
   
 
   _medicalItemListState createState() => _medicalItemListState();
@@ -20,7 +20,7 @@ class medicalItemList extends StatefulWidget {
 
 class _medicalItemListState extends State<medicalItemList> {
   DatabaseService db = DatabaseService();
-  List<MedicalItem> medList = new List();
+  List<MedicalItem> searchMedicalItem = new List();
   ScrollController _scrollController = new ScrollController();
 
   TextEditingController search =new TextEditingController();
@@ -41,7 +41,7 @@ class _medicalItemListState extends State<medicalItemList> {
         if (currentDataLength >= 10) {
           print("List bigger than 10");
 
-          offset = medList.length;
+          offset = searchMedicalItem.length;
           fetch(offset);
         }
 
@@ -61,48 +61,10 @@ class _medicalItemListState extends State<medicalItemList> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-     appBar: AppBar(
-        title: Center(
-          child: Row(
-            children: [
-              Expanded(
-                flex: 7,
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white60,
-                      borderRadius: BorderRadius.circular(90)),
-                  child: TextFormField(
-                    style: TextStyle(color: Colors.black),
-                    controller: search,
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      fillColor: Colors.red,
-                      hintText: "Search",
-                      labelText: "Mobile number / Email",
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                  child: IconButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => medicalItemList("name: search.text")));
-                },
-                icon: Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-              )),
-            ],
-          ),
-        ),
-      ),
+
       body: ListView.builder(
         controller: _scrollController,
-        itemCount: medList.length,
+        itemCount: searchMedicalItem.length,
         itemBuilder: (BuildContext context, int index) {
         
          return Container(
@@ -127,17 +89,17 @@ class _medicalItemListState extends State<medicalItemList> {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
-                    child: Image.network(medList[index].images,  fit: BoxFit.cover ))
+                    child: Image.network(searchMedicalItem[index].images,  fit: BoxFit.cover ))
                ),
                Container(
                  width:100,
-                  child:Text("${medList[index].name}", style: TextStyle(
+                  child:Text("${searchMedicalItem[index].name}", style: TextStyle(
                     fontSize: 12, color:Colors.lightGreen, fontWeight:FontWeight.w300
                   ),),
                ),
                   Container(
                      width:70,
-                     child:Text("${medList[index].quantity}", style: TextStyle(
+                     child:Text("${searchMedicalItem[index].quantity}", style: TextStyle(
                     fontSize: 8, color:Colors.lightGreen, fontWeight:FontWeight.w800
                   ),),
                   )
@@ -154,9 +116,9 @@ class _medicalItemListState extends State<medicalItemList> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                           children:[ 
-                            Text("Name${medList[index].otherName}"),
-                            Text("Price:${medList[index].price}"),
-                            Text("Location:${medList[index].company}"),
+                            Text("Name${searchMedicalItem[index].otherName}"),
+                            Text("Price:${searchMedicalItem[index].price}"),
+                            Text("Location:${searchMedicalItem[index].company}"),
                          
                          Container(
                            child: RaisedButton(
@@ -164,7 +126,7 @@ class _medicalItemListState extends State<medicalItemList> {
                              color: Colors.orange,
                              onPressed: (){
 
-                               print("Name:${medList[index].name}");
+                               print("Name:${searchMedicalItem[index].name}");
                              },
                            ),
                          ),
@@ -210,7 +172,7 @@ class _medicalItemListState extends State<medicalItemList> {
 
     setState(() {
       for (MedicalItem p in data) {
-        medList.add(p);
+        searchMedicalItem.add(p);
       }
     });
   }

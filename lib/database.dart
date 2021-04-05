@@ -11,9 +11,12 @@ import 'package:drmobile/module/abortioninfo.dart';
 import 'package:drmobile/module/helpinfo.dart';
 import 'package:drmobile/module/invitation.dart';
 import 'package:drmobile/module/medicine.dart';
+import 'package:drmobile/module/myItems.dart';
 import 'package:drmobile/module/sexeducationinfo.dart';
 import 'package:drmobile/module/staffs.dart';
 import 'package:drmobile/module/volunteerinfo.dart';
+import 'package:drmobile/myActivitiesFolder/myItems.dart';
+import 'package:drmobile/searchMedicineList.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -91,6 +94,31 @@ class DatabaseService {
   }
     
 
+
+    
+   Future<List<MyItems>> searchmyItems(String itemname) async {
+    var data = await http.get(
+      "$BASE_URL/api/searchitem?name=${itemname}",
+    );
+
+    var jsonData = json.decode((data.body));
+
+    List<MyItems> Searchitems = [];
+    for (var each in jsonData) {
+      MyItems searchsItemList = MyItems(
+         itmOrder_id: each['itmOrder_id'],
+        user_id: each['user_id'],
+        name: each['name'],
+        itm_id: each['staff_id'],
+        user_contact: each['user_contact'],
+        user_name: each['user_name']
+      );
+      Searchitems.add(searchsItemList);
+    }
+    return Searchitems;
+  }
+    
+
   
 
    Future<List<Invitation>> searchInvitation(String user) async {
@@ -116,6 +144,35 @@ class DatabaseService {
   }
 
   
+
+
+
+
+   Future<List<MyItems>> myitems(String user) async {
+    var data = await http.get(
+      "$BASE_URL/api/myitems?user_id=2",
+    );
+
+    var jsonData = json.decode((data.body));
+
+    List<MyItems> MyIteems = [];
+    for (var each in jsonData) {
+      MyItems myitemsList = MyItems(
+        itmOrder_id: each['itmOrder_id'],
+        user_id: each['user_id'],
+        name: each['name'],
+        itm_id: each['staff_id'],
+        user_contact: each['user_contact'],
+        user_name: each['user_name']
+      );
+      MyIteems.add(myitemsList);
+    }
+    return MyIteems;
+  }
+
+
+
+
 
   
    Future<List<Medicine>> searchMedicine(String medicineName) async {
