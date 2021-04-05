@@ -2,7 +2,7 @@ import 'package:drmobile/database.dart';
 import 'package:drmobile/login/registration/login.dart';
 import 'package:drmobile/login/userRegistration.dart';
 import 'package:drmobile/menu/Help.dart';
-import 'package:drmobile/module/medicine.dart';
+import 'package:drmobile/module/invitation.dart';
 import 'package:drmobile/module/staffs.dart';
 
 
@@ -11,19 +11,19 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../constant.dart';
 
-class searchMedicine extends StatefulWidget {
+class userInvitation extends StatefulWidget {
   @override
   final String name;
 
-  searchMedicine({this.name});
+  userInvitation(String s, {this.name});
 
-  _searchMedicineState createState() => _searchMedicineState();
+  _userInvitationState createState() => _userInvitationState();
 }
 
-class _searchMedicineState extends State<searchMedicine> {
+class _userInvitationState extends State<userInvitation> {
 
   DatabaseService db = DatabaseService();
-  List<Medicine> searchMedicine = new List();
+  List<Invitation> userInvitation = new List();
   ScrollController _scrollController = new ScrollController();
   TextEditingController search = new TextEditingController();
 
@@ -41,7 +41,7 @@ class _searchMedicineState extends State<searchMedicine> {
         if (currentDataLength >= 10) {
           print("List bigger than 10");
 
-          offset = searchMedicine.length;
+          offset = userInvitation.length;
           fetch(widget.name, offset);
         }
 
@@ -83,28 +83,14 @@ class _searchMedicineState extends State<searchMedicine> {
                   ),
                 ),
               ),
-              // Expanded(
-              //     child: IconButton(
-
-              //       onPressed: (){
-              //                      Navigator.push(context, MaterialPageRoute( builder: (context)=>searchMedicine(category:search.text)));
-
-
-
-
-              //       },
-              //   icon: Icon(
-              //     Icons.search,
-              //     color: Colors.white,
-              //   ),
-              // )),
+           
             ],
           ),
         ),
       ),
       body: ListView.builder(
         controller: _scrollController,
-        itemCount: searchMedicine.length,
+        itemCount: userInvitation.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
             padding: EdgeInsets.all(10),
@@ -122,12 +108,12 @@ class _searchMedicineState extends State<searchMedicine> {
                           borderRadius: BorderRadius.circular(22)),
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.network(searchMedicine[index].images,
+                          child: Image.network(userInvitation[index].staff_id,
                               fit: BoxFit.fill))),
                   Container(
                     width: 100,
                     child: Text(
-                      "${searchMedicine[index].generic_name}",
+                      "${userInvitation[index].name}",
                       style: TextStyle(
                           fontSize: 12,
                           color: Colors.lightGreen,
@@ -137,7 +123,7 @@ class _searchMedicineState extends State<searchMedicine> {
                   Container(
                     width: 70,
                     child: Text(
-                      "${searchMedicine[index].price}",
+                      "${userInvitation[index].I_id}",
                       style: TextStyle(
                           fontSize: 8,
                           color: Colors.lightGreen,
@@ -154,15 +140,14 @@ class _searchMedicineState extends State<searchMedicine> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("Name:${searchMedicine[index].quantity}"),
-                            Text("Fees/day:${searchMedicine[index].description}"),
-                            Text("Location:${searchMedicine[index].company}"),
+                            Text("Name:${userInvitation[index].name}"),
+                          
                             Container(
                               child: RaisedButton(
                                 child: Text("Invite"),
                                 color: Colors.orange,
                                 onPressed: () async {
-                                  if (searchMedicine[index].med_id == '') {
+                                  if (userInvitation[index].staff_id == '') {
                                     showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
@@ -206,15 +191,15 @@ class _searchMedicineState extends State<searchMedicine> {
   fetch(String category, int offset) async {
     print("in fetch");
 
-    var data = await db.searchMedicine(widget.name);
+    var data = await db.searchInvitation(widget.name);
     currentDataLength = data.length;
     print("below data");
 
     print("out of loop");
 
     setState(() {
-      for (Medicine p in data) {
-        searchMedicine.add(p);
+      for (Invitation p in data) {
+        userInvitation.add(p);
       }
     });
   }

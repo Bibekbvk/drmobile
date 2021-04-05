@@ -1,45 +1,48 @@
-
 import 'package:drmobile/database.dart';
+import 'package:drmobile/login/registration/login.dart';
+import 'package:drmobile/login/userRegistration.dart';
+import 'package:drmobile/medicine/searchMedicine.dart';
+import 'package:drmobile/menu/Help.dart';
 import 'package:drmobile/module/medicine.dart';
 import 'package:drmobile/module/staffs.dart';
+import 'package:drmobile/staff_section/searchstaff.dart';
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../constant.dart';
 
-
-class medicineList extends StatefulWidget {
+class SMedicineList extends StatefulWidget {
   @override
-  
+  final String category;
 
-  
+  SMedicineList(this.category);
 
-  _medicineListState createState() => _medicineListState();
+  _SMedicineListState createState() => _SMedicineListState();
 }
 
-class _medicineListState extends State<medicineList> {
+class _SMedicineListState extends State<SMedicineList> {
   DatabaseService db = DatabaseService();
-  List<Medicine> medList = new List();
+  List<Medicine> SMedicineList = new List();
   ScrollController _scrollController = new ScrollController();
-
-
+  TextEditingController search = new TextEditingController();
 
   int offset = 0;
-  
+
   int currentDataLength = 0;
 
   @override
   void initState() {
-
-
     super.initState();
-    fetch(offset);
+    fetch(widget.category, offset);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
         if (currentDataLength >= 10) {
           print("List bigger than 10");
 
-          offset = medList.length;
-          fetch(offset);
+          offset = SMedicineList.length;
+          fetch(widget.category, offset);
         }
 
         print("called again");
@@ -56,114 +59,154 @@ class _medicineListState extends State<medicineList> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-      //  leading: TextField(
+        title: Center(
+          child: Row(
+            children: [
+              Expanded(
+                flex: 7,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white60,
+                      borderRadius: BorderRadius.circular(90)),
+                  child: TextFormField(
+                    style: TextStyle(color: Colors.black),
+                    controller: search,
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                      fillColor: Colors.red,
+                      hintText: "Search",
+                      labelText: "Mobile number / Email",
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                  child: IconButton(
 
-      //  ),
+                    onPressed: (){
+                                   Navigator.push(context, MaterialPageRoute( builder: (context)=>searchMedicine(name:search.text)));
 
-       ),
+
+
+
+                    },
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+              )),
+            ],
+          ),
+        ),
+      ),
       body: ListView.builder(
         controller: _scrollController,
-        itemCount: medList.length,
+        itemCount: SMedicineList.length,
         itemBuilder: (BuildContext context, int index) {
-        
-         return Container(
-           
-           padding: EdgeInsets.all(10),
-           color: Colors.black54,
+          return Container(
+            padding: EdgeInsets.all(10),
+            color: Colors.black54,
             child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceEvenly,        
-            children: [
-             
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                                children:[ 
-                                  Container(
-                                    padding: EdgeInsets.all(5
-                                    ),
-                  height: 120,
-                  width: 100,
-                  decoration: BoxDecoration(
-                  border:Border.all(color: Colors.green, width: 4),
-                  borderRadius: BorderRadius.circular(22)
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    child: Image.network(medList[index].images,  fit: BoxFit.cover ))
-               ),
-               Container(
-                 width:100,
-                  child:Text("${medList[index].brand_name}", style: TextStyle(
-                    fontSize: 12, color:Colors.lightGreen, fontWeight:FontWeight.w300
-                  ),),
-               ),
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Container(
-                     width:70,
-                     child:Text("${medList[index].company}", style: TextStyle(
-                    fontSize: 8, color:Colors.lightGreen, fontWeight:FontWeight.w800
-                  ),),
+                      height: 120,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.green, width: 5),
+                          borderRadius: BorderRadius.circular(22)),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.network(SMedicineList[index].images,
+                              fit: BoxFit.fill))),
+                  Container(
+                    width: 100,
+                    child: Text(
+                      "${SMedicineList[index].generic_name}",
+                      style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.lightGreen,
+                          fontWeight: FontWeight.w300),
+                    ),
+                  ),
+                  Container(
+                    width: 70,
+                    child: Text(
+                      "${SMedicineList[index].company}",
+                      style: TextStyle(
+                          fontSize: 8,
+                          color: Colors.lightGreen,
+                          fontWeight: FontWeight.w800),
+                    ),
                   )
-                           
+                ]),
+                Expanded(
+                  flex: 7,
+                  child: Container(
+                      width: 150,
+                      height: 200,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text("Name:${SMedicineList[index].price}"),
+                            Text("Fees/day:${SMedicineList[index].quantity}"),
+                            Text("Location:${SMedicineList[index].description}"),
+                            Container(
+                              child: RaisedButton(
+                                child: Text("Invite"),
+                                color: Colors.orange,
+                                onPressed: () async {
+                                  if (SMedicineList[index].med_id== '') {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                          title: Text("Staff Id is absense")),
+                                    );
+                                  } else {
+                                    var res = await db.insertInvite(
+                                        "Invitation",
+                                        "$userid",
+                                        SMedicineList[index].med_id,
+                                        SMedicineList[index].generic_name,
+                                        SMedicineList[index].quantity);
+                                    print("${res}ressss");
 
-                                 ] ),
-             
-                 Expanded(
-                   flex:7,
-                    child: Container(
-                     width: 150,
-                     height: 200,
-                   child:Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                          children:[ 
-                            Text("Name:${medList[index].brand_name}"),
-                            Text("Fees/day:${medList[index].price}"),
-                            Text("Location:${medList[index].company}"),
-                         
-                         Container(
-                           child: RaisedButton(
-                             child:Text("Buy"),
-                             color: Colors.orange,
-                             onPressed: (){
+                                    if (res == 200) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                            title: Text("Successful")),
+                                      );
 
-                               print("Name:${medList[index].generic_name}");
-                             },
-                           ),
-                         ),
-                             Divider(
-                               color: Colors.greenAccent,
-                               height: 2,
-                               thickness: 2,
-                             ) 
-                     ]
-                               
-                    
-                   )
-               ),
-                 ),
-             
-              
-            ],
-
-            
-          
-             
-           ),
-             
-        
-         );
-     
-        
+                                      print("success");
+                                    } else {
+                                      print("failure");
+                                    }
+                                  }
+                                },
+                              ),
+                            ),
+                            Divider(
+                              color: Colors.greenAccent,
+                              height: 2,
+                              thickness: 2,
+                            )
+                          ])),
+                ),
+              ],
+            ),
+          );
         },
       ),
     );
-
-
   }
 
-  fetch(int offset) async {
+  fetch(String category, int offset) async {
     print("in fetch");
 
     var data = await db.medicine();
@@ -174,7 +217,7 @@ class _medicineListState extends State<medicineList> {
 
     setState(() {
       for (Medicine p in data) {
-        medList.add(p);
+        SMedicineList.add(p);
       }
     });
   }

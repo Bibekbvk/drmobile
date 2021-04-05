@@ -2,12 +2,14 @@ import 'package:drmobile/constant.dart';
 import 'package:drmobile/drawer/feedback.dart';
 import 'package:drmobile/emergency.dart';
 import 'package:drmobile/login/userRegistration.dart';
+import 'package:drmobile/medicine/searchMedicine.dart';
 import 'package:drmobile/menu/abortion.dart';
 import 'package:drmobile/menu/volunteer.dart';
 import 'package:drmobile/module/Feedbacks.dart';
 import 'package:drmobile/module/Medicalitem.dart';
 import 'package:drmobile/module/abortioninfo.dart';
 import 'package:drmobile/module/helpinfo.dart';
+import 'package:drmobile/module/invitation.dart';
 import 'package:drmobile/module/medicine.dart';
 import 'package:drmobile/module/sexeducationinfo.dart';
 import 'package:drmobile/module/staffs.dart';
@@ -86,6 +88,59 @@ class DatabaseService {
       Sstaffs.add(searchstaffsList);
     }
     return Sstaffs;
+  }
+    
+
+  
+
+   Future<List<Invitation>> searchInvitation(String user) async {
+    var data = await http.get(
+      "$BASE_URL/api/searchInvitation?user_id=2",
+    );
+
+    var jsonData = json.decode((data.body));
+
+    List<Invitation> UserInvitation = [];
+    for (var each in jsonData) {
+      Invitation searchInvitationList = Invitation(
+        I_id: each['I_id'],
+        user_id: each['user_id'],
+        name: each['name'],
+        staff_id: each['staff_id'],
+        contact: each['contact'],
+      
+      );
+      UserInvitation.add(searchInvitationList);
+    }
+    return UserInvitation;
+  }
+
+  
+
+  
+   Future<List<Medicine>> searchMedicine(String medicineName) async {
+    var data = await http.get(
+      "$BASE_URL/api/searchMedicine?tags=${medicineName}",
+    );
+
+    var jsonData = json.decode((data.body));
+
+    List<Medicine> Medicines = [];
+    for (var each in jsonData) {
+      Medicine searchmedicineList = Medicine(
+         med_id: each['med_id'],
+        brand_name: each['brand_name'],
+        generic_name: each['generic_name'],
+        company: each['company'],
+        price: each['price'],
+        quantity: each['quantity'],
+         description: each['description'],
+         tags: each['tags'],
+         images: each['images']
+      );
+      Medicines.add(searchmedicineList);
+    }
+    return Medicines;
   }
 
 
@@ -167,6 +222,12 @@ class DatabaseService {
     }
     return emergencys;
   }
+
+
+
+
+
+  
   
 
      // abortion details 

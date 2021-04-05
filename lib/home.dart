@@ -11,6 +11,7 @@ import 'package:drmobile/menu/diagnosis.dart';
 import 'package:drmobile/menu/medicalItem.dart';
 import 'package:drmobile/menu/prescription.dart';
 import 'package:drmobile/module/sexeducationinfo.dart';
+import 'package:drmobile/myactivites.dart';
 
 import 'package:drmobile/staff_section/stafflatest.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,28 @@ class _homeState extends State<home> {
       drawer: Drawer(
           child: ListView(
         children: [
+
+
+           InkWell(
+            child: ListTile(
+                leading: Icon(
+                  Icons.star,
+                  size: 22,
+                  color: Colors.green,
+                ),
+                title: Text(
+                  "My Activites",
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 22,
+                  ),
+                )),
+                 onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => myActivities()));
+              }
+          ),
          
           InkWell(
               child: ListTile(
@@ -226,9 +249,10 @@ class _homeState extends State<home> {
               Column(
                 children: [
                   InkWell(child: Icon(Icons.medical_services_rounded, size: 44),
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder:(context)=> medicineList()));
-                  },),
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder:(context)=> SMedicineList("")));
+                  },
+                  ),
                   Text("Buy Medicine"),
                   InkWell(
                   child:      Icon(Icons.medical_services_outlined, size: 44) ,
