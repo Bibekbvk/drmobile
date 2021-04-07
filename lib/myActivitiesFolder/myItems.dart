@@ -155,7 +155,7 @@ class _myitemsState extends State<myitems> {
                                           title: Text("Staff Id is absense")),
                                     );
                                   } else {
-                                    var res = await db.searchstaff(
+                                    var res = await db.searchmyItems(
                                        widget.name);
                                     print("${res}ressss");
 

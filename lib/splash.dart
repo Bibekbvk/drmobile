@@ -33,7 +33,7 @@ class _splashState extends State<splash> {
             ),
           ),
           Container(
-              height: 100, width: 100, child: Image.asset('images/mobile1.png'))
+              height: 300, width: 300, child: Image.asset('images/dr.png'))
         ]),
       ),
     );

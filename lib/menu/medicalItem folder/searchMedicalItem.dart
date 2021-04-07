@@ -7,18 +7,18 @@ import 'package:flutter/material.dart';
 
 
 
-class medicalItemList extends StatefulWidget {
+class searchmedicalItemList extends StatefulWidget {
   @override
   
  final String name;
 
-  medicalItemList({this.name});
+  searchmedicalItemList({this.name});
   
 
-  _medicalItemListState createState() => _medicalItemListState();
+  _searchmedicalItemListState createState() => _searchmedicalItemListState();
 }
 
-class _medicalItemListState extends State<medicalItemList> {
+class _searchmedicalItemListState extends State<searchmedicalItemList> {
   DatabaseService db = DatabaseService();
   List<MedicalItem> searchMedicalItem = new List();
   ScrollController _scrollController = new ScrollController();
@@ -164,7 +164,7 @@ class _medicalItemListState extends State<medicalItemList> {
   fetch(int offset) async {
     print("in fetch");
 
-    var data = await db.medical();
+    var data = await db.searchMedicalItem(widget.name);
     currentDataLength = data.length;
     print("below data");
 

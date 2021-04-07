@@ -158,22 +158,23 @@ class _SMedicineListState extends State<SMedicineList> {
                             Text("Location:${SMedicineList[index].description}"),
                             Container(
                               child: RaisedButton(
-                                child: Text("Invite"),
+                                child: Text("Buy"),
                                 color: Colors.orange,
-                                onPressed: () async {
-                                  if (SMedicineList[index].med_id== '') {
+                                                        onPressed: () async {
+                                  if (SMedicineList[index].med_id == '') {
                                     showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
                                           title: Text("Staff Id is absense")),
                                     );
                                   } else {
-                                    var res = await db.insertInvite(
-                                        "Invitation",
-                                        "$userid",
+                                    var res = await db.insertMedicineOrder(
+
+                                      "ItmOrder_ID",  
+                                       "$userid",
                                         SMedicineList[index].med_id,
-                                        SMedicineList[index].generic_name,
-                                        SMedicineList[index].quantity);
+                                        SMedicineList[index].price,
+                                        SMedicineList[index].generic_name);
                                     print("${res}ressss");
 
                                     if (res == 200) {

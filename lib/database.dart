@@ -93,6 +93,33 @@ class DatabaseService {
     return Sstaffs;
   }
     
+  
+
+   Future<List<MedicalItem>> searchMedicalItem(String itemname) async {
+    var data = await http.get(
+      "$BASE_URL/api/searchMedicalItem?tags=${itemname}",
+    );
+
+    var jsonData = json.decode((data.body));
+
+    List<MedicalItem> medicalitemlist = [];
+    for (var each in jsonData) {
+      MedicalItem searchMedicalitem = MedicalItem(
+     itm_id: each['itm_id'],
+        name: each['name'],
+        otherName: each['otherName'],
+        company: each['company'],
+        price: each['price'],
+        quantity: each['quantity'],
+         description: each['description'],
+         tags: each['tags'],
+         images: each['images']
+      );
+      medicalitemlist.add(searchMedicalitem);
+    }
+    return medicalitemlist;
+  }
+      
 
 
     
@@ -445,7 +472,45 @@ class DatabaseService {
         return code;
       }
 
+      
 
+
+      
+
+       Future<int> insertMedicalOrder(String itmOrder_id, String user_id, String itm_id, String user_contact, user_name) async {
+        //var encodeduuid = Uri.encodeComponent(uuid)c
+        //var encodeProduct_id = Uri.encodeComponent(product_id);
+        var data = await http.get(
+          "$BASE_URL/api/insertMedicalOrder?itmOrder_id=${itmOrder_id}=${user_id}&itm_id=${itm_id}&user_contact=${user_contact}&user_name=${user_name}",
+        );
+        int code= data.statusCode;  
+        var jsonData = json.decode((data.body));
+        String val = jsonData["error"];
+        if (val == null) {
+          val = "";
+        }
+        print(val);
+        return code;
+      }
+
+
+    
+
+       Future<int> insertMedicineOrder(String order_id, String user_id, String med_id, String user_contact, userName) async {
+        //var encodeduuid = Uri.encodeComponent(uuid)c
+        //var encodeProduct_id = Uri.encodeComponent(product_id);
+        var data = await http.get(
+          "$BASE_URL/api/insertMedicineOrder?user_id${user_id}&med_id=${med_id}&user_contact=${user_contact}&userName=${userName}",
+        );
+        int code= data.statusCode;  
+        var jsonData = json.decode((data.body));
+        String val = jsonData["error"];
+        if (val == null) {
+          val = "";
+        }
+        print(val);
+        return code;
+      }
 
 
 

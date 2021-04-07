@@ -5,6 +5,8 @@ import 'package:drmobile/menu/medicalItem%20folder/searchMedicalItem.dart';
 import 'package:drmobile/module/Medicalitem.dart';
 import 'package:flutter/material.dart';
 
+import '../constant.dart';
+
 
 
 class medicalItemList extends StatefulWidget {
@@ -89,7 +91,7 @@ class _medicalItemListState extends State<medicalItemList> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => medicalItemList("name: search.text")));
+                          builder: (context) => searchmedicalItemList(name: search.text)));
                 },
                 icon: Icon(
                   Icons.search,
@@ -162,10 +164,36 @@ class _medicalItemListState extends State<medicalItemList> {
                            child: RaisedButton(
                              child:Text("Buy"),
                              color: Colors.orange,
-                             onPressed: (){
+                                                           onPressed: () async {
+                                  if (medList[index].itm_id == '') {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                          title: Text("Staff Id is absense")),
+                                    );
+                                  } else {
+                                    var res = await db.insertMedicalOrder(
 
-                               print("Name:${medList[index].name}");
-                             },
+                                      "ItmOrder_ID",  
+                                       "$userid",
+                                        medList[index].name,
+                                        medList[index].itm_id,
+                                        medList[index].name);
+                                    print("${res}ressss");
+
+                                    if (res == 200) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                            title: Text("Successful")),
+                                      );
+
+                                      print("success");
+                                    } else {
+                                      print("failure");
+                                    }
+                                  }
+                                },
                            ),
                          ),
                              Divider(
