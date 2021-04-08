@@ -362,7 +362,14 @@ class _homeState extends State<home> {
                   SizedBox(
                     width: 15
                   ),
-                  RaisedButton(child: Text("Invite"), onPressed: () {})
+                  RaisedButton(child: Text("Invite"), onPressed: () {
+                         Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => staffList("")));
+
+
+                  })
                 ]),
                 Column(children: [
                   Container(
@@ -371,7 +378,14 @@ class _homeState extends State<home> {
                     child: Image.asset('images/ha.png'),
                   ),
                   Text('Health Assistance'),
-                  RaisedButton(child: Text("Invite"), onPressed: () {})
+                  RaisedButton(child: Text("Invite"), onPressed: () {
+                   Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => staffList("")));
+
+
+                  })
                 ]),
                 Column(children: [
                   Container(
@@ -380,7 +394,16 @@ class _homeState extends State<home> {
                     child: Image.asset('images/nurse.jpg'),
                   ),
                   Text('Staff Nurse'),
-                  RaisedButton(child: Text("Invite"), onPressed: () {})
+                  RaisedButton(child: Text("Invite"), onPressed: () {
+
+                    Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => staffList("")));
+
+
+
+                  })
                 ]),
                 Column(children: [
                   Container(
@@ -389,7 +412,15 @@ class _homeState extends State<home> {
                     child: Image.asset('images/anm.jpg'),
                   ),
                   Text('Assitance Nurse Mid-wifery'),
-                  RaisedButton(child: Text("Invite"), onPressed: () {})
+                  RaisedButton(child: Text("Invite"), onPressed: () {
+
+                    Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => staffList("")));
+
+
+                  })
                 ]),
                 Column(children: [
                   Container(

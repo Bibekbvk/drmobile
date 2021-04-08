@@ -170,9 +170,6 @@ class DatabaseService {
     return UserInvitation;
   }
 
-  
-
-
 
 
    Future<List<MyItems>> myitems(String user) async {
@@ -199,9 +196,6 @@ class DatabaseService {
 
 
 
-
-
-  
    Future<List<Medicine>> searchMedicine(String medicineName) async {
     var data = await http.get(
       "$BASE_URL/api/searchMedicine?tags=${medicineName}",
@@ -307,14 +301,8 @@ class DatabaseService {
     return emergencys;
   }
 
-
-
-
-
-  
-  
-
      // abortion details 
+     
     Future<List<Abr>> abortion() async {
         var data = await http.get(
           "$BASE_URL/api/abortion",
@@ -421,8 +409,7 @@ class DatabaseService {
     
     
        Future<int> insertFeedback(String uid, String contact, String name, String feedback) async {
-        //var encodeduuid = Uri.encodeComponent(uuid)c
-        //var encodeProduct_id = Uri.encodeComponent(product_id);
+
         var data = await http.get(
           "$BASE_URL/api/insertFeedback?user_id=${uid}&contact=${contact}&name=${name}&feedback=${feedback}",
         );
@@ -437,8 +424,7 @@ class DatabaseService {
       }
 
        Future<int> insertRegistration( String uid,String image1, String image2, String image3, String description) async {
-        //var encodeduuid = Uri.encodeComponent(uuid)c
-        //var encodeProduct_id = Uri.encodeComponent(product_id);
+       
         var data = await http.get(
           "$BASE_URL/api/insertStaffRegistration?U_id=${uid}&image1=${image1}&image2=${image2}&image3=${image3}&description=${description}",
         );
