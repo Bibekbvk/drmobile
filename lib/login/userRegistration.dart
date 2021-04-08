@@ -115,7 +115,7 @@ class _userRegistrationState extends State<userRegistration> {
    SizedBox(
                 height: 20,
               ),
-              Text("location"),
+              Text("Password"),
               Container(
                 padding: EdgeInsets.all(20),
                 child: TextFormField(
@@ -134,7 +134,7 @@ class _userRegistrationState extends State<userRegistration> {
                   icon: Icon(Icons.send_outlined),
                   label: Text("Send"),
                   onPressed: () async {
-                    if (password.text == '') {
+                    if (password.text == '' || password.text == '' || email.text == '' || contact1.text == '' || location.text == '' || password.text == '') {
                       _showDialogEmptyuserRegistration();
                     } else {
                       var res = await db.userRegistration(
@@ -147,7 +147,7 @@ class _userRegistrationState extends State<userRegistration> {
     builder: (context) =>
         AlertDialog(
 
-          title:Text("Successful")
+          title:Text("Successfully Registered")
 
 
         ),
