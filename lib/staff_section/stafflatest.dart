@@ -176,9 +176,8 @@ class _staffListState extends State<staffList> {
                                       showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
-                                            title: Text("Successful")),
+                                            title: Text("Successfully Invited this staff, We will call you !!")),
                                       );
-
                                       print("success");
                                     } else {
                                       print("failure");

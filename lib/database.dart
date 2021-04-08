@@ -456,7 +456,7 @@ class DatabaseService {
 
 
 
-       Future<int> insertInvite(String I_id ,String uid, String name, String staffID, String contact) async {
+       Future<int> insertInvite(String I_id ,String uid, String name, int staffID, String contact) async {
         //var encodeduuid = Uri.encodeComponent(uuid)c
         //var encodeProduct_id = Uri.encodeComponent(product_id);
         var data = await http.get(

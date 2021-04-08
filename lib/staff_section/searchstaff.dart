@@ -82,21 +82,7 @@ class _SstaffsState extends State<Sstaffs> {
                   ),
                 ),
               ),
-              // Expanded(
-              //     child: IconButton(
-
-              //       onPressed: (){
-              //                      Navigator.push(context, MaterialPageRoute( builder: (context)=>Sstaffs(category:search.text)));
-
-
-
-
-              //       },
-              //   icon: Icon(
-              //     Icons.search,
-              //     color: Colors.white,
-              //   ),
-              // )),
+              
             ],
           ),
         ),
@@ -168,15 +154,18 @@ class _SstaffsState extends State<Sstaffs> {
                                           title: Text("Staff Id is absense")),
                                     );
                                   } else {
-                                    var res = await db.searchstaff(
-                                       widget.name);
-                                    print("${res}ressss");
+                                     var res = await db.insertInvite(
+                                        "Invitation",
+                                        "$userid",
+                                        Sstaffs[index].name,
+                                        Sstaffs[index].staff_id,
+                                        Sstaffs[index].name);
 
                                     if (res == 200) {
                                       showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
-                                            title: Text("Successful")),
+                                            title: Text("Successfully invited this staff, we will call you")),
                                       );
 
                                       print("success");
