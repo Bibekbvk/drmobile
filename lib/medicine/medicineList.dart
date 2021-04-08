@@ -153,9 +153,9 @@ class _SMedicineListState extends State<SMedicineList> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("Name:${SMedicineList[index].price}"),
-                            Text("Fees/day:${SMedicineList[index].quantity}"),
-                            Text("Location:${SMedicineList[index].description}"),
+                            Text("${SMedicineList[index].price}"),
+                            Text("${SMedicineList[index].quantity}"),
+                            Text("${SMedicineList[index].description}"),
                             Container(
                               child: RaisedButton(
                                 child: Text("Buy"),
@@ -170,7 +170,7 @@ class _SMedicineListState extends State<SMedicineList> {
                                   } else {
                                     var res = await db.insertMedicineOrder(
 
-                                      "ItmOrder_ID",  
+                                        
                                        "$userid",
                                         SMedicineList[index].med_id,
                                         SMedicineList[index].price,
