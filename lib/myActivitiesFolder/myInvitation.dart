@@ -144,7 +144,7 @@ class _userInvitationState extends State<userInvitation> {
                           
                             Container(
                               child: RaisedButton(
-                                child: Text("Invite"),
+                                child: Text("Delete"),
                                 color: Colors.orange,
                                 onPressed: () async {
                                   if (userInvitation[index].staff_id == '') {
@@ -154,8 +154,11 @@ class _userInvitationState extends State<userInvitation> {
                                           title: Text("Staff Id is absense")),
                                     );
                                   } else {
-                                    var res = await db.searchstaff(
-                                       widget.name);
+                                    var res = await db.deleteInvitation(
+                                      userInvitation[index].I_id
+
+                                       );
+
                                     print("${res}ressss");
 
                                     if (res == 200) {

@@ -156,7 +156,7 @@ class _myitemsState extends State<myitems> {
                                     );
                                   } else {
                                     var res = await db.searchmyItems(
-                                       widget.name);
+                                       userid);
                                     print("${res}ressss");
 
                                     if (res == 200) {

@@ -172,9 +172,9 @@ class DatabaseService {
 
 
 
-   Future<List<MyItems>> myitems(String user) async {
+   Future<List<MyItems>> myitems(int userid) async {
     var data = await http.get(
-      "$BASE_URL/api/myitems?user_id=2",
+      "$BASE_URL/api/myitems?user_id= ?",
     );
 
     var jsonData = json.decode((data.body));
@@ -497,7 +497,15 @@ class DatabaseService {
         print(val);
         return code;
       }
-
+       
+       Future<int> deleteInvitation(int I_id) async {
+        //var encodeduuid = Uri.encodeComponent(uuid)c
+        //var encodeProduct_id = Uri.encodeComponent(product_id);
+        var data = await http.get(
+          "$BASE_URL/api/deleteInvitations?I_id=${I_id}",
+        );
+        return data.statusCode;
+      }
 
 
 
