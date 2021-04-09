@@ -192,7 +192,7 @@ class _myitemsState extends State<myitems> {
   fetch(String category, int offset) async {
     print("in fetch");
 
-    var data = await db.myitems(userid);
+    var data = await db.myitems(0);
     currentDataLength = data.length;
     print("below data");
 

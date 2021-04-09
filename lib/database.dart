@@ -7,6 +7,7 @@ import 'package:drmobile/menu/abortion.dart';
 import 'package:drmobile/menu/volunteer.dart';
 import 'package:drmobile/module/Feedbacks.dart';
 import 'package:drmobile/module/Medicalitem.dart';
+import 'package:drmobile/module/MedicineOrder.dart';
 import 'package:drmobile/module/abortioninfo.dart';
 import 'package:drmobile/module/helpinfo.dart';
 import 'package:drmobile/module/invitation.dart';
@@ -148,9 +149,9 @@ class DatabaseService {
 
   
 
-   Future<List<Invitation>> searchInvitation(String user) async {
+   Future<List<Invitation>> searchInvitation(int user) async {
     var data = await http.get(
-      "$BASE_URL/api/searchInvitation?user_id=2",
+      "$BASE_URL/api/searchInvitation?user_id=${user}",
     );
 
     var jsonData = json.decode((data.body));
@@ -171,10 +172,34 @@ class DatabaseService {
   }
 
 
+  
+   Future<List<MedicineOrder>> searchMedicineOrder(int user) async {
+    var data = await http.get(
+      "$BASE_URL/api/searchInvitation?user_id=${user}",
+    );
+
+    var jsonData = json.decode((data.body));
+
+    List<MedicineOrder> myMedicine = [];
+    for (var each in jsonData) {
+      MedicineOrder searchInvitationList = MedicineOrder(
+        order_id: each['med_id'],
+        user_id: each['user_id'],
+        med_id: each['name'],
+        user_contact: each['staff_id'],
+        userName: each['contact'],
+      
+      );
+      myMedicine.add(searchInvitationList);
+    }
+    return myMedicine;
+  }
+
+
 
    Future<List<MyItems>> myitems(int userid) async {
     var data = await http.get(
-      "$BASE_URL/api/myitems?user_id=2 ?",
+      "$BASE_URL/api/myitems?user_id=?",
     );
 
     var jsonData = json.decode((data.body));
@@ -221,6 +246,31 @@ class DatabaseService {
     return Medicines;
   }
 
+  
+   Future<List<Medicine>> myMedicine(int user_id) async {
+    var data = await http.get(
+      "$BASE_URL/api/myMedicine?tags=${user_id}",
+    );
+
+    var jsonData = json.decode((data.body));
+
+    List<Medicine> Medicines = [];
+    for (var each in jsonData) {
+      Medicine searchmedicineList = Medicine(
+         med_id: each['med_id'],
+        brand_name: each['brand_name'],
+        generic_name: each['generic_name'],
+        company: each['company'],
+        price: each['price'],
+        quantity: each['quantity'],
+         description: each['description'],
+         tags: each['tags'],
+         images: each['images']
+      );
+      Medicines.add(searchmedicineList);
+    }
+    return Medicines;
+  }
 
 
 
@@ -394,8 +444,6 @@ class DatabaseService {
             image: each['image'],
             details: each['details'],
        
-          
-           
           );
           help.add(helpDetails);
         }
@@ -482,7 +530,7 @@ class DatabaseService {
 
     
 
-       Future<int> insertMedicineOrder(String user_id, String med_id, String user_contact, userName) async {
+       Future<int> insertMedicineOrder(String user_id, int med_id, String user_contact, userName) async {
         //var encodeduuid = Uri.encodeComponent(uuid)c
         //var encodeProduct_id = Uri.encodeComponent(product_id);
         var data = await http.get(
@@ -506,7 +554,17 @@ class DatabaseService {
         );
         return data.statusCode;
       }
+       
 
+       
+       Future<int> deleteMedicine(int med_id) async {
+        //var encodeduuid = Uri.encodeComponent(uuid)c
+        //var encodeProduct_id = Uri.encodeComponent(product_id);
+        var data = await http.get(
+          "$BASE_URL/api/deleteMedicine?med_id=${med_id}",
+        );
+        return data.statusCode;
+      }
 
 
 

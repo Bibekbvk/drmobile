@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class MyItems{
   final int itmOrder_id;
-  final String user_id;
+  final int user_id;
   final String name;
   final  String itm_id;
   final String user_contact;

@@ -194,7 +194,7 @@ class _userInvitationState extends State<userInvitation> {
   fetch(String category, int offset) async {
     print("in fetch");
 
-    var data = await db.searchInvitation(widget.name);
+    var data = await db.searchInvitation(userid);
     currentDataLength = data.length;
     print("below data");
 
