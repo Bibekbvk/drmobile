@@ -175,22 +175,22 @@ class DatabaseService {
   
    Future<List<MedicineOrder>> searchMedicineOrder(int user) async {
     var data = await http.get(
-      "$BASE_URL/api/searchInvitation?user_id=${user}",
+      "$BASE_URL/api/searchtMedicineOrder?user_id=${user}",
     );
 
     var jsonData = json.decode((data.body));
 
     List<MedicineOrder> myMedicine = [];
     for (var each in jsonData) {
-      MedicineOrder searchInvitationList = MedicineOrder(
-        order_id: each['med_id'],
+      MedicineOrder searchtMedicineOrder = MedicineOrder(
+        order_id: each['order_id'],
         user_id: each['user_id'],
-        med_id: each['name'],
-        user_contact: each['staff_id'],
-        userName: each['contact'],
+        med_id: each['med_id'],
+        user_contact: each['user_contact'],
+        userName: each['userName'],
       
       );
-      myMedicine.add(searchInvitationList);
+      myMedicine.add(searchtMedicineOrder);
     }
     return myMedicine;
   }
