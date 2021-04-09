@@ -16,7 +16,7 @@ class myitems extends StatefulWidget {
   @override
   final String name;
 
-  myitems(String s, {this.name});
+  myitems({this.name});
 
   _myitemsState createState() => _myitemsState();
 }
@@ -192,7 +192,7 @@ class _myitemsState extends State<myitems> {
   fetch(String category, int offset) async {
     print("in fetch");
 
-    var data = await db.myitems(widget.name);
+    var data = await db.myitems(userid);
     currentDataLength = data.length;
     print("below data");
 

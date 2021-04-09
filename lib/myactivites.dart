@@ -66,7 +66,7 @@ class _myActivitiesState extends State<myActivities> {
            ),
 
              onTap: (){
-                                   Navigator.push(context, MaterialPageRoute( builder: (context)=>myitems("2")));
+                                   Navigator.push(context, MaterialPageRoute( builder: (context)=>myitems()));
 
 
 

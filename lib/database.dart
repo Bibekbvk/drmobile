@@ -123,7 +123,7 @@ class DatabaseService {
 
 
     
-   Future<List<MyItems>> searchmyItems(String itemname) async {
+   Future<List<MyItems>> searchmyItems(int itemname) async {
     var data = await http.get(
       "$BASE_URL/api/searchitem?name=${itemname}",
     );
@@ -174,7 +174,7 @@ class DatabaseService {
 
    Future<List<MyItems>> myitems(int userid) async {
     var data = await http.get(
-      "$BASE_URL/api/myitems?user_id= ?",
+      "$BASE_URL/api/myitems?user_id=2 ?",
     );
 
     var jsonData = json.decode((data.body));
