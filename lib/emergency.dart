@@ -69,7 +69,7 @@ return Center(child: CircularProgressIndicator());
                   decoration: BoxDecoration(
                     color: Colors.greenAccent,
                     
-
+                    borderRadius: BorderRadius.circular(22)
                   ),
                   
                   child: 
@@ -77,6 +77,7 @@ return Center(child: CircularProgressIndicator());
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
+                      padding: EdgeInsets.all(10),
                       height: 150,
                       width: 150,
                       decoration: BoxDecoration(
@@ -85,18 +86,17 @@ return Center(child: CircularProgressIndicator());
                       child: Text("${snapshot.data[index].Name}\n${snapshot.data[index].Location} ", style:  TextStyle(color: Colors.indigoAccent, fontSize: 16),)),
 
                     Container(
+                      padding: EdgeInsets.all(10),
                       height: 100,
                       width: 150,
                        decoration: BoxDecoration(
                         color: Colors.white60,
                         borderRadius: BorderRadius.circular(6)),
-                      child: Text("Contact No: \n\n${snapshot.data[index].Contact1} / ${snapshot.data[index].Contact1}", style:  TextStyle(color: Colors.indigoAccent, fontSize: 16),))
+                      child: Text("Contact No:\n${snapshot.data[index].Contact1} / ${snapshot.data[index].Contact1}", style:  TextStyle(color: Colors.indigoAccent, fontSize: 16),))
                   ],
                 ),),
-                SizedBox(
-                  child: Container(
-                    color: Colors.orange
-                  )
+                Divider(
+                height: 10,
                 )
               ],
 

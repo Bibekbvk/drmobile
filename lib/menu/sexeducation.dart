@@ -80,18 +80,33 @@ class _sexeducationpageState extends State<sexeducationpage> {
             child: Column(
              mainAxisAlignment: MainAxisAlignment.spaceEvenly,        
             children: [
-                   Text("${sexeducationList[index].topic}", style: TextStyle(color: Colors.blue.shade900, fontSize: 22, ),),
+                   Container
+                   
+                   
+                   
+                   (
+                     padding: EdgeInsets.all(10),
+                     height: 50,
+                     decoration: BoxDecoration(
+
+                      color: Colors.cyanAccent,
+                      borderRadius: BorderRadius.circular(30)
+
+
+
+                     ),
+                     child: Text("${sexeducationList[index].topic}", style: TextStyle(color: Colors.blue.shade900, fontSize: 22, ),)),
                    
                   Image.network(sexeducationList[index].image1,  fit: BoxFit.cover ),
                
                    Text("Posted On:${sexeducationList[index].date}", style: TextStyle(  fontSize: 11),),
                 
-                   Text("${sexeducationList[index].article1}"),
-                   Text("${sexeducationList[index].date}"),
+                   Text("${sexeducationList[index].article1}", textAlign: TextAlign.center,),
+                   Text("${sexeducationList[index].date}", textAlign: TextAlign.center),
 
                    Image.network(sexeducationList[index].image2,  fit: BoxFit.cover ),
                   
-                   Text("${sexeducationList[index].article2}"),
+                   Text("${sexeducationList[index].article2}" , textAlign: TextAlign.center),
                Text("--------------------------------------------------------")
 
                

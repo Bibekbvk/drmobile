@@ -4,7 +4,6 @@ import 'package:drmobile/login/userRegistration.dart';
 import 'package:drmobile/menu/Help.dart';
 import 'package:drmobile/module/MedicineOrder.dart';
 import 'package:drmobile/module/invitation.dart';
-import 'package:drmobile/module/medicine.dart';
 import 'package:drmobile/module/staffs.dart';
 
 
@@ -13,19 +12,19 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../constant.dart';
 
-class myMedicine extends StatefulWidget {
+class myMedicines extends StatefulWidget {
   @override
   final String name;
 
-  myMedicine(String s, {this.name});
+  myMedicines({this.name});
 
-  _myMedicineState createState() => _myMedicineState();
+  _myMedicinesState createState() => _myMedicinesState();
 }
 
-class _myMedicineState extends State<myMedicine> {
+class _myMedicinesState extends State<myMedicines> {
 
   DatabaseService db = DatabaseService();
-  List<MedicineOrder> myMedicine = new List();
+  List<MedicineOrder> myMedicines = new List();
   ScrollController _scrollController = new ScrollController();
   TextEditingController search = new TextEditingController();
 
@@ -43,7 +42,7 @@ class _myMedicineState extends State<myMedicine> {
         if (currentDataLength >= 10) {
           print("List bigger than 10");
 
-          offset = myMedicine.length;
+          offset = myMedicines.length;
           fetch(widget.name, offset);
         }
 
@@ -67,24 +66,7 @@ class _myMedicineState extends State<myMedicine> {
         title: Center(
           child: Row(
             children: [
-              Expanded(
-                flex: 7,
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white60,
-                      borderRadius: BorderRadius.circular(90)),
-                  child: TextFormField(
-                    style: TextStyle(color: Colors.black),
-                    controller: search,
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      fillColor: Colors.red,
-                      hintText: "Search",
-                      labelText: "Mobile number / Email",
-                    ),
-                  ),
-                ),
-              ),
+             
            
             ],
           ),
@@ -92,40 +74,43 @@ class _myMedicineState extends State<myMedicine> {
       ),
       body: ListView.builder(
         controller: _scrollController,
-        itemCount: myMedicine.length,
+        itemCount: myMedicines.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
             padding: EdgeInsets.all(10),
-            color: Colors.black54,
+            color: Colors.white,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                 
-                  Container(
-                    width: 100,
-                    child: Text(
-                      "${myMedicine[index].user_id}",
-                      style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.lightGreen,
-                          fontWeight: FontWeight.w300),
-                    ),
-                  ),
-                  Container(
-                    width: 70,
-                    child: Text(
-                      "${myMedicine[index].user_contact}",
-                      style: TextStyle(
-                          fontSize: 8,
-                          color: Colors.lightGreen,
-                          fontWeight: FontWeight.w800),
-                    ),
-                  )
-                ]),
                 Expanded(
-                  flex: 7,
+                  flex: 8,
+                                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                   
+                    Container(
+                   
+                      child: Text(
+                        "Medicine Name:${myMedicines[index].userName}",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.lightGreen,
+                            fontWeight: FontWeight.w300),
+                      ),
+                    ),
+                    Container(
+                     
+                      child: Text(
+                        "Invitation-ID:${myMedicines[index].order_id}",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.lightGreen,
+                            fontWeight: FontWeight.w800),
+                      ),
+                    )
+                  ]),
+                ),
+                Expanded(
+                  flex: 4,
                   child: Container(
                       width: 150,
                       height: 200,
@@ -133,22 +118,24 @@ class _myMedicineState extends State<myMedicine> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("Name:${myMedicine[index].userName}"),
+                            Text("User_ID:${myMedicines[index].user_id}", style: TextStyle(
+                              fontSize:22
+                            ),),
                           
                             Container(
                               child: RaisedButton(
                                 child: Text("Delete"),
                                 color: Colors.orange,
                                 onPressed: () async {
-                                  if (myMedicine[index].med_id == '') {
+                                  if (myMedicines[index].user_contact == '') {
                                     showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
                                           title: Text("Staff Id is absense")),
                                     );
                                   } else {
-                                    var res = await db.deleteMedicine(
-                                      myMedicine[index].med_id
+                                    var res = await db.deleteInvitation(
+                                      myMedicines[index].user_id
 
                                        );
 
@@ -158,7 +145,7 @@ class _myMedicineState extends State<myMedicine> {
                                       showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
-                                            title: Text("Successfully deleted ")),
+                                            title: Text("Successfully Deleted from the list")),
                                       );
 
                                       print("success");
@@ -195,7 +182,7 @@ class _myMedicineState extends State<myMedicine> {
 
     setState(() {
       for (MedicineOrder p in data) {
-        myMedicine.add(p);
+        myMedicines.add(p);
       }
     });
   }

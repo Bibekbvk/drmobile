@@ -65,24 +65,7 @@ class _userInvitationState extends State<userInvitation> {
         title: Center(
           child: Row(
             children: [
-              Expanded(
-                flex: 7,
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white60,
-                      borderRadius: BorderRadius.circular(90)),
-                  child: TextFormField(
-                    style: TextStyle(color: Colors.black),
-                    controller: search,
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      fillColor: Colors.red,
-                      hintText: "Search",
-                      labelText: "Mobile number / Email",
-                    ),
-                  ),
-                ),
-              ),
+             
            
             ],
           ),
@@ -94,45 +77,39 @@ class _userInvitationState extends State<userInvitation> {
         itemBuilder: (BuildContext context, int index) {
           return Container(
             padding: EdgeInsets.all(10),
-            color: Colors.black54,
+            color: Colors.white,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Container(
-                      height: 120,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green, width: 5),
-                          borderRadius: BorderRadius.circular(22)),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: Image.network(userInvitation[index].staff_id,
-                              fit: BoxFit.fill))),
-                  Container(
-                    width: 100,
-                    child: Text(
-                      "${userInvitation[index].name}",
-                      style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.lightGreen,
-                          fontWeight: FontWeight.w300),
-                    ),
-                  ),
-                  Container(
-                    width: 70,
-                    child: Text(
-                      "${userInvitation[index].I_id}",
-                      style: TextStyle(
-                          fontSize: 8,
-                          color: Colors.lightGreen,
-                          fontWeight: FontWeight.w800),
-                    ),
-                  )
-                ]),
                 Expanded(
-                  flex: 7,
+                  flex: 8,
+                                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                   
+                    Container(
+                   
+                      child: Text(
+                        "StaffName:${userInvitation[index].name}",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.lightGreen,
+                            fontWeight: FontWeight.w300),
+                      ),
+                    ),
+                    Container(
+                     
+                      child: Text(
+                        "Invitation-ID:${userInvitation[index].I_id}",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.lightGreen,
+                            fontWeight: FontWeight.w800),
+                      ),
+                    )
+                  ]),
+                ),
+                Expanded(
+                  flex: 4,
                   child: Container(
                       width: 150,
                       height: 200,
@@ -140,7 +117,9 @@ class _userInvitationState extends State<userInvitation> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("Name:${userInvitation[index].name}"),
+                            Text("User_ID:${userInvitation[index].user_id}", style: TextStyle(
+                              fontSize:22
+                            ),),
                           
                             Container(
                               child: RaisedButton(
@@ -165,7 +144,7 @@ class _userInvitationState extends State<userInvitation> {
                                       showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
-                                            title: Text("Successful")),
+                                            title: Text("Successfully Deleted from the list")),
                                       );
 
                                       print("success");

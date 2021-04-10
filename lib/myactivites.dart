@@ -36,7 +36,7 @@ class _myActivitiesState extends State<myActivities> {
                   ])),
                    onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => myMedicine("")));
+                    MaterialPageRoute(builder: (context) => myMedicines()));
               },
             ),
             SizedBox(

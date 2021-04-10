@@ -127,7 +127,6 @@ class DatabaseService {
       MyItems searchsItemList = MyItems(
           itmOrder_id: each['itmOrder_id'],
           user_id: each['user_id'],
-          name: each['name'],
           itm_id: each['staff_id'],
           user_contact: each['user_contact'],
           user_name: each['user_name']);
@@ -157,9 +156,9 @@ class DatabaseService {
     return UserInvitation;
   }
 
-  Future<List<MedicineOrder>> searchMedicineOrder(int user) async {
+  Future<List<MedicineOrder>> searchMedicineOrder(int user_id) async {
     var data = await http.get(
-      "$BASE_URL/api/searchtMedicineOrder?user_id=${user}",
+      "$BASE_URL/api/searchMedicineOrder?user_id=${user_id}",
     );
 
     var jsonData = json.decode((data.body));
@@ -190,8 +189,8 @@ class DatabaseService {
       MyItems myitemsList = MyItems(
           itmOrder_id: each['itmOrder_id'],
           user_id: each['user_id'],
-          name: each['name'],
-          itm_id: each['staff_id'],
+        
+          itm_id: each['itm_id'],
           user_contact: each['user_contact'],
           user_name: each['user_name']);
       MyIteems.add(myitemsList);
@@ -359,6 +358,7 @@ class DatabaseService {
         name: each['name'],
         location: each['location'],
         contact: each['contact'],
+        type: each['type'],
         details: each['details'],
         email: each['email'],
         image: each['image'],
@@ -456,12 +456,12 @@ class DatabaseService {
     return code;
   }
 
-  Future<int> insertMedicalOrder(String itmOrder_id, String user_id,
-      String itm_id, String user_contact, user_name) async {
+  Future<int> insertMedicalOrder( int user_id,
+      int itm_id, String user_contact, String user_name) async {
     //var encodeduuid = Uri.encodeComponent(uuid)c
     //var encodeProduct_id = Uri.encodeComponent(product_id);
     var data = await http.get(
-      "$BASE_URL/api/insertMedicalOrder?itmOrder_id=${itmOrder_id}=${user_id}&itm_id=${itm_id}&user_contact=${user_contact}&user_name=${user_name}",
+      "$BASE_URL/api/insertMedicalOrder?${user_id}&itm_id=${itm_id}&user_contact=${user_contact}&user_name=${user_name}",
     );
     int code = data.statusCode;
     var jsonData = json.decode((data.body));
@@ -495,6 +495,17 @@ class DatabaseService {
     //var encodeProduct_id = Uri.encodeComponent(product_id);
     var data = await http.get(
       "$BASE_URL/api/deleteInvitations?I_id=${I_id}",
+    );
+    return data.statusCode;
+  }
+
+
+  
+  Future<int> deletemyItems(int itmOrder_id) async {
+    //var encodeduuid = Uri.encodeComponent(uuid)c
+    //var encodeProduct_id = Uri.encodeComponent(product_id);
+    var data = await http.get(
+      "$BASE_URL/api/deleteitmOrderid?itmOrder_id=${itmOrder_id}",
     );
     return data.statusCode;
   }

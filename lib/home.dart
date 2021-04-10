@@ -37,29 +37,25 @@ class _homeState extends State<home> {
       drawer: Drawer(
           child: ListView(
         children: [
-
-
-           InkWell(
-            child: ListTile(
-                leading: Icon(
-                  Icons.star,
-                  size: 22,
-                  color: Colors.green,
-                ),
-                title: Text(
-                  "My Activites",
-                  style: TextStyle(
+          InkWell(
+              child: ListTile(
+                  leading: Icon(
+                    Icons.star,
+                    size: 22,
                     color: Colors.green,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 22,
                   ),
-                )),
-                 onTap: () {
+                  title: Text(
+                    "My Activites",
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 22,
+                    ),
+                  )),
+              onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => myActivities()));
-              }
-          ),
-         
+              }),
           InkWell(
               child: ListTile(
                   leading: Icon(
@@ -103,27 +99,25 @@ class _homeState extends State<home> {
                     })),
           ),
           InkWell(
-            child: ListTile(
-                leading: Icon(
-                  Icons.info,
-                  size: 22,
-                  color: Colors.green,
-                ),
-                title: Text(
-                  "About us",
-                  style: TextStyle(
+              child: ListTile(
+                  leading: Icon(
+                    Icons.info,
+                    size: 22,
                     color: Colors.green,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 22,
                   ),
-                )),
-                 onTap: () {
+                  title: Text(
+                    "About us",
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 22,
+                    ),
+                  )),
+              onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => contactpage()));
-              }
-          ),
+              }),
           InkWell(
-            
               child: ListTile(
                   leading: Icon(
                     Icons.feedback_outlined,
@@ -137,52 +131,49 @@ class _homeState extends State<home> {
                       fontWeight: FontWeight.w900,
                       fontSize: 22,
                     ),
-                    
                   )),
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => feedback()));
               }),
           InkWell(
-            child: ListTile(
-                leading: Icon(
-                  Icons.contact_page_rounded,
-                  size: 22,
-                  color: Colors.green,
-                ),
-                title: Text(
-                  "Contct us",
-                  style: TextStyle(
+              child: ListTile(
+                  leading: Icon(
+                    Icons.contact_page_rounded,
+                    size: 22,
                     color: Colors.green,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 22,
                   ),
-                )),
-                 onTap: () {
+                  title: Text(
+                    "Contct us",
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 22,
+                    ),
+                  )),
+              onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => contactpage()));
-              }
-          ),
+              }),
           InkWell(
-            child: ListTile(
-                leading: Icon(
-                  Icons.star,
-                  size: 22,
-                  color: Colors.green,
-                ),
-                title: Text(
-                  "Rate us",
-                  style: TextStyle(
+              child: ListTile(
+                  leading: Icon(
+                    Icons.star,
+                    size: 22,
                     color: Colors.green,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 22,
                   ),
-                )),
-                 onTap: () {
+                  title: Text(
+                    "Rate us",
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 22,
+                    ),
+                  )),
+              onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => feedback()));
-              }
-          ),
+              }),
         ],
       )),
       body: ListView(
@@ -191,125 +182,107 @@ class _homeState extends State<home> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
-                
                 children: [
                   Container(
-                    
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
-                      border: Border.all(color:Colors.green, width: 2),
-                      
+                      border: Border.all(color: Colors.green, width: 2),
                     ),
-                    
-                     
-                  child:InkWell(
-                  child:Icon(Icons.local_hospital_rounded, size: 44,),
-                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder:(context)=> diagnosis()));
-                  }
+                    child: InkWell(
+                        child: Icon(
+                          Icons.local_hospital_rounded,
+                          size: 44,
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => diagnosis()));
+                        }),
                   ),
-                  
-                  
-                  
-                  ),
-
                   Text("Diagnosis"),
-                  
-
                   InkWell(
-                     child:   Icon(Icons.cast_for_education_rounded, size: 44), 
-                        onTap: (){
-                            
-
-                             Navigator.push(context, MaterialPageRoute(builder:(context)=> sexeducationpage()));
-                  }
-
-
-                        
-
-
-                  ),
-              
-              
-              
-               
+                      child: Icon(Icons.cast_for_education_rounded, size: 44),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => sexeducationpage()));
+                      }),
                   Text("Sex Education"),
-                 InkWell(
-                   
-                     child:Icon(Icons.contact_phone_rounded, size: 44,
-                     ),
-                    
-                     onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder:(context)=> emergency()));
-                  }
-                 ), 
+                  InkWell(
+                      child: Icon(
+                        Icons.contact_phone_rounded,
+                        size: 44,
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => emergency()));
+                      }),
                   Text("Emergency No.")
                 ],
               ),
               Column(
                 children: [
-                  InkWell(child: Icon(Icons.medical_services_rounded, size: 44),
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder:(context)=> SMedicineList("")));
-                  },
+                  InkWell(
+                    child: Icon(Icons.medical_services_rounded, size: 44),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SMedicineList("")));
+                    },
                   ),
                   Text("Buy Medicine"),
                   InkWell(
-                  child:      Icon(Icons.medical_services_outlined, size: 44) ,
-                  onTap: (){
-                  
-
-                   Navigator.push(context, MaterialPageRoute(builder:(context)=> volunteer()));
-
-
-                  },
-
-
+                    child: Icon(Icons.medical_services_outlined, size: 44),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => volunteer()));
+                    },
                   ),
-            
                   Text("Volunteer"),
-
                   InkWell(
-                    child: Icon(FontAwesomeIcons.cartArrowDown,size: 44) ,
-                    onTap:() {
-                            Navigator.push(
+                    child: Icon(FontAwesomeIcons.cartArrowDown, size: 44),
+                    onTap: () {
+                      Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => medicalItemList("")));
-
                     },
-                  ),                 
-                 
+                  ),
                   Text("Surgical items")
                 ],
               ),
               Column(
-
                 children: [
                   InkWell(
-                    child:  Icon(Icons.baby_changing_station_rounded, size: 44),
-                     onTap: (){
-                            Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => abortion()));
-                     },
+                    child: Icon(Icons.baby_changing_station_rounded, size: 44),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => abortion()));
+                    },
                   ),
                   Text("Abortion"),
                   InkWell(
                     child: Icon(Icons.upload_rounded, size: 44),
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder:(context)=> sendPresccription()));
-                     
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => sendPresccription()));
                     },
                   ),
                   Text("Send Prescription"),
-
-
-                  InkWell(child: Icon(Icons.help_center_rounded, size: 44),
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder:(context)=> help()));
-                  },),
+                  InkWell(
+                    child: Icon(Icons.help_center_rounded, size: 44),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => help()));
+                    },
+                  ),
                   Text("Help")
                 ],
               )
@@ -345,13 +318,16 @@ class _homeState extends State<home> {
               children: [
                 Column(children: [
                   InkWell(
-                      child: Container(
+                    child: Container(
+                       decoration: BoxDecoration(
+                         borderRadius:BorderRadius.circular(22),
+                         border: Border.all(width:2, color:Colors.amberAccent)
+                        ),
                       height: 200,
                       width: 200,
-                     
                       child: Image.asset('images/dr.png'),
                     ),
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -359,60 +335,119 @@ class _homeState extends State<home> {
                     },
                   ),
                   Text('MBBS Doctor'),
-                  SizedBox(
-                    width: 15
-                  ),
-                  RaisedButton(child: Text("Invite"), onPressed: () {
-                         Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => staffList("")));
-
-
-                  })
+                  SizedBox(width: 15),
+                  RaisedButton(
+                      child: Text("Invite"),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => staffList("")));
+                      })
                 ]),
+                SizedBox(height:10, width: 10,),
                 Column(children: [
-                  Container(
-                    height: 200,
-                    width: 160,
-                    child: Image.asset('images/ha.png'),
-                  ),
+                  InkWell(
+                      child: Container(
+                         decoration: BoxDecoration(
+                         borderRadius:BorderRadius.circular(22),
+                         border: Border.all(width:2, color:Colors.amberAccent)
+                        ),
+                        height: 200,
+                        width: 160,
+                        child: Image.asset('images/ha.png'),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => staffList("")));
+                      }),
                   Text('Health Assistance'),
-                  RaisedButton(child: Text("Invite"), onPressed: () {
-                   Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => staffList("")));
-
-
-                  })
+                  RaisedButton(
+                      child: Text("Invite"),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => staffList("")));
+                      })
                 ]),
+
+
+                  SizedBox(height:10, width: 10,),
                 Column(children: [
-                  Container(
-                    height: 200,
-                    width: 200,
-                    child: Image.asset('images/nurse.jpg'),
-                  ),
+                  InkWell(
+                      child: Container(
+                        decoration: BoxDecoration(
+                         borderRadius:BorderRadius.circular(22),
+                         border: Border.all(width:2, color:Colors.amberAccent)
+                        ),
+                        height: 200,
+                        width: 200,
+                        child: Image.asset('images/nurse.jpg'),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => staffList("")));
+                      }),
                   Text('Staff Nurse'),
-                  RaisedButton(child: Text("Invite"), onPressed: () {
-
-                    Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => staffList("")));
-
-
-
-                  })
+                  RaisedButton(
+                      child: Text("Invite"),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => staffList("")));
+                      })
                 ]),
+
+                  SizedBox(height:10, width: 10,),
                 Column(children: [
-                  Container(
-                    height: 200,
-                    width: 160,
-                    child: Image.asset('images/anm.jpg'),
-                  ),
+                  InkWell(
+                      child: Container(
+                         decoration: BoxDecoration(
+                         borderRadius:BorderRadius.circular(22),
+                         border: Border.all(width:2, color:Colors.amberAccent)
+                        ),
+                        height: 200,
+                        width: 160,
+                        child: Image.asset('images/anm.jpg'),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => staffList("")));
+                      }),
                   Text('Assitance Nurse Mid-wifery'),
-                  RaisedButton(child: Text("Invite"), onPressed: () {
+                  RaisedButton(
+                      child: Text("Invite"),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => staffList("")));
+                      })
+                ]),
+
+                  SizedBox(height:10, width: 10,),
+                Column(children: [
+                  InkWell(
+                                      child: Container(
+                                         decoration: BoxDecoration(
+                         borderRadius:BorderRadius.circular(22),
+                         border: Border.all(width:2, color:Colors.amberAccent)
+                        ),
+                    
+                      height: 200,
+                      width: 200,
+                      child: Image.asset('images/cma.jpg'),
+                    ),
+
+                    onTap: () {
 
                     Navigator.push(
                           context,
@@ -420,17 +455,17 @@ class _homeState extends State<home> {
                               builder: (context) => staffList("")));
 
 
-                  })
-                ]),
-                Column(children: [
-                  Container(
-                    decoration: BoxDecoration(),
-                    height: 200,
-                    width: 200,
-                    child: Image.asset('images/cma.jpg'),
+
+                  }
                   ),
                   Text('CMA'),
-                  RaisedButton(child: Text("Invite"), onPressed: () {})
+                  RaisedButton(child: Text("Invite"), onPressed: () {
+
+                     Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => staffList("")));
+                  })
                 ]),
               ],
             ),
@@ -443,7 +478,10 @@ class _homeState extends State<home> {
               Text("Emergency??"),
               Text("Our volunteer are here to help you"),
               FlatButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => volunteer()));
+                  },
                   icon: Icon(Icons.call_end_rounded),
                   label: Text("Call Them"))
             ],

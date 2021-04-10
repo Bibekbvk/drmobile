@@ -1,11 +1,9 @@
-
 import 'package:drmobile/database.dart';
 import 'package:drmobile/module/helpinfo.dart';
 import 'package:flutter/material.dart';
 
 class help extends StatefulWidget {
   @override
-
   _helpState createState() => _helpState();
 }
 
@@ -14,16 +12,12 @@ class _helpState extends State<help> {
   List<Help> helpList = new List();
   ScrollController _scrollController = new ScrollController();
 
-
-
   int offset = 0;
-  
+
   int currentDataLength = 0;
 
   @override
   void initState() {
-
-
     super.initState();
     fetch(offset);
     _scrollController.addListener(() {
@@ -50,105 +44,67 @@ class _helpState extends State<help> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-      //  leading: TextField(
+          //  leading: TextField(
 
-      //  ),
-
-       ),
+          //  ),
+             title:Text("Help")
+          ),
       body: ListView.builder(
         controller: _scrollController,
         itemCount: helpList.length,
         itemBuilder: (BuildContext context, int index) {
-        
-         return Container(
-           
-           padding: EdgeInsets.all(10),
-           color: Colors.black54,
-            child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceEvenly,        
-            children: [
-             
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                                children:[ 
-                                  Container(
+          return Container(
+            padding: EdgeInsets.all(10),
+            color: Colors.white,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                     color:Colors.blueAccent,
+                     borderRadius: BorderRadius.circular(10)
 
-                                  child: Text("${helpList[index].topic}"),
-
-
-                                  ),
-
-                                  Container(
-                                    padding: EdgeInsets.all(5
-                                    ),
-                  height: 120,
-                  width: 100,
-                  decoration: BoxDecoration(
-                  border:Border.all(color: Colors.green, width: 4),
-                  borderRadius: BorderRadius.circular(22)
+                    ),
+                    child: Text("${helpList[index].topic}", style: TextStyle(
+                      fontSize:26,
+                    ),),
                   ),
-                  child: Image.network(helpList[index].image,  fit: BoxFit.cover )
-               ),
-             
-                           
 
-                                 ] ),
-             
-                 Expanded(
-                   flex:7,
-                    child: Container(
-                     width: 150,
-                     height: 200,
-                   child:Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                          children:[ 
-                           
-                            Text("Fees/day:${helpList[index].details}"),
-                         
-                         
-                         Container(
-                           child: RaisedButton(
-                             child:Text("Buy"),
-                             color: Colors.orange,
-                             onPressed: (){
+                   Container(
+                     height: 400,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                     color:Colors.blueAccent,
+                     borderRadius: BorderRadius.circular(10)
 
-                               //print("Name:${medList[index].generic_name}");
-                             },
-                           ),
-                         ),
-                             Divider(
-                               color: Colors.greenAccent,
-                               height: 2,
-                               thickness: 2,
-                             ) 
-                     ]
-                               
-                    
-                   )
-               ),
-                 ),
-             
-              
-            ],
+                    ),
+                    child: Image.network(helpList[index].image)
+                  ),
+                   Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                     color:Colors.blueAccent,
+                     borderRadius: BorderRadius.circular(66)
 
-            
-          
-             
-           ),
-             
-        
-         );
-     
-        
+                    ),
+                    child: Text(helpList[index].details,textAlign: TextAlign.justify, style: TextStyle(
+                      
+                    ),)
+                  ),
+
+                
+                ]),
+               
+              ],
+            ),
+          );
         },
       ),
     );
-
-
   }
 
   fetch(int offset) async {

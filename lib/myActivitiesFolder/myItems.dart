@@ -64,26 +64,9 @@ class _myitemsState extends State<myitems> {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Row(
+         child: Row(
             children: [
-              Expanded(
-                flex: 7,
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white60,
-                      borderRadius: BorderRadius.circular(90)),
-                  child: TextFormField(
-                    style: TextStyle(color: Colors.black),
-                    controller: search,
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      fillColor: Colors.red,
-                      hintText: "Search",
-                      labelText: "Mobile number / Email",
-                    ),
-                  ),
-                ),
-              ),
+           
            
             ],
           ),
@@ -95,38 +78,29 @@ class _myitemsState extends State<myitems> {
         itemBuilder: (BuildContext context, int index) {
           return Container(
             padding: EdgeInsets.all(10),
-            color: Colors.black54,
+            color: Colors.white,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                
                   Container(
-                      height: 120,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green, width: 5),
-                          borderRadius: BorderRadius.circular(22)),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: Image.network(myitems[index].itm_id,
-                              fit: BoxFit.fill))),
-                  Container(
-                    width: 100,
+                     width: 150,
                     child: Text(
-                      "${myitems[index].name}",
+                      "Name:${myitems[index].user_name}",
                       style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 18,
                           color: Colors.lightGreen,
                           fontWeight: FontWeight.w300),
                     ),
                   ),
                   Container(
-                    width: 70,
+                
                     child: Text(
-                      "${myitems[index].user_contact}",
+                      "User Contact:${myitems[index].user_contact}",
                       style: TextStyle(
-                          fontSize: 8,
+                          fontSize: 18,
                           color: Colors.lightGreen,
                           fontWeight: FontWeight.w800),
                     ),
@@ -141,11 +115,13 @@ class _myitemsState extends State<myitems> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("Name:${myitems[index].name}"),
+                            Text("ItemOrderID:${myitems[index].itmOrder_id}"),
+                             Text("Ordered by(User IDs):${myitems[index].user_id}"),
+                             Text("Item ID:${myitems[index].itm_id}"),
                           
                             Container(
                               child: RaisedButton(
-                                child: Text("Invite"),
+                                child: Text("Delete"),
                                 color: Colors.orange,
                                 onPressed: () async {
                                   if (myitems[index].user_id == '') {
@@ -155,15 +131,15 @@ class _myitemsState extends State<myitems> {
                                           title: Text("Staff Id is absense")),
                                     );
                                   } else {
-                                    var res = await db.searchmyItems(
-                                       userid);
+                                    var res = await db.deletemyItems(
+                                       myitems[index].itmOrder_id);
                                     print("${res}ressss");
 
                                     if (res == 200) {
                                       showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
-                                            title: Text("Successful")),
+                                            title: Text("Successfully deleted ")),
                                       );
 
                                       print("success");
