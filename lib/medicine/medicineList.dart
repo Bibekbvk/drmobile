@@ -107,7 +107,7 @@ class _SMedicineListState extends State<SMedicineList> {
         itemBuilder: (BuildContext context, int index) {
           return Container(
             padding: EdgeInsets.all(10),
-            color: Colors.black54,
+            color: Colors.white,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               // crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,17 +171,17 @@ class _SMedicineListState extends State<SMedicineList> {
                                     var res = await db.insertMedicineOrder(
 
                                         
-                                       "$userid",
+                                        userid,
                                         SMedicineList[index].med_id,
                                         SMedicineList[index].price,
                                         SMedicineList[index].generic_name);
-                                    print("${res}ressss");
+                                        print("${res}ressss");
 
                                     if (res == 200) {
                                       showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
-                                            title: Text("Successful")),
+                                            title: Text("Successfully (buyed) added to My Medicine, Go to my medicine inside my Activitis")),
                                       );
 
                                       print("success");

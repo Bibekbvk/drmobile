@@ -76,7 +76,7 @@ class _sexeducationpageState extends State<sexeducationpage> {
          return Container(
            
            padding: EdgeInsets.all(10),
-           color: Colors.black54,
+           color: Colors.white,
             child: Column(
              mainAxisAlignment: MainAxisAlignment.spaceEvenly,        
             children: [

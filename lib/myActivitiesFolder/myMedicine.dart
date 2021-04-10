@@ -158,7 +158,7 @@ class _myMedicineState extends State<myMedicine> {
                                       showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
-                                            title: Text("Successful")),
+                                            title: Text("Successfully deleted ")),
                                       );
 
                                       print("success");

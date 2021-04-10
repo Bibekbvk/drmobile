@@ -1,21 +1,10 @@
-
 import 'package:drmobile/database.dart';
 import 'package:drmobile/module/abortioninfo.dart';
 
 import 'package:flutter/material.dart';
 
-
-
-
-
-
-
 class abortion extends StatefulWidget {
   @override
-  
-
-  
-
   _abortionState createState() => _abortionState();
 }
 
@@ -24,16 +13,12 @@ class _abortionState extends State<abortion> {
   List<Abr> abList = new List();
   ScrollController _scrollController = new ScrollController();
 
-
-
   int offset = 0;
-  
+
   int currentDataLength = 0;
 
   @override
   void initState() {
-
-
     super.initState();
     fetch(offset);
     _scrollController.addListener(() {
@@ -60,90 +45,61 @@ class _abortionState extends State<abortion> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-      //  leading: TextField(
+          //  leading: TextField(
 
-      //  ),
+          //  ),
 
-       ),
+          ),
       body: ListView.builder(
         controller: _scrollController,
         itemCount: abList.length,
         itemBuilder: (BuildContext context, int index) {
-        
-         return Container(
-           
-           padding: EdgeInsets.all(10),
-           color: Colors.black54,
+          return Container(
+            padding: EdgeInsets.all(10),
+            color: Colors.white10,
             child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceEvenly,        
-            children: [
-             
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                                children:[ 
-                                  Container(
-                                    padding: EdgeInsets.all(5
-                                    ),
-                  height: 120,
-                  width: 100,
-                  decoration: BoxDecoration(
-                  border:Border.all(color: Colors.green, width: 4),
-                  borderRadius: BorderRadius.circular(22)
-                  ),
-                  child: Image.network(abList[index].images,  fit: BoxFit.cover )
-               ),
-             
-                           
-
-                                 ] ),
-             
-                 Expanded(
-                   flex:7,
-                    child: Container(
-                     width: 150,
-                     height: 200,
-                   child:Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                          children:[ 
-                            Text("Name:${abList[index].name}"),
-                            Text("Contact:${abList[index].contact}"),
-                            Text("Location:${abList[index].location}"),
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Container(
+                      height: 120,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.green, width: 5),
+                          borderRadius: BorderRadius.circular(22)),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.network(abList[index].images,
+                              fit: BoxFit.fill))),
+                ]),
+                Expanded(
+                  flex: 7,
+                  child: Container(
+                      width: 150,
+                      height: 200,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text("${abList[index].name}"),
+                            Text("${abList[index].contact}"),
+                            Text("${abList[index].location}"),
                             Text("Details:${abList[index].details}"),
-                         
-                         
-                             Divider(
-                               color: Colors.greenAccent,
-                               height: 2,
-                               thickness: 2,
-                             ) 
-                     ]
-                               
-                    
-                   )
-               ),
-                 ),
-             
-              
-            ],
-
-            
-          
-             
-           ),
-             
-        
-         );
-     
-        
+                            Divider(
+                              color: Colors.greenAccent,
+                              height: 2,
+                              thickness: 2,
+                            )
+                          ])),
+                ),
+              ],
+            ),
+          );
         },
       ),
     );
-
-
   }
 
   fetch(int offset) async {

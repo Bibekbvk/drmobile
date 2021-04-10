@@ -4,8 +4,6 @@ import 'package:drmobile/login/userRegistration.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatelessWidget {
-
-
   TextEditingController email = new TextEditingController();
   TextEditingController password = new TextEditingController();
   DatabaseService db = DatabaseService();
@@ -42,14 +40,12 @@ class SignInScreen extends StatelessWidget {
                             "SIGN UP",
                             style: Theme.of(context).textTheme.button,
                           ),
-                      
-
-
-                                       onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => userRegistration()));
-              }
-                          ),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => userRegistration()));
+                          }),
                     ],
                   ),
                   Spacer(),
@@ -91,7 +87,6 @@ class SignInScreen extends StatelessWidget {
                           controller: password,
                           decoration: InputDecoration(
                             hintText: "Password",
-                            
                           ),
                         ),
                       ),
@@ -126,54 +121,40 @@ class SignInScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               shape: BoxShape.circle, color: Colors.lightGreen),
                           child: InkWell(
-                                 child: Icon(
+                            child: Icon(
                               Icons.arrow_forward,
                               color: Colors.black,
                             ),
-                               onTap: () async {
-                    if (password.text == '') {
-                                              showDialog(
-    context: context,
-    builder: (context) =>
-        AlertDialog(
+                            onTap: () async {
+                              if (password.text == '' || email.text == '') {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                      title: Text(
+                                          "Please enter Correct Username and password")),
+                                );
+                              } else {
+                                
+                                print("ayooo");
+                                var res = await db.insertlogin(
+                                    email.text, password.text);
+                                print("${res}ressss");
 
-          title:Text("Please enter Correct Username and password")
-
-
-        ),
-  );
-                     
-                    } else {
-
-                      print("ayooo");
-                      var res = await db.insertlogin(email.text, password.text
-                          );
-                      print("${res}ressss");
-
-                          if(res==404){
-                           showDialog(
-    context: context,
-    builder: (context) =>
-        AlertDialog(
-
-          title:Text("User and Passwor Do not match")
-
-
-        ),
-  );
-
-                       
-
-                          }else{
-
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => home()));
-                           
-                          }
-                    }
-                  },
+                                if (res == 500) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                        title: Text(
+                                            "User and Passwor Do not match")),
+                                  );
+                                } else {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => home()));
+                                }
+                              }
+                            },
                           ),
                         )
                       ],

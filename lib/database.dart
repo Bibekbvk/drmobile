@@ -474,7 +474,7 @@ class DatabaseService {
   }
 
   Future<int> insertMedicineOrder(
-      String user_id, int med_id, String user_contact, userName) async {
+      int user_id, int med_id, String user_contact, String userName) async {
     //var encodeduuid = Uri.encodeComponent(uuid)c
     //var encodeProduct_id = Uri.encodeComponent(product_id);
     var data = await http.get(
@@ -537,7 +537,7 @@ class DatabaseService {
 
     var jsonData = json.decode((data.body));
 
-    //userid = jsonData[0]['u_id'];
+    userid = jsonData[0]['u_id'];
 
     return data.statusCode;
   }
