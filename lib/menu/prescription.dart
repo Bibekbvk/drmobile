@@ -79,7 +79,7 @@ class _sendPresccriptionState extends State<sendPresccription> {
         children: [
           Container(
               child: Text(
-                  "You can send the photo or scan copy of prescription for odering medicine our staff will connect with you after we receive the prescription, you may have to show the original prescrption during the delivary, you will get delivary within 2-24 hour")),
+                  "You can send the photo or scan copy of prescription for odering medicine our staff will connect with you after we receive the prescription, you may have to show the original prescrption during the delivary, you will get delivary within 2-12 hour", textAlign: TextAlign.justify,style: TextStyle(),)),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [

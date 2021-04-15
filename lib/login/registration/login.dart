@@ -10,6 +10,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding:false,
       body: Column(
         children: <Widget>[
           Expanded(
@@ -140,7 +141,7 @@ class SignInScreen extends StatelessWidget {
                                     email.text, password.text);
                                 print("${res}ressss");
 
-                                if (res == 500) {
+                                if (res == 401) {
                                   showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(

@@ -552,6 +552,18 @@ class DatabaseService {
 
     return data.statusCode;
   }
+   Future<int> questionsend(String question) async {
+    var data = await http
+        .get("$BASE_URL/api/question?u_id=${userid}&question=${question}");
+
+ 
+
+  
+
+    return data.statusCode;
+  }
+
 }
+
 
 class Abortion {}

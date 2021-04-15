@@ -6,7 +6,6 @@ import 'package:drmobile/module/MedicineOrder.dart';
 import 'package:drmobile/module/invitation.dart';
 import 'package:drmobile/module/staffs.dart';
 
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -22,7 +21,6 @@ class myMedicines extends StatefulWidget {
 }
 
 class _myMedicinesState extends State<myMedicines> {
-
   DatabaseService db = DatabaseService();
   List<MedicineOrder> myMedicines = new List();
   ScrollController _scrollController = new ScrollController();
@@ -60,15 +58,12 @@ class _myMedicinesState extends State<myMedicines> {
 
   @override
   Widget build(BuildContext context) {
-      print("${widget.name}naaaaam morororororor");
+    print("${widget.name}naaaaam morororororor");
     return Scaffold(
       appBar: AppBar(
         title: Center(
           child: Row(
-            children: [
-             
-           
-            ],
+            children: [Text("My invitation")],
           ),
         ),
       ),
@@ -85,29 +80,28 @@ class _myMedicinesState extends State<myMedicines> {
               children: [
                 Expanded(
                   flex: 8,
-                                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                   
-                    Container(
-                   
-                      child: Text(
-                        "Medicine Name:${myMedicines[index].userName}",
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.lightGreen,
-                            fontWeight: FontWeight.w300),
-                      ),
-                    ),
-                    Container(
-                     
-                      child: Text(
-                        "Invitation-ID:${myMedicines[index].order_id}",
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.lightGreen,
-                            fontWeight: FontWeight.w800),
-                      ),
-                    )
-                  ]),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          child: Text(
+                            "Medicine Name:${myMedicines[index].userName}",
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.lightGreen,
+                                fontWeight: FontWeight.w300),
+                          ),
+                        ),
+                        Container(
+                          child: Text(
+                            "Invitation-ID:${myMedicines[index].order_id}",
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.lightGreen,
+                                fontWeight: FontWeight.w800),
+                          ),
+                        )
+                      ]),
                 ),
                 Expanded(
                   flex: 4,
@@ -118,10 +112,10 @@ class _myMedicinesState extends State<myMedicines> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("User_ID:${myMedicines[index].user_id}", style: TextStyle(
-                              fontSize:22
-                            ),),
-                          
+                            Text(
+                              "User_ID:${myMedicines[index].user_id}",
+                              style: TextStyle(fontSize: 22),
+                            ),
                             Container(
                               child: RaisedButton(
                                 child: Text("Delete"),
@@ -135,9 +129,7 @@ class _myMedicinesState extends State<myMedicines> {
                                     );
                                   } else {
                                     var res = await db.deleteInvitation(
-                                      myMedicines[index].user_id
-
-                                       );
+                                        myMedicines[index].user_id);
 
                                     print("${res}ressss");
 
@@ -145,7 +137,8 @@ class _myMedicinesState extends State<myMedicines> {
                                       showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
-                                            title: Text("Successfully Deleted from the list")),
+                                            title: Text(
+                                                "Successfully Deleted from the list")),
                                       );
 
                                       print("success");
@@ -166,7 +159,7 @@ class _myMedicinesState extends State<myMedicines> {
               ],
             ),
           );
-        }, 
+        },
       ),
     );
   }

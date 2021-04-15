@@ -1,3 +1,4 @@
+import 'package:drmobile/database.dart';
 import 'package:flutter/material.dart';
 
 
@@ -16,8 +17,10 @@ class FinalDiagnosisEye extends StatefulWidget {
 
 class _FinalDiagnosisEyeState extends State<FinalDiagnosisEye> {
   @override
+      TextEditingController questionController = new TextEditingController();
+
   Widget build(BuildContext context) {
-    
+    DatabaseService db = new DatabaseService();
     
     return Scaffold(
           body: SafeArea(
@@ -61,6 +64,34 @@ class _FinalDiagnosisEyeState extends State<FinalDiagnosisEye> {
 
        
         
+      ),
+
+      TextField(
+        controller:questionController,
+
+
+      ),
+
+      Text("Email"),
+              Container(
+                padding: EdgeInsets.all(20),
+                child: TextFormField(
+                  controller: questionController,
+                  maxLines: 4,
+                  decoration: InputDecoration(
+                      labelText: "Ask Question here",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(11))),
+                ),
+              ),
+      Container(
+        padding: EdgeInsets.all(20),
+        child: RaisedButton(
+          color: Colors.blueAccent,
+          child: Text("Send Question to export"),
+        onPressed: (){   db.questionsend(questionController.text);},
+          
+          ),
       ),
                           ],
                         ),

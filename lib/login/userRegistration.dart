@@ -23,12 +23,12 @@ class _userRegistrationState extends State<userRegistration> {
     return Scaffold(
         appBar: AppBar(
           title: Text("userRegistration"),
-          actions: [Icon(Icons.add)],
+         
         ),
         body: ListView(children: [
           Container(
               child: Text(
-            "Help us to improve our service, please write some words about us......",
+            "Register Here......",
             style: TextStyle(color: Colors.greenAccent.shade700, fontSize: 22),
           )),
           Column(

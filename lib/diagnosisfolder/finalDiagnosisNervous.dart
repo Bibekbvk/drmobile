@@ -8,6 +8,7 @@ class finalDiagnosisNervous extends StatefulWidget {
   final String other;
   final String image;
   
+  
   const finalDiagnosisNervous({Key key, this.name, this.description, this.treatment, this.other, this.image}) : super(key: key);
 
   @override
@@ -15,6 +16,7 @@ class finalDiagnosisNervous extends StatefulWidget {
 }
 
 class _finalDiagnosisNervousState extends State<finalDiagnosisNervous> {
+
   @override
   Widget build(BuildContext context) {
     
@@ -62,6 +64,8 @@ class _finalDiagnosisNervousState extends State<finalDiagnosisNervous> {
        
         
       ),
+
+   
                           ],
                         ),
                       ),
