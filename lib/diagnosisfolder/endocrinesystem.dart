@@ -1,9 +1,12 @@
+import 'package:drmobile/database.dart';
 import 'package:drmobile/diagnosisfolder/finalDiagnosisNervous.dart';
 import 'package:flutter/material.dart';
 
 class endocrinesystem extends StatefulWidget {
   @override
   _endocrinesystemState createState() => _endocrinesystemState();
+   TextEditingController questionController = new TextEditingController();
+          DatabaseService db= new DatabaseService();
 }
 
 class _endocrinesystemState extends State<endocrinesystem> {

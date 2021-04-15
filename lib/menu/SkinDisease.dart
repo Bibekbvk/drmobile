@@ -1,3 +1,4 @@
+import 'package:drmobile/database.dart';
 import 'package:drmobile/finalDiagnosisSkin.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,8 @@ class skindisease extends StatefulWidget {
 
 class _skindiseaseState extends State<skindisease> {
   @override
+  TextEditingController questionController = new TextEditingController();
+  DatabaseService db = new DatabaseService();
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -290,50 +293,50 @@ class _skindiseaseState extends State<skindisease> {
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/eczema1.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-                         onTap: () {
+                          child: Image.asset(
+                            'images/eczema1.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "eczema",
-                                        description: "Eczema is a condition wherein patches of skin become inflamed, itchy, cracked, and rough. Some types can also cause blisters.",
+                                        description:
+                                            "Eczema is a condition wherein patches of skin become inflamed, itchy, cracked, and rough. Some types can also cause blisters.",
                                         treatment:
                                             "There is currently no cure for eczema. Treatment for the condition aims to heal the affected skin and prevent flares of symptoms. \n\nDoctors will suggest a treatment plan based on an individual’s age, symptoms, and current state of health. \n\nFor some people, eczema goes away over time. For others, however, it is a lifelong condition. \n\nThe sections below will list some treatment options.",
                                         other:
                                             "Home care: \n\n There are several things that people with eczema can do to support skin health and alleviate symptoms. \n\n For example, they can try:\n\n\ntaking lukewarm baths\n\napplying moisturizer within 3 minutes of bathing to moisture\n\nmoisturizing every day\n\nwearing cotton and soft fabrics\n\navoiding  rough, scratchy fibers and tight fitting clothing\n\nusing a humidifier in dry or cold weather\n\nusing a mild soap or a non-soap cleanser when washing\n\ntaking extra precautions to prevent eczema flares in winter\n\nair drying or gently patting the skin dry with a towel, rather than rubbing the skin dry after bathing or taking a shower\n\nwhere possible, avoiding rapid changes of temperature and activities that cause sweating\n\nlearning and avoiding individual eczema triggers\n\nkeeping fingernails short to prevent scratching from breaking the skin",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                   Container(
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/eczema2.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-                         onTap: () {
+                          child: Image.asset(
+                            'images/eczema2.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "eczema",
-                                        description: "Eczema is a condition wherein patches of skin become inflamed, itchy, cracked, and rough. Some types can also cause blisters.",
+                                        description:
+                                            "Eczema is a condition wherein patches of skin become inflamed, itchy, cracked, and rough. Some types can also cause blisters.",
                                         treatment:
                                             "There is currently no cure for eczema. Treatment for the condition aims to heal the affected skin and prevent flares of symptoms. \n\nDoctors will suggest a treatment plan based on an individual’s age, symptoms, and current state of health. \n\nFor some people, eczema goes away over time. For others, however, it is a lifelong condition. \n\nThe sections below will list some treatment options.",
                                         other:
                                             "Home care: \n\n There are several things that people with eczema can do to support skin health and alleviate symptoms. \n\n For example, they can try:\n\n\ntaking lukewarm baths\n\napplying moisturizer within 3 minutes of bathing to moisture\n\nmoisturizing every day\n\nwearing cotton and soft fabrics\n\navoiding  rough, scratchy fibers and tight fitting clothing\n\nusing a humidifier in dry or cold weather\n\nusing a mild soap or a non-soap cleanser when washing\n\ntaking extra precautions to prevent eczema flares in winter\n\nair drying or gently patting the skin dry with a towel, rather than rubbing the skin dry after bathing or taking a shower\n\nwhere possible, avoiding rapid changes of temperature and activities that cause sweating\n\nlearning and avoiding individual eczema triggers\n\nkeeping fingernails short to prevent scratching from breaking the skin",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                 ],
@@ -345,52 +348,50 @@ class _skindiseaseState extends State<skindisease> {
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/eczema3.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-
-                         onTap: () {
+                          child: Image.asset(
+                            'images/eczema3.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "eczema",
-                                        description: "Eczema is a condition wherein patches of skin become inflamed, itchy, cracked, and rough. Some types can also cause blisters.",
+                                        description:
+                                            "Eczema is a condition wherein patches of skin become inflamed, itchy, cracked, and rough. Some types can also cause blisters.",
                                         treatment:
                                             "There is currently no cure for eczema. Treatment for the condition aims to heal the affected skin and prevent flares of symptoms. \n\nDoctors will suggest a treatment plan based on an individual’s age, symptoms, and current state of health. \n\nFor some people, eczema goes away over time. For others, however, it is a lifelong condition. \n\nThe sections below will list some treatment options.",
                                         other:
                                             "Home care: \n\n There are several things that people with eczema can do to support skin health and alleviate symptoms. \n\n For example, they can try:\n\n\ntaking lukewarm baths\n\napplying moisturizer within 3 minutes of bathing to moisture\n\nmoisturizing every day\n\nwearing cotton and soft fabrics\n\navoiding  rough, scratchy fibers and tight fitting clothing\n\nusing a humidifier in dry or cold weather\n\nusing a mild soap or a non-soap cleanser when washing\n\ntaking extra precautions to prevent eczema flares in winter\n\nair drying or gently patting the skin dry with a towel, rather than rubbing the skin dry after bathing or taking a shower\n\nwhere possible, avoiding rapid changes of temperature and activities that cause sweating\n\nlearning and avoiding individual eczema triggers\n\nkeeping fingernails short to prevent scratching from breaking the skin",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                   Container(
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/eczema4.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-
-                         onTap: () {
+                          child: Image.asset(
+                            'images/eczema4.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "eczema",
-                                        description: "Eczema is a condition wherein patches of skin become inflamed, itchy, cracked, and rough. Some types can also cause blisters.",
+                                        description:
+                                            "Eczema is a condition wherein patches of skin become inflamed, itchy, cracked, and rough. Some types can also cause blisters.",
                                         treatment:
                                             "There is currently no cure for eczema. Treatment for the condition aims to heal the affected skin and prevent flares of symptoms. \n\nDoctors will suggest a treatment plan based on an individual’s age, symptoms, and current state of health. \n\nFor some people, eczema goes away over time. For others, however, it is a lifelong condition. \n\nThe sections below will list some treatment options.",
                                         other:
                                             "Home care: \n\n There are several things that people with eczema can do to support skin health and alleviate symptoms. \n\n For example, they can try:\n\n\ntaking lukewarm baths\n\napplying moisturizer within 3 minutes of bathing to moisture\n\nmoisturizing every day\n\nwearing cotton and soft fabrics\n\navoiding  rough, scratchy fibers and tight fitting clothing\n\nusing a humidifier in dry or cold weather\n\nusing a mild soap or a non-soap cleanser when washing\n\ntaking extra precautions to prevent eczema flares in winter\n\nair drying or gently patting the skin dry with a towel, rather than rubbing the skin dry after bathing or taking a shower\n\nwhere possible, avoiding rapid changes of temperature and activities that cause sweating\n\nlearning and avoiding individual eczema triggers\n\nkeeping fingernails short to prevent scratching from breaking the skin",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                 ],
@@ -402,51 +403,50 @@ class _skindiseaseState extends State<skindisease> {
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/herpes1.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-
-                         onTap: () {
+                          child: Image.asset(
+                            'images/herpes1.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Herpes Zoster",
-                                        description: "Herpes zoster (commonly referred to as “shingles”) and postherpetic neuralgia result from reactivation of the varicella-zoster virus acquired during the primary varicella infection, or chickenpox. Whereas varicella is generally a disease of childhood, herpes zoster and post-herpetic neuralgia become more common with increasing age.",
+                                        description:
+                                            "Herpes zoster (commonly referred to as “shingles”) and postherpetic neuralgia result from reactivation of the varicella-zoster virus acquired during the primary varicella infection, or chickenpox. Whereas varicella is generally a disease of childhood, herpes zoster and post-herpetic neuralgia become more common with increasing age.",
                                         treatment:
                                             "Please Visit the doctor if notimproved soon doctor will provide you the medication that can improve",
                                         other:
                                             "Drugs Like Acyclovir , Famciclovir, Valacyclovir, Prednisone, CORTICOSTEROIDS, ANALGESICS  are used for the treatment  ",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                   Container(
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/herpes2.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-                         onTap: () {
+                          child: Image.asset(
+                            'images/herpes2.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Herpes Zoster",
-                                        description: "Herpes zoster (commonly referred to as “shingles”) and postherpetic neuralgia result from reactivation of the varicella-zoster virus acquired during the primary varicella infection, or chickenpox. Whereas varicella is generally a disease of childhood, herpes zoster and post-herpetic neuralgia become more common with increasing age.",
+                                        description:
+                                            "Herpes zoster (commonly referred to as “shingles”) and postherpetic neuralgia result from reactivation of the varicella-zoster virus acquired during the primary varicella infection, or chickenpox. Whereas varicella is generally a disease of childhood, herpes zoster and post-herpetic neuralgia become more common with increasing age.",
                                         treatment:
                                             "Please Visit the doctor if notimproved soon doctor will provide you the medication that can improve",
                                         other:
                                             "Drugs Like Acyclovir , Famciclovir, Valacyclovir, Prednisone, CORTICOSTEROIDS, ANALGESICS  are used for the treatment  ",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                 ],
@@ -458,50 +458,50 @@ class _skindiseaseState extends State<skindisease> {
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/herpes3.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-                         onTap: () {
+                          child: Image.asset(
+                            'images/herpes3.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Herpes Zoster",
-                                        description: "Herpes zoster (commonly referred to as “shingles”) and postherpetic neuralgia result from reactivation of the varicella-zoster virus acquired during the primary varicella infection, or chickenpox. Whereas varicella is generally a disease of childhood, herpes zoster and post-herpetic neuralgia become more common with increasing age.",
+                                        description:
+                                            "Herpes zoster (commonly referred to as “shingles”) and postherpetic neuralgia result from reactivation of the varicella-zoster virus acquired during the primary varicella infection, or chickenpox. Whereas varicella is generally a disease of childhood, herpes zoster and post-herpetic neuralgia become more common with increasing age.",
                                         treatment:
                                             "Please Visit the doctor if notimproved soon doctor will provide you the medication that can improve",
                                         other:
                                             "Drugs Like Acyclovir , Famciclovir, Valacyclovir, Prednisone, CORTICOSTEROIDS, ANALGESICS  are used for the treatment  ",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                   Container(
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/herpes4.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-                         onTap: () {
+                          child: Image.asset(
+                            'images/herpes4.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Herpes Zoster",
-                                        description: "Herpes zoster (commonly referred to as “shingles”) and postherpetic neuralgia result from reactivation of the varicella-zoster virus acquired during the primary varicella infection, or chickenpox. Whereas varicella is generally a disease of childhood, herpes zoster and post-herpetic neuralgia become more common with increasing age.",
+                                        description:
+                                            "Herpes zoster (commonly referred to as “shingles”) and postherpetic neuralgia result from reactivation of the varicella-zoster virus acquired during the primary varicella infection, or chickenpox. Whereas varicella is generally a disease of childhood, herpes zoster and post-herpetic neuralgia become more common with increasing age.",
                                         treatment:
                                             "Please Visit the doctor if notimproved soon doctor will provide you the medication that can improve",
                                         other:
                                             "Drugs Like Acyclovir , Famciclovir, Valacyclovir, Prednisone, CORTICOSTEROIDS, ANALGESICS  are used for the treatment  ",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                 ],
@@ -513,51 +513,46 @@ class _skindiseaseState extends State<skindisease> {
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/sk1.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-
-                         onTap: () {
+                          child: Image.asset(
+                            'images/sk1.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Skin Cancer",
-                                        description: "This type of skin disease can be seen in skin cancer, so please visit the doctor as soon as possible",
-                                        treatment:
-                                            "",
-                                        other:
-                                            "",
+                                        description:
+                                            "This type of skin disease can be seen in skin cancer, so please visit the doctor as soon as possible",
+                                        treatment: "",
+                                        other: "",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                   Container(
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/sk2.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-                         onTap: () {
+                          child: Image.asset(
+                            'images/sk2.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Skin Cancer",
-                                        description: "This type of skin disease can be seen in skin cancer, so please visit the doctor as soon as possible",
-                                        treatment:
-                                            "",
-                                        other:
-                                            "",
+                                        description:
+                                            "This type of skin disease can be seen in skin cancer, so please visit the doctor as soon as possible",
+                                        treatment: "",
+                                        other: "",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                 ],
@@ -569,51 +564,46 @@ class _skindiseaseState extends State<skindisease> {
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/sk3.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-                         onTap: () {
+                          child: Image.asset(
+                            'images/sk3.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Skin Cancer",
-                                        description: "This type of skin disease can be seen in skin cancer, so please visit the doctor as soon as possible",
-                                        treatment:
-                                            "",
-                                        other:
-                                            "",
+                                        description:
+                                            "This type of skin disease can be seen in skin cancer, so please visit the doctor as soon as possible",
+                                        treatment: "",
+                                        other: "",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                   Container(
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/sk4.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-
-                         onTap: () {
+                          child: Image.asset(
+                            'images/sk4.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Skin Cancer",
-                                        description: "This type of skin disease can be seen in skin cancer, so please visit the doctor as soon as possible",
-                                        treatment:
-                                            "",
-                                        other:
-                                            "",
+                                        description:
+                                            "This type of skin disease can be seen in skin cancer, so please visit the doctor as soon as possible",
+                                        treatment: "",
+                                        other: "",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                 ],
@@ -625,50 +615,50 @@ class _skindiseaseState extends State<skindisease> {
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/scabies1.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-                         onTap: () {
+                          child: Image.asset(
+                            'images/scabies1.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Scabies",
-                                        description: "Scabies is a skin infestation caused by a mite known as the Sarcoptes scabiei. Untreated, these microscopic mites can live on your skin for months. They reproduce on the surface of your skin and then burrow into it and lay eggs. This causes an itchy, red rash to form on the skin.",
+                                        description:
+                                            "Scabies is a skin infestation caused by a mite known as the Sarcoptes scabiei. Untreated, these microscopic mites can live on your skin for months. They reproduce on the surface of your skin and then burrow into it and lay eggs. This causes an itchy, red rash to form on the skin.",
                                         treatment:
                                             "Treatment for scabies usually involves getting rid of the infestation with prescription ointments, creams, and lotions that can be applied directly to the skin. Oral medications are also available. \n\n\n 5 percent permethrin cream \n\n 25 percent benzyl benzoate lotion\n\n 10 percent sulfur ointment\n\n 10 percent crotamiton cream",
                                         other:
                                             "Natural treatment of scabies: \n\n Tea tree oil\n\n Aloe vera \n\n Soaps ",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                   Container(
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/scabies2.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-                         onTap: () {
+                          child: Image.asset(
+                            'images/scabies2.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Scabies",
-                                        description: "Scabies is a skin infestation caused by a mite known as the Sarcoptes scabiei. Untreated, these microscopic mites can live on your skin for months. They reproduce on the surface of your skin and then burrow into it and lay eggs. This causes an itchy, red rash to form on the skin.",
+                                        description:
+                                            "Scabies is a skin infestation caused by a mite known as the Sarcoptes scabiei. Untreated, these microscopic mites can live on your skin for months. They reproduce on the surface of your skin and then burrow into it and lay eggs. This causes an itchy, red rash to form on the skin.",
                                         treatment:
                                             "Treatment for scabies usually involves getting rid of the infestation with prescription ointments, creams, and lotions that can be applied directly to the skin. Oral medications are also available. \n\n\n 5 percent permethrin cream \n\n 25 percent benzyl benzoate lotion\n\n 10 percent sulfur ointment\n\n 10 percent crotamiton cream",
                                         other:
                                             "Natural treatment of scabies: \n\n Tea tree oil\n\n Aloe vera \n\n Soaps ",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                 ],
@@ -680,52 +670,50 @@ class _skindiseaseState extends State<skindisease> {
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/scabies3.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-
-                         onTap: () {
+                          child: Image.asset(
+                            'images/scabies3.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Scabies",
-                                        description: "Scabies is a skin infestation caused by a mite known as the Sarcoptes scabiei. Untreated, these microscopic mites can live on your skin for months. They reproduce on the surface of your skin and then burrow into it and lay eggs. This causes an itchy, red rash to form on the skin.",
+                                        description:
+                                            "Scabies is a skin infestation caused by a mite known as the Sarcoptes scabiei. Untreated, these microscopic mites can live on your skin for months. They reproduce on the surface of your skin and then burrow into it and lay eggs. This causes an itchy, red rash to form on the skin.",
                                         treatment:
                                             "Treatment for scabies usually involves getting rid of the infestation with prescription ointments, creams, and lotions that can be applied directly to the skin. Oral medications are also available. \n\n\n 5 percent permethrin cream \n\n 25 percent benzyl benzoate lotion\n\n 10 percent sulfur ointment\n\n 10 percent crotamiton cream",
                                         other:
                                             "Natural treatment of scabies: \n\n Tea tree oil\n\n Aloe vera \n\n Soaps ",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                   Container(
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/scabies4.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-
-                         onTap: () {
+                          child: Image.asset(
+                            'images/scabies4.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Scabies",
-                                        description: "Scabies is a skin infestation caused by a mite known as the Sarcoptes scabiei. Untreated, these microscopic mites can live on your skin for months. They reproduce on the surface of your skin and then burrow into it and lay eggs. This causes an itchy, red rash to form on the skin.",
+                                        description:
+                                            "Scabies is a skin infestation caused by a mite known as the Sarcoptes scabiei. Untreated, these microscopic mites can live on your skin for months. They reproduce on the surface of your skin and then burrow into it and lay eggs. This causes an itchy, red rash to form on the skin.",
                                         treatment:
                                             "Treatment for scabies usually involves getting rid of the infestation with prescription ointments, creams, and lotions that can be applied directly to the skin. Oral medications are also available. \n\n\n 5 percent permethrin cream \n\n 25 percent benzyl benzoate lotion\n\n 10 percent sulfur ointment\n\n 10 percent crotamiton cream",
                                         other:
                                             "Natural treatment of scabies: \n\n Tea tree oil\n\n Aloe vera \n\n Soaps ",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                 ],
@@ -737,55 +725,50 @@ class _skindiseaseState extends State<skindisease> {
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/psoriasis.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-                         
-                         onTap: () {
+                          child: Image.asset(
+                            'images/psoriasis.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Psoriasis",
-                                        description: "Psoriasis is a chronic autoimmune condition that causes the rapid buildup of skin cells. This buildup of cells causes scaling on the skin’s surface. Inflammation and redness around the scales is fairly common. Typical psoriatic scales are whitish-silver and develop in thick, red patches. Sometimes, these patches will crack and bleed.",
+                                        description:
+                                            "Psoriasis is a chronic autoimmune condition that causes the rapid buildup of skin cells. This buildup of cells causes scaling on the skin’s surface. Inflammation and redness around the scales is fairly common. Typical psoriatic scales are whitish-silver and develop in thick, red patches. Sometimes, these patches will crack and bleed.",
                                         treatment:
                                             "Topical treatments: \n\n Creams and ointments applied directly to the skin can be helpful for reducing mild to moderate psoriasis.\n\n Topical psoriasis treatments include: \ntopical corticosteroids\ntopical retinoids\nanthralin\nvitamin D analogues\nsalicylic acid\nmoisturizer",
                                         other:
                                             "Natural treatment of Psoriasis: \n\n Take dietary supplements(Fish oil, vitamin D, aloe vera) \n Prevent dry skin \n Avoid fragrances \n Eat healthy \Soak your body \nGrt some rays \n Reduce stress \n Avoid Alcohol \n Try tumeric \n Stop Smoking",
                                         image: "images/dr.png")));
-                          }
-
-
-
-                      )
+                          })
                     ],
                   )),
                   Container(
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/psoriasis2.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-
-                         onTap: () {
+                          child: Image.asset(
+                            'images/psoriasis2.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Psoriasis",
-                                        description: "Psoriasis is a chronic autoimmune condition that causes the rapid buildup of skin cells. This buildup of cells causes scaling on the skin’s surface. Inflammation and redness around the scales is fairly common. Typical psoriatic scales are whitish-silver and develop in thick, red patches. Sometimes, these patches will crack and bleed.",
+                                        description:
+                                            "Psoriasis is a chronic autoimmune condition that causes the rapid buildup of skin cells. This buildup of cells causes scaling on the skin’s surface. Inflammation and redness around the scales is fairly common. Typical psoriatic scales are whitish-silver and develop in thick, red patches. Sometimes, these patches will crack and bleed.",
                                         treatment:
                                             "Topical treatments: \n\n Creams and ointments applied directly to the skin can be helpful for reducing mild to moderate psoriasis.\n\n Topical psoriasis treatments include: \ntopical corticosteroids\ntopical retinoids\nanthralin\nvitamin D analogues\nsalicylic acid\nmoisturizer",
                                         other:
                                             "Natural treatment of Psoriasis: \n\n Take dietary supplements(Fish oil, vitamin D, aloe vera) \n Prevent dry skin \n Avoid fragrances \n Eat healthy \Soak your body \nGrt some rays \n Reduce stress \n Avoid Alcohol \n Try tumeric \n Stop Smoking",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                 ],
@@ -797,53 +780,50 @@ class _skindiseaseState extends State<skindisease> {
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/psoriasis3.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-
-
-                         onTap: () {
+                          child: Image.asset(
+                            'images/psoriasis3.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Psoriasis",
-                                        description: "Psoriasis is a chronic autoimmune condition that causes the rapid buildup of skin cells. This buildup of cells causes scaling on the skin’s surface. Inflammation and redness around the scales is fairly common. Typical psoriatic scales are whitish-silver and develop in thick, red patches. Sometimes, these patches will crack and bleed.",
+                                        description:
+                                            "Psoriasis is a chronic autoimmune condition that causes the rapid buildup of skin cells. This buildup of cells causes scaling on the skin’s surface. Inflammation and redness around the scales is fairly common. Typical psoriatic scales are whitish-silver and develop in thick, red patches. Sometimes, these patches will crack and bleed.",
                                         treatment:
                                             "Topical treatments: \n\n Creams and ointments applied directly to the skin can be helpful for reducing mild to moderate psoriasis.\n\n Topical psoriasis treatments include: \ntopical corticosteroids\ntopical retinoids\nanthralin\nvitamin D analogues\nsalicylic acid\nmoisturizer",
                                         other:
                                             "Natural treatment of Psoriasis: \n\n Take dietary supplements(Fish oil, vitamin D, aloe vera) \n Prevent dry skin \n Avoid fragrances \n Eat healthy \Soak your body \nGrt some rays \n Reduce stress \n Avoid Alcohol \n Try tumeric \n Stop Smoking",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                   Container(
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/psoriasis4.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-
-                         onTap: () {
+                          child: Image.asset(
+                            'images/psoriasis4.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Psoriasis",
-                                        description: "Psoriasis is a chronic autoimmune condition that causes the rapid buildup of skin cells. This buildup of cells causes scaling on the skin’s surface. Inflammation and redness around the scales is fairly common. Typical psoriatic scales are whitish-silver and develop in thick, red patches. Sometimes, these patches will crack and bleed.",
+                                        description:
+                                            "Psoriasis is a chronic autoimmune condition that causes the rapid buildup of skin cells. This buildup of cells causes scaling on the skin’s surface. Inflammation and redness around the scales is fairly common. Typical psoriatic scales are whitish-silver and develop in thick, red patches. Sometimes, these patches will crack and bleed.",
                                         treatment:
                                             "Topical treatments: \n\n Creams and ointments applied directly to the skin can be helpful for reducing mild to moderate psoriasis.\n\n Topical psoriasis treatments include: \ntopical corticosteroids\ntopical retinoids\nanthralin\nvitamin D analogues\nsalicylic acid\nmoisturizer",
                                         other:
                                             "Natural treatment of Psoriasis: \n\n Take dietary supplements(Fish oil, vitamin D, aloe vera) \n Prevent dry skin \n Avoid fragrances \n Eat healthy \Soak your body \nGrt some rays \n Reduce stress \n Avoid Alcohol \n Try tumeric \n Stop Smoking",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                 ],
@@ -855,54 +835,50 @@ class _skindiseaseState extends State<skindisease> {
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/v1.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-
-                        onTap: () {
+                          child: Image.asset(
+                            'images/v1.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Vitiligo",
-                                        description: "Vitiligo is a skin disorder in which smooth white areas (called macules or patches) appear on a person’s skin. It generally starts on the hands, forearms, feet and face. Globally, about 1% or so of the population has vitiligo.",
+                                        description:
+                                            "Vitiligo is a skin disorder in which smooth white areas (called macules or patches) appear on a person’s skin. It generally starts on the hands, forearms, feet and face. Globally, about 1% or so of the population has vitiligo.",
                                         treatment:
                                             "No medical treatment (use cosmetics to camouflage lost color) \n\nCosmetic options include makeup, self-tanners, and skin dyes.Offers safe way to make vitiligo less noticeable. \nOften recommended for children because it avoids possible side effects from medicine. \nMust be repeatedly applied, can be time-consuming, takes practice to get a natural-looking result.\n",
                                         other:
                                             " The most commonly prescribed medicine is a potent or super-potent corticosteroid that you apply to your skin. About half, 45%, of patients regain at least some skin color after 4 to 6 months.\n A corticosteroid that you apply to your skin may be combined with another medicine to improve results.\n This option works best in people with darkly pigmented skin. \n Light boxes are used to treat widespread vitiligo; lasers are used to treat a small area.\n Uses UVA light and a medicine called psoralen to restore skin color.\n Surgery May be an option when light therapy and medicines applied to the skin do not work. ",
                                         image: "images/dr.png")));
-                          }
-
-                      )
+                          })
                     ],
                   )),
                   Container(
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/v2.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-
-
-                         onTap: () {
+                          child: Image.asset(
+                            'images/v2.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Vitiligo",
-                                        description: "Vitiligo is a skin disorder in which smooth white areas (called macules or patches) appear on a person’s skin. It generally starts on the hands, forearms, feet and face. Globally, about 1% or so of the population has vitiligo.",
+                                        description:
+                                            "Vitiligo is a skin disorder in which smooth white areas (called macules or patches) appear on a person’s skin. It generally starts on the hands, forearms, feet and face. Globally, about 1% or so of the population has vitiligo.",
                                         treatment:
                                             "No medical treatment (use cosmetics to camouflage lost color) \n\nCosmetic options include makeup, self-tanners, and skin dyes.Offers safe way to make vitiligo less noticeable. \nOften recommended for children because it avoids possible side effects from medicine. \nMust be repeatedly applied, can be time-consuming, takes practice to get a natural-looking result.\n",
                                         other:
                                             " The most commonly prescribed medicine is a potent or super-potent corticosteroid that you apply to your skin. About half, 45%, of patients regain at least some skin color after 4 to 6 months.\n A corticosteroid that you apply to your skin may be combined with another medicine to improve results.\n This option works best in people with darkly pigmented skin. \n Light boxes are used to treat widespread vitiligo; lasers are used to treat a small area.\n Uses UVA light and a medicine called psoralen to restore skin color.\n Surgery May be an option when light therapy and medicines applied to the skin do not work. ",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                 ],
@@ -914,54 +890,50 @@ class _skindiseaseState extends State<skindisease> {
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/v3.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-
-
-                         onTap: () {
+                          child: Image.asset(
+                            'images/v3.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Vitiligo",
-                                        description: "Vitiligo is a skin disorder in which smooth white areas (called macules or patches) appear on a person’s skin. It generally starts on the hands, forearms, feet and face. Globally, about 1% or so of the population has vitiligo.",
+                                        description:
+                                            "Vitiligo is a skin disorder in which smooth white areas (called macules or patches) appear on a person’s skin. It generally starts on the hands, forearms, feet and face. Globally, about 1% or so of the population has vitiligo.",
                                         treatment:
                                             "No medical treatment (use cosmetics to camouflage lost color) \n\nCosmetic options include makeup, self-tanners, and skin dyes.Offers safe way to make vitiligo less noticeable. \nOften recommended for children because it avoids possible side effects from medicine. \nMust be repeatedly applied, can be time-consuming, takes practice to get a natural-looking result.\n",
                                         other:
                                             " The most commonly prescribed medicine is a potent or super-potent corticosteroid that you apply to your skin. About half, 45%, of patients regain at least some skin color after 4 to 6 months.\n A corticosteroid that you apply to your skin may be combined with another medicine to improve results.\n This option works best in people with darkly pigmented skin. \n Light boxes are used to treat widespread vitiligo; lasers are used to treat a small area.\n Uses UVA light and a medicine called psoralen to restore skin color.\n Surgery May be an option when light therapy and medicines applied to the skin do not work. ",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                   Container(
                       child: Column(
                     children: [
                       InkWell(
-                        child: Image.asset(
-                          'images/v4.jpg',
-                          height: 130,
-                          width: 170,
-                        ),
-
-
-                         onTap: () {
+                          child: Image.asset(
+                            'images/v4.jpg',
+                            height: 130,
+                            width: 170,
+                          ),
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FinalDiagnosisSkin(
                                         name: "Vitiligo",
-                                        description: "Vitiligo is a skin disorder in which smooth white areas (called macules or patches) appear on a person’s skin. It generally starts on the hands, forearms, feet and face. Globally, about 1% or so of the population has vitiligo.",
+                                        description:
+                                            "Vitiligo is a skin disorder in which smooth white areas (called macules or patches) appear on a person’s skin. It generally starts on the hands, forearms, feet and face. Globally, about 1% or so of the population has vitiligo.",
                                         treatment:
                                             "No medical treatment (use cosmetics to camouflage lost color) \n\nCosmetic options include makeup, self-tanners, and skin dyes.Offers safe way to make vitiligo less noticeable. \nOften recommended for children because it avoids possible side effects from medicine. \nMust be repeatedly applied, can be time-consuming, takes practice to get a natural-looking result.\n",
                                         other:
                                             " The most commonly prescribed medicine is a potent or super-potent corticosteroid that you apply to your skin. About half, 45%, of patients regain at least some skin color after 4 to 6 months.\n A corticosteroid that you apply to your skin may be combined with another medicine to improve results.\n This option works best in people with darkly pigmented skin. \n Light boxes are used to treat widespread vitiligo; lasers are used to treat a small area.\n Uses UVA light and a medicine called psoralen to restore skin color.\n Surgery May be an option when light therapy and medicines applied to the skin do not work. ",
                                         image: "images/dr.png")));
-                          }
-                      )
+                          })
                     ],
                   )),
                 ],

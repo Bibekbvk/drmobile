@@ -1,3 +1,4 @@
+import 'package:drmobile/myActivitiesFolder/MyQuestion.dart';
 import 'package:drmobile/myActivitiesFolder/myInvitation.dart';
 import 'package:drmobile/myActivitiesFolder/myItems.dart';
 import 'package:drmobile/myActivitiesFolder/myMedicine.dart';
@@ -102,11 +103,21 @@ class _myActivitiesState extends State<myActivities> {
                   ),
                   child: Column(children: [
                     Icon(Icons.question_answer, size: 44),
-                    Center(
-                        child: Text(
-                      "My questions",
-                      style: TextStyle(fontSize: 33),
-                    ))
+                    InkWell(
+                                          child: Container(
+                                            child: Center(
+                            child: Text(
+                          "My questions",
+                          style: TextStyle(fontSize: 33),
+                        )),
+                      ),
+                       onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => myquestions("")));
+              },
+                    )
                   ])),
             ),
           ],

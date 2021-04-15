@@ -1,3 +1,4 @@
+import 'package:drmobile/database.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,6 +16,8 @@ class FinalDiagnosisDigestive extends StatefulWidget {
 }
 
 class _FinalDiagnosisDigestiveState extends State<FinalDiagnosisDigestive> {
+            TextEditingController questionController = new TextEditingController();
+          DatabaseService db= new DatabaseService();
   @override
   Widget build(BuildContext context) {
     
@@ -61,6 +64,30 @@ class _FinalDiagnosisDigestiveState extends State<FinalDiagnosisDigestive> {
 
        
         
+      ),
+
+      
+      Text("Ask Question: \n" ),
+      Text("You can find answer within 24 hours in my question section"),
+              Container(
+                padding: EdgeInsets.all(20),
+                child: TextFormField(
+                  controller: questionController,
+                  maxLines: 5,
+                  decoration: InputDecoration(
+                      labelText: "Ask Question here",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(11))),
+                ),
+              ),
+      Container(
+        padding: EdgeInsets.all(20),
+        child: RaisedButton(
+          color: Colors.blueAccent,
+          child: Text("Send Question to export"),
+        onPressed: (){   db.questionsend(questionController.text);},
+          
+          ),
       ),
                           ],
                         ),

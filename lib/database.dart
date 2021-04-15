@@ -13,9 +13,11 @@ import 'package:drmobile/module/helpinfo.dart';
 import 'package:drmobile/module/invitation.dart';
 import 'package:drmobile/module/medicine.dart';
 import 'package:drmobile/module/myItems.dart';
+import 'package:drmobile/module/questionsinfo.dart';
 import 'package:drmobile/module/sexeducationinfo.dart';
 import 'package:drmobile/module/staffs.dart';
 import 'package:drmobile/module/volunteerinfo.dart';
+import 'package:drmobile/myActivitiesFolder/MyQuestion.dart';
 import 'package:drmobile/myActivitiesFolder/myItems.dart';
 import 'package:drmobile/searchMedicineList.dart';
 import 'package:flutter/material.dart';
@@ -133,6 +135,28 @@ class DatabaseService {
       Searchitems.add(searchsItemList);
     }
     return Searchitems;
+  }
+
+
+  
+  Future<List<Questions>> myquestions( int userid) async {
+    var data = await http.get(
+      "$BASE_URL/api/myquestions?u_id=${userid}",
+    );
+
+    var jsonData = json.decode((data.body));
+
+    List<Questions> SearchQuestion = [];
+    for (var each in jsonData) {
+      Questions myQuestionList = Questions(
+          u_id: each['u_id'],
+          q_id: each['q_id'],
+          question: each['question'],
+          answer: each['answer'],
+          );
+      SearchQuestion.add(myQuestionList);
+    }
+    return SearchQuestion;
   }
 
   Future<List<Invitation>> searchInvitation(int user) async {
