@@ -63,7 +63,7 @@ class _myMedicinesState extends State<myMedicines> {
       appBar: AppBar(
         title: Center(
           child: Row(
-            children: [Text("My invitation")],
+            children: [Text("My Medicine")],
           ),
         ),
       ),
@@ -94,7 +94,7 @@ class _myMedicinesState extends State<myMedicines> {
                         ),
                         Container(
                           child: Text(
-                            "Invitation-ID:${myMedicines[index].order_id}",
+                            "order-ID:${myMedicines[index].order_id}",
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.lightGreen,
@@ -113,8 +113,8 @@ class _myMedicinesState extends State<myMedicines> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "User_ID:${myMedicines[index].user_id}",
-                              style: TextStyle(fontSize: 22),
+                              "Order by(User_ID):${myMedicines[index].user_id}",
+                              style: TextStyle(fontSize: 11),
                             ),
                             Container(
                               child: RaisedButton(

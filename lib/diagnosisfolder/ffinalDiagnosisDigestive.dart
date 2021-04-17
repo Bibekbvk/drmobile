@@ -16,9 +16,10 @@ class FinalDiagnosisDigestive extends StatefulWidget {
 }
 
 class _FinalDiagnosisDigestiveState extends State<FinalDiagnosisDigestive> {
-            TextEditingController questionController = new TextEditingController();
-          DatabaseService db= new DatabaseService();
+ 
   @override
+   TextEditingController questionController = new TextEditingController();
+  DatabaseService db= new DatabaseService();
   Widget build(BuildContext context) {
     
     
@@ -85,7 +86,27 @@ class _FinalDiagnosisDigestiveState extends State<FinalDiagnosisDigestive> {
         child: RaisedButton(
           color: Colors.blueAccent,
           child: Text("Send Question to export"),
-        onPressed: (){   db.questionsend(questionController.text);},
+        onPressed: () async {
+                    if (questionController.text == '') {
+                      showDialogEmptyFeedback();
+                    } else {
+                      var res = await db.questionsend(questionController.text);
+                      print("${res}ressss");
+
+                      if (res == 200) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                              title: Text(
+                                  "Successfully send to admin, please view in my activities to see the answer")),
+                        );
+
+                        print("success");
+                      } else {
+                        print("failure");
+                      }
+                    }
+                  },
           
           ),
       ),
@@ -93,6 +114,33 @@ class _FinalDiagnosisDigestiveState extends State<FinalDiagnosisDigestive> {
                         ),
                       ),
           ),
+    );
+  }
+  showDialogEmptyFeedback() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text(
+            "Message",
+            style: TextStyle(color: Colors.purple[400], fontSize: 14),
+          ),
+          content: new Text(
+            "Question is Empty",
+            style: TextStyle(color: Colors.purple[400], fontSize: 14),
+          ),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

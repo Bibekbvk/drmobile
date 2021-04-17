@@ -176,7 +176,7 @@ class _userRegistrationState extends State<userRegistration> {
             style: TextStyle(color: Colors.purple[400], fontSize: 14),
           ),
           content: new Text(
-            "userRegistration is Empty",
+            "Some field are is Empty",
             style: TextStyle(color: Colors.purple[400], fontSize: 14),
           ),
           actions: <Widget>[
