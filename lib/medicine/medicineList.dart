@@ -26,6 +26,8 @@ class _SMedicineListState extends State<SMedicineList> {
   List<Medicine> SMedicineList = new List();
   ScrollController _scrollController = new ScrollController();
   TextEditingController search = new TextEditingController();
+    TextEditingController contact = new TextEditingController();
+
 
   int offset = 0;
 
@@ -161,19 +163,23 @@ class _SMedicineListState extends State<SMedicineList> {
                                 child: Text("Buy"),
                                 color: Colors.orange,
                                                         onPressed: () async {
-                                  if (SMedicineList[index].med_id == '') {
-                                    showDialog(
+                                                          showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
-                                          title: Text("Staff Id is absense")),
-                                    );
-                                  } else {
-                                    var res = await db.insertMedicineOrder(
+                                          title: Text("please enter you active number")
+                                          ,content: TextField(
+                                            controller: contact,
+                                            decoration: InputDecoration(),
+
+                                          ),
+                                          actions: [RaisedButton(child:Text("Submit"),onPressed: () async {
+
+                                         var res = await db.insertMedicineOrder(
 
                                         
-                                        userid,
+                                        
                                         SMedicineList[index].med_id,
-                                        SMedicineList[index].price,
+                                        contact.text,
                                         SMedicineList[index].generic_name);
                                         print("${res}ressss");
 
@@ -188,7 +194,18 @@ class _SMedicineListState extends State<SMedicineList> {
                                     } else {
                                       print("failure");
                                     }
-                                  }
+
+
+                                          },),RaisedButton(child:Text("Cancel"))],
+                                          
+                                          ),
+
+                                    );
+                               
+                                    
+                                  
+                                   
+                                  
                                 },
                               ),
                             ),

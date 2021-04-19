@@ -15,15 +15,12 @@ TextEditingController location = new TextEditingController();
 TextEditingController password = new TextEditingController();
 TextEditingController email = new TextEditingController();
 
-
-
 class _userRegistrationState extends State<userRegistration> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text("userRegistration"),
-         
         ),
         body: ListView(children: [
           Container(
@@ -60,8 +57,7 @@ class _userRegistrationState extends State<userRegistration> {
               SizedBox(
                 height: 20,
               ),
-
-                Text("Contact1"),
+              Text("Contact1"),
               Container(
                 padding: EdgeInsets.all(20),
                 child: TextFormField(
@@ -73,11 +69,10 @@ class _userRegistrationState extends State<userRegistration> {
                           borderRadius: BorderRadius.circular(11))),
                 ),
               ),
-                SizedBox(
+              SizedBox(
                 height: 20,
               ),
-
-                Text("Contact2"),
+              Text("Contact2"),
               Container(
                 padding: EdgeInsets.all(20),
                 child: TextFormField(
@@ -88,14 +83,7 @@ class _userRegistrationState extends State<userRegistration> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(11))),
                 ),
-                     
-
               ),
-
-               
-
-
-
               SizedBox(
                 height: 20,
               ),
@@ -111,8 +99,7 @@ class _userRegistrationState extends State<userRegistration> {
                           borderRadius: BorderRadius.circular(11))),
                 ),
               ),
- 
-   SizedBox(
+              SizedBox(
                 height: 20,
               ),
               Text("Password"),
@@ -127,37 +114,39 @@ class _userRegistrationState extends State<userRegistration> {
                           borderRadius: BorderRadius.circular(11))),
                 ),
               ),
-
-
-
               FlatButton.icon(
                   icon: Icon(Icons.send_outlined),
                   label: Text("Send"),
                   onPressed: () async {
-                    if (password.text == '' || password.text == '' || email.text == '' || contact1.text == '' || location.text == '' || password.text == '') {
+                    if (password.text == '' ||
+                        password.text == '' ||
+                        email.text == '' ||
+                        contact1.text == '' ||
+                        location.text == '' ||
+                        password.text == '') {
                       _showDialogEmptyuserRegistration();
                     } else {
                       var res = await db.userRegistration(
-                          "userid", name.text, email.text, contact1.text, contact2.text, location.text, password.text);
+                          "userid",
+                          name.text,
+                          email.text,
+                          contact1.text,
+                          contact2.text,
+                          location.text,
+                          password.text);
                       print("${res}ressss");
 
-                          if(res==200){
-                           showDialog(
-    context: context,
-    builder: (context) =>
-        AlertDialog(
-
-          title:Text("Successfully Registered")
-
-
-        ),
-  );
+                      if (res == 200) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                              title: Text("Successfully Registered")),
+                        );
 
                         print("success");
-
-                          }else{
-                            print("failure");
-                          }
+                      } else {
+                        print("failure");
+                      }
                     }
                   })
             ],

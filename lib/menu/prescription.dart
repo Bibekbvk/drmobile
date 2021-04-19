@@ -1,9 +1,12 @@
+import 'package:drmobile/database.dart';
 import 'package:flutter/material.dart';
 
+import 'dart:io' as Io;
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../constant.dart';
 
 class sendPresccription extends StatefulWidget {
   @override
@@ -11,23 +14,24 @@ class sendPresccription extends StatefulWidget {
 }
 
 class _sendPresccriptionState extends State<sendPresccription> {
-  File _image;
+  String _image;
   File _image1;
   File _image2;
   final picker = ImagePicker();
-
+  DatabaseService db= new DatabaseService();
+ 
   // For first Image
   Future getPhotoCamera() async {
     final pickedImage = await picker.getImage(source: ImageSource.camera);
     if (pickedImage != null) {
-      _image = File(pickedImage.path);
+      _image = File(pickedImage.path).toString();
     } else {
       print("Selected");
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => sendPresccription()));
     }
     setState(() {
-      _image = File(pickedImage.path);
+      _image = File(pickedImage.path).toString();
     });
   }
 
@@ -35,7 +39,7 @@ class _sendPresccriptionState extends State<sendPresccription> {
     final pickedImage = await picker.getImage(source: ImageSource.gallery);
 
     setState(() {
-      _image = File(pickedImage.path);
+      _image = File(pickedImage.path).toString();
     });
   }
 
@@ -98,7 +102,7 @@ class _sendPresccriptionState extends State<sendPresccription> {
                             color: Colors.green.shade600,
                           ),
                         )
-                      : Image.file(_image)),
+                      : _image),    //yaha change garekooooo
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -264,7 +268,48 @@ class _sendPresccriptionState extends State<sendPresccription> {
                 ),
               ),
               FlatButton.icon(
-                  onPressed: () {},
+                  onPressed: () async{
+
+                  final bytes = Io.File(_image).readAsBytesSync();
+                  FlatButton.icon(
+                  onPressed: () async {
+                    if (_image1 == '') {
+                      showDialog(
+                        context: context,
+                        builder: (context) =>
+                            AlertDialog(title: Text("Staff Id is absense")),
+                      );
+                    } else {
+                      var res = await db.insertRegistration(
+                          userid,
+                          _image,
+                          _image,
+                          _image,
+                          "hello");
+                      print("${res}ressss");
+
+                      if (res == 200) {
+                        showDialog(
+                          context: context,
+                          builder: (context) =>
+                              AlertDialog(title: Text("Successful")),
+                        );
+
+                        print("success");
+                      } else {
+                        print("failure");
+                      }
+                    }
+                  },
+                  icon:
+                      Icon(Icons.send_outlined, size: 33, color: Colors.green),
+                  label: Text(
+                    "Send",
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                  ));
+
+
+                  },
                   icon:
                       Icon(Icons.send_outlined, size: 33, color: Colors.green),
                   label: Text(

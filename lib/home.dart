@@ -12,6 +12,7 @@ import 'package:drmobile/menu/medicalItem.dart';
 import 'package:drmobile/menu/prescription.dart';
 import 'package:drmobile/module/sexeducationinfo.dart';
 import 'package:drmobile/myactivites.dart';
+import 'package:drmobile/sendpres.dart';
 
 import 'package:drmobile/staff_section/stafflatest.dart';
 import 'package:flutter/material.dart';
@@ -269,10 +270,8 @@ class _homeState extends State<home> {
                   InkWell(
                     child: Icon(Icons.upload_rounded, size: 44),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => sendPresccription()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => sendPresccription()));
                     },
                   ),
                   Text("Send Prescription"),
@@ -319,10 +318,10 @@ class _homeState extends State<home> {
                 Column(children: [
                   InkWell(
                     child: Container(
-                       decoration: BoxDecoration(
-                         borderRadius:BorderRadius.circular(22),
-                         border: Border.all(width:2, color:Colors.amberAccent)
-                        ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22),
+                          border:
+                              Border.all(width: 2, color: Colors.amberAccent)),
                       height: 200,
                       width: 200,
                       child: Image.asset('images/dr.png'),
@@ -345,14 +344,17 @@ class _homeState extends State<home> {
                                 builder: (context) => staffList("")));
                       })
                 ]),
-                SizedBox(height:10, width: 10,),
+                SizedBox(
+                  height: 10,
+                  width: 10,
+                ),
                 Column(children: [
                   InkWell(
                       child: Container(
-                         decoration: BoxDecoration(
-                         borderRadius:BorderRadius.circular(22),
-                         border: Border.all(width:2, color:Colors.amberAccent)
-                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(22),
+                            border: Border.all(
+                                width: 2, color: Colors.amberAccent)),
                         height: 200,
                         width: 160,
                         child: Image.asset('images/ha.png'),
@@ -373,16 +375,17 @@ class _homeState extends State<home> {
                                 builder: (context) => staffList("")));
                       })
                 ]),
-
-
-                  SizedBox(height:10, width: 10,),
+                SizedBox(
+                  height: 10,
+                  width: 10,
+                ),
                 Column(children: [
                   InkWell(
                       child: Container(
                         decoration: BoxDecoration(
-                         borderRadius:BorderRadius.circular(22),
-                         border: Border.all(width:2, color:Colors.amberAccent)
-                        ),
+                            borderRadius: BorderRadius.circular(22),
+                            border: Border.all(
+                                width: 2, color: Colors.amberAccent)),
                         height: 200,
                         width: 200,
                         child: Image.asset('images/nurse.jpg'),
@@ -403,15 +406,17 @@ class _homeState extends State<home> {
                                 builder: (context) => staffList("")));
                       })
                 ]),
-
-                  SizedBox(height:10, width: 10,),
+                SizedBox(
+                  height: 10,
+                  width: 10,
+                ),
                 Column(children: [
                   InkWell(
                       child: Container(
-                         decoration: BoxDecoration(
-                         borderRadius:BorderRadius.circular(22),
-                         border: Border.all(width:2, color:Colors.amberAccent)
-                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(22),
+                            border: Border.all(
+                                width: 2, color: Colors.amberAccent)),
                         height: 200,
                         width: 160,
                         child: Image.asset('images/anm.jpg'),
@@ -432,40 +437,36 @@ class _homeState extends State<home> {
                                 builder: (context) => staffList("")));
                       })
                 ]),
-
-                  SizedBox(height:10, width: 10,),
+                SizedBox(
+                  height: 10,
+                  width: 10,
+                ),
                 Column(children: [
                   InkWell(
-                                      child: Container(
-                                         decoration: BoxDecoration(
-                         borderRadius:BorderRadius.circular(22),
-                         border: Border.all(width:2, color:Colors.amberAccent)
-                        ),
-                    
-                      height: 200,
-                      width: 200,
-                      child: Image.asset('images/cma.jpg'),
-                    ),
-
-                    onTap: () {
-
-                    Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => staffList("")));
-
-
-
-                  }
-                  ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(22),
+                            border: Border.all(
+                                width: 2, color: Colors.amberAccent)),
+                        height: 200,
+                        width: 200,
+                        child: Image.asset('images/cma.jpg'),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => staffList("")));
+                      }),
                   Text('CMA'),
-                  RaisedButton(child: Text("Invite"), onPressed: () {
-
-                     Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => staffList("")));
-                  })
+                  RaisedButton(
+                      child: Text("Invite"),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => staffList("")));
+                      })
                 ]),
               ],
             ),

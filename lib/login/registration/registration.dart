@@ -8,18 +8,17 @@ import 'package:image_picker/image_picker.dart';
 
 class registerStaff extends StatefulWidget {
   @override
-  
   _registerStaffState createState() => _registerStaffState();
 }
 
 class _registerStaffState extends State<registerStaff> {
-   DatabaseService db = DatabaseService();
-   TextEditingController description = new TextEditingController();
+  DatabaseService db = DatabaseService();
+  TextEditingController description = new TextEditingController();
   File _image;
   File _image1;
   File _image2;
   final picker = ImagePicker();
-  
+
   // For first Image
   Future getPhotoCamera() async {
     final pickedImage = await picker.getImage(source: ImageSource.camera);
@@ -270,40 +269,32 @@ class _registerStaffState extends State<registerStaff> {
               ),
               FlatButton.icon(
                   onPressed: () async {
-                    if (description.text       == '') {
-                                  showDialog(
-    context: context,
-    builder: (context) =>
-        AlertDialog(
-
-          title:Text("Staff Id is absense")
-
-
-        ),
-  );
-
-
+                    if (description.text == '') {
+                      showDialog(
+                        context: context,
+                        builder: (context) =>
+                            AlertDialog(title: Text("Staff Id is absense")),
+                      );
                     } else {
-                      var res = await db.insertRegistration( "$userid", _image.toString(),_image1.toString(), _image2.toString(), description.text);
+                      var res = await db.insertRegistration(
+                          userid,
+                          _image.toString(),
+                          _image1.toString(),
+                          _image2.toString(),
+                          description.text);
                       print("${res}ressss");
 
-                                            if(res==200){
-                                            showDialog(
-                      context: context,
-                      builder: (context) =>
-                          AlertDialog(
-
-                            title:Text("Successful")
-
-
-                          ),
-                    );
+                      if (res == 200) {
+                        showDialog(
+                          context: context,
+                          builder: (context) =>
+                              AlertDialog(title: Text("Successful")),
+                        );
 
                         print("success");
-
-                          }else{
-                            print("failure");
-                          }
+                      } else {
+                        print("failure");
+                      }
                     }
                   },
                   icon:
