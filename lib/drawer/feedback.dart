@@ -77,23 +77,17 @@ class _feedbackState extends State<feedback> {
                           "userid", contact.text, name.text, feedbacks.text);
                       print("${res}ressss");
 
-                          if(res==200){
-                           showDialog(
-    context: context,
-    builder: (context) =>
-        AlertDialog(
-
-          title:Text("Successful")
-
-
-        ),
-  );
+                      if (res == 200) {
+                        showDialog(
+                          context: context,
+                          builder: (context) =>
+                              AlertDialog(title: Text("Successful")),
+                        );
 
                         print("success");
-
-                          }else{
-                            print("failure");
-                          }
+                      } else {
+                        print("failure");
+                      }
                     }
                   })
             ],

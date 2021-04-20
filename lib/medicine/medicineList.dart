@@ -26,8 +26,7 @@ class _SMedicineListState extends State<SMedicineList> {
   List<Medicine> SMedicineList = new List();
   ScrollController _scrollController = new ScrollController();
   TextEditingController search = new TextEditingController();
-    TextEditingController contact = new TextEditingController();
-
+  TextEditingController contact = new TextEditingController();
 
   int offset = 0;
 
@@ -86,14 +85,13 @@ class _SMedicineListState extends State<SMedicineList> {
               ),
               Expanded(
                   child: IconButton(
-
-                    onPressed: (){
-                                   Navigator.push(context, MaterialPageRoute( builder: (context)=>searchMedicine(name:search.text)));
-
-
-
-
-                    },
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              searchMedicine(name: search.text)));
+                },
                 icon: Icon(
                   Icons.search,
                   color: Colors.white,
@@ -162,50 +160,46 @@ class _SMedicineListState extends State<SMedicineList> {
                               child: RaisedButton(
                                 child: Text("Buy"),
                                 color: Colors.orange,
-                                                        onPressed: () async {
-                                                          showDialog(
-                                      context: context,
-                                      builder: (context) => AlertDialog(
-                                          title: Text("please enter you active number")
-                                          ,content: TextField(
-                                            controller: contact,
-                                            decoration: InputDecoration(),
+                                onPressed: () async {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text(
+                                          "please enter you active number"),
+                                      content: TextField(
+                                        controller: contact,
+                                        decoration: InputDecoration(),
+                                      ),
+                                      actions: [
+                                        RaisedButton(
+                                          child: Text("Submit"),
+                                          onPressed: () async {
+                                            var res =
+                                                await db.insertMedicineOrder(
+                                                    SMedicineList[index].med_id,
+                                                    contact.text,
+                                                    SMedicineList[index]
+                                                        .generic_name);
+                                            print("${res}ressss");
 
-                                          ),
-                                          actions: [RaisedButton(child:Text("Submit"),onPressed: () async {
+                                            if (res == 200) {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) => AlertDialog(
+                                                    title: Text(
+                                                        "Successfully (buyed) added to My Medicine, Go to my medicine inside my Activitis")),
+                                              );
 
-                                         var res = await db.insertMedicineOrder(
-
-                                        
-                                        
-                                        SMedicineList[index].med_id,
-                                        contact.text,
-                                        SMedicineList[index].generic_name);
-                                        print("${res}ressss");
-
-                                    if (res == 200) {
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) => AlertDialog(
-                                            title: Text("Successfully (buyed) added to My Medicine, Go to my medicine inside my Activitis")),
-                                      );
-
-                                      print("success");
-                                    } else {
-                                      print("failure");
-                                    }
-
-
-                                          },),RaisedButton(child:Text("Cancel"))],
-                                          
-                                          ),
-
-                                    );
-                               
-                                    
-                                  
-                                   
-                                  
+                                              print("success");
+                                            } else {
+                                              print("failure");
+                                            }
+                                          },
+                                        ),
+                                        RaisedButton(child: Text("Cancel"))
+                                      ],
+                                    ),
+                                  );
                                 },
                               ),
                             ),
