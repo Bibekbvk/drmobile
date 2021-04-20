@@ -499,8 +499,7 @@ class DatabaseService {
 
   Future<int> insertMedicineOrder(
      int med_id, String user_contact, String userName) async {
-    //var encodeduuid = Uri.encodeComponent(uuid)c
-    //var encodeProduct_id = Uri.encodeComponent(product_id);
+  
     var data = await http.get(
       "$BASE_URL/api/insertMedicineOrder?user_id=${userid}&med_id=${med_id}&user_contact=${user_contact}&userName=${userName}",
     );

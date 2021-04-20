@@ -160,7 +160,8 @@ class _SMedicineListState extends State<SMedicineList> {
                               child: RaisedButton(
                                 child: Text("Buy"),
                                 color: Colors.orange,
-                                onPressed: () async {
+                                onPressed: ()  {
+                                  
                                   showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
@@ -180,7 +181,7 @@ class _SMedicineListState extends State<SMedicineList> {
                                                     contact.text,
                                                     SMedicineList[index]
                                                         .generic_name);
-                                            print("${res}ressss");
+                                        
 
                                             if (res == 200) {
                                               showDialog(

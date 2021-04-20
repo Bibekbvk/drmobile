@@ -85,7 +85,7 @@ class SignInScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextField(
-                          strutStyle: StrutStyle(),
+                         obscureText: true,
                           controller: password,
                           decoration: InputDecoration(
                             hintText: "Password",
