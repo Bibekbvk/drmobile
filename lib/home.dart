@@ -12,6 +12,7 @@ import 'package:drmobile/menu/medicalItem.dart';
 import 'package:drmobile/menu/prescription.dart';
 import 'package:drmobile/module/sexeducationinfo.dart';
 import 'package:drmobile/myactivites.dart';
+import 'package:drmobile/newprescription.dart';
 import 'package:drmobile/sendpres.dart';
 
 import 'package:drmobile/staff_section/stafflatest.dart';
@@ -271,7 +272,7 @@ class _homeState extends State<home> {
                     child: Icon(Icons.upload_rounded, size: 44),
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => sendPresccription()));
+                          MaterialPageRoute(builder: (context) => sendPrescription()));
                     },
                   ),
                   Text("Send Prescription"),

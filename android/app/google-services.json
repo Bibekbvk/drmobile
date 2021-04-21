@@ -1,33 +1,40 @@
+
+
+
+
+
+
+
 {
   "project_info": {
-    "project_number": "993421878895",
-    "project_id": "drmobile-a9497",
-    "storage_bucket": "drmobile-a9497.appspot.com"
+    "project_number": "523947134706",
+    "project_id": "drmobile-d5cc5",
+    "storage_bucket": "drmobile-d5cc5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:993421878895:android:1537fa306429c75b6c0f9a",
+        "mobilesdk_app_id": "1:523947134706:android:9fb1482730e41a418b0a6b",
         "android_client_info": {
           "package_name": "com.example.drmobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "993421878895-71decaakfmc4buuke64mg1s175m3562s.apps.googleusercontent.com",
+          "client_id": "523947134706-t07sj13tdlte9k25qarrfsoj813pg6da.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCb0m5O-AQoFJ6MCJ2zDTuE7mpVNdk5K7c"
+          "current_key": "AIzaSyBrR9PaNwFPDe7e9ycdhJ6mkCFo91Y3JV4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "993421878895-71decaakfmc4buuke64mg1s175m3562s.apps.googleusercontent.com",
+              "client_id": "523947134706-t07sj13tdlte9k25qarrfsoj813pg6da.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
