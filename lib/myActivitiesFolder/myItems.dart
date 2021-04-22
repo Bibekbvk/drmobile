@@ -96,6 +96,7 @@ class _myitemsState extends State<myitems> {
                     ),
                   ),
                   Container(
+                    width: 150,
                 
                     child: Text(
                       "User Contact:${myitems[index].user_contact}",
@@ -107,7 +108,7 @@ class _myitemsState extends State<myitems> {
                   )
                 ]),
                 Expanded(
-                  flex: 7,
+                 
                   child: Container(
                       width: 150,
                       height: 200,

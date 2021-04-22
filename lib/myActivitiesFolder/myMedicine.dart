@@ -85,7 +85,7 @@ class _myMedicinesState extends State<myMedicines> {
                       children: [
                         Container(
                           child: Text(
-                            "Medicine Name:${myMedicines[index].userName}",
+                            "Medicine Id:${myMedicines[index].userName}",
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.lightGreen,
@@ -113,7 +113,7 @@ class _myMedicinesState extends State<myMedicines> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "Order by(User_ID):${myMedicines[index].user_id}",
+                              "User_ID:${myMedicines[index].user_id}",
                               style: TextStyle(fontSize: 11),
                             ),
                             Container(

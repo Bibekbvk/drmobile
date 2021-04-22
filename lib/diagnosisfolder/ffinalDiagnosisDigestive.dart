@@ -1,4 +1,5 @@
 import 'package:drmobile/database.dart';
+import 'package:drmobile/myActivitiesFolder/MyQuestion.dart';
 import 'package:flutter/material.dart';
 
 
@@ -102,6 +103,11 @@ class _FinalDiagnosisDigestiveState extends State<FinalDiagnosisDigestive> {
                         );
 
                         print("success");
+                     
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => myquestions("")));
                       } else {
                         print("failure");
                       }

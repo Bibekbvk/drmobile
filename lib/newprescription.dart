@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 
-class sendPrescription extends StatefulWidget {
+class sendPrescriptions extends StatefulWidget {
   @override
-  _sendPrescriptionState createState() => _sendPrescriptionState();
+  _sendPrescriptionsState createState() => _sendPrescriptionsState();
 }
 
-class _sendPrescriptionState extends State<sendPrescription> {
+class _sendPrescriptionsState extends State<sendPrescriptions> {
   Future<File> file;
   DatabaseService db = new DatabaseService();
   String status = '';

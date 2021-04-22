@@ -448,10 +448,11 @@ class DatabaseService {
     return code;
   }
 
-  Future<int> insertRegistration(int uid, String image1, String image2,
-      String image3, String description) async {
+
+  Future<int> insertStaffReg(
+      int user_id, String name , String reg_no, String contact, String location) async {
     var data = await http.get(
-      "$BASE_URL/api/insertStaffRegistration?U_id=${uid}&image1=${image1}&image2=${image2}&image3=${image3}&description=${description}",
+      "$BASE_URL/api/insertStaffRegistration?user_id=${user_id}&Name=${name}&reg_no=${reg_no}&Contact=${contact}&location=${location}",
     );
     int code = data.statusCode;
     var jsonData = json.decode((data.body));
@@ -463,12 +464,14 @@ class DatabaseService {
     return code;
   }
 
+  
+
   Future<int> insertInvite(
-      String I_id, String uid, String name, int staffID, String contact) async {
+      int I_id, int uid, String name, int staffID, String contact) async {
     //var encodeduuid = Uri.encodeComponent(uuid)c
     //var encodeProduct_id = Uri.encodeComponent(product_id);
     var data = await http.get(
-      "$BASE_URL/api/insertInvite?I_id=${I_id}&user_id=${uid}&name=${name}&staff_id=${staffID}&contact=${contact}",
+      "$BASE_URL/api/insertInvite?user_id=${uid}&name=${name}&staff_id=${staffID}&contact=${contact}",
     );
     int code = data.statusCode;
     var jsonData = json.decode((data.body));
@@ -498,11 +501,12 @@ class DatabaseService {
   }
 
   Future<int> insertMedicineOrder(
-     int med_id, String user_contact, String userName) async {
+     int med_id, String user_contact, String userID, String userName) async {
   
     var data = await http.get(
-      "$BASE_URL/api/insertMedicineOrder?user_id=${userid}&med_id=${med_id}&user_contact=${user_contact}&userName=${userName}",
+      "$BASE_URL/api/insertMedicineOrder?user_id=${userid}&med_id=${med_id}&user_contact=${user_contact}&userName=${userID}",
     );
+     print("${userid}and${med_id}and${user_contact}");
     int code = data.statusCode;
     var jsonData = json.decode((data.body));
     String val = jsonData["error"];

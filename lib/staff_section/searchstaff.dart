@@ -25,6 +25,7 @@ class _SstaffsState extends State<Sstaffs> {
   List<Staffs> Sstaffs = new List();
   ScrollController _scrollController = new ScrollController();
   TextEditingController search = new TextEditingController();
+  TextEditingController contact = new TextEditingController();
 
   int offset = 0;
 
@@ -142,37 +143,54 @@ class _SstaffsState extends State<Sstaffs> {
                             Text("Name:${Sstaffs[index].name}"),
                             Text("Fees/day:${Sstaffs[index].fee}"),
                             Text("Location:${Sstaffs[index].location}"),
-                            Container(
+                           Container(
                               child: RaisedButton(
                                 child: Text("Invite"),
                                 color: Colors.orange,
-                                onPressed: () async {
-                                  if (Sstaffs[index].staff_id == '') {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => AlertDialog(
-                                          title: Text("Staff Id is absense")),
-                                    );
-                                  } else {
-                                     var res = await db.insertInvite(
-                                        "Invitation",
-                                        "$userid",
-                                        Sstaffs[index].name,
-                                        Sstaffs[index].staff_id,
-                                        Sstaffs[index].name);
+                                onPressed: ()  {
+                                  
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text(
+                                          "please enter you active number"),
+                                      content: TextField(
+                                        controller: contact,
+                                        decoration: InputDecoration(),
+                                      ),
+                                      actions: [
+                                        RaisedButton(
+                                          child: Text("Submit"),
+                                          onPressed: () async {
+                                            var res =
+                                                await db.insertInvite(
+                                                    2,
+                                                    userid,
+                                                    Sstaffs[index].name,
+                                                    Sstaffs[index].staff_id,
+                                                    
+                                                     contact.text,
+                                                       );
+                                        
 
-                                    if (res == 200) {
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) => AlertDialog(
-                                            title: Text("Successfully invited this staff, we will call you")),
-                                      );
+                                            if (res == 200) {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) => AlertDialog(
+                                                    title: Text(
+                                                        "Successfully invited, we will call you for more details")),
+                                              );
 
-                                      print("success");
-                                    } else {
-                                      print("failure");
-                                    }
-                                  }
+                                              print("success");
+                                            } else {
+                                              print("failure");
+                                            }
+                                          },
+                                        ),
+                                        RaisedButton(child: Text("Cancel"))
+                                      ],
+                                    ),
+                                  );
                                 },
                               ),
                             ),

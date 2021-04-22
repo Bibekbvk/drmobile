@@ -76,7 +76,7 @@ class _staffListState extends State<staffList> {
                     decoration: InputDecoration(
                       fillColor: Colors.red,
                       hintText: "Search",
-                      labelText: "Mobile number / Email",
+                      labelText: "Search",
                     ),
                   ),
                 ),

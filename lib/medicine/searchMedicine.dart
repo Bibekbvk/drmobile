@@ -26,6 +26,8 @@ class _searchMedicineState extends State<searchMedicine> {
   List<Medicine> searchMedicine = new List();
   ScrollController _scrollController = new ScrollController();
   TextEditingController search = new TextEditingController();
+    TextEditingController contact = new TextEditingController();
+
 
   int offset = 0;
 
@@ -159,32 +161,50 @@ class _searchMedicineState extends State<searchMedicine> {
                             Text("Location:${searchMedicine[index].company}"),
                             Container(
                               child: RaisedButton(
-                                child: Text("Invite"),
+                                child: Text("Buy"),
                                 color: Colors.orange,
-                                onPressed: () async {
-                                  if (searchMedicine[index].med_id == '') {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => AlertDialog(
-                                          title: Text("Staff Id is absense")),
-                                    );
-                                  } else {
-                                    var res = await db.searchstaff(
-                                       widget.name);
-                                    print("${res}ressss");
+                                onPressed: ()  {
+                                  
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text(
+                                          "please enter you active number"),
+                                      content: TextField(
+                                        controller: contact,
+                                        decoration: InputDecoration(),
+                                      ),
+                                      actions: [
+                                        RaisedButton(
+                                          child: Text("Submit"),
+                                          onPressed: () async {
+                                            var res =
+                                                await db.insertMedicineOrder(
+                                                    searchMedicine[index].med_id,
+                                                    contact.text,
+                                                    "$username",
+                                                    searchMedicine[index]
+                                                        .generic_name);
+                                        
 
-                                    if (res == 200) {
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) => AlertDialog(
-                                            title: Text("Successful")),
-                                      );
+                                            if (res == 200) {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) => AlertDialog(
+                                                    title: Text(
+                                                        "Successfully (buyed) added to My Medicine, Go to my medicine inside my Activitis")),
+                                              );
 
-                                      print("success");
-                                    } else {
-                                      print("failure");
-                                    }
-                                  }
+                                              print("success");
+                                            } else {
+                                              print("failure");
+                                            }
+                                          },
+                                        ),
+                                        RaisedButton(child: Text("Cancel"))
+                                      ],
+                                    ),
+                                  );
                                 },
                               ),
                             ),

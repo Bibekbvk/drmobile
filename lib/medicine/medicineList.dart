@@ -5,6 +5,7 @@ import 'package:drmobile/medicine/searchMedicine.dart';
 import 'package:drmobile/menu/Help.dart';
 import 'package:drmobile/module/medicine.dart';
 import 'package:drmobile/module/staffs.dart';
+import 'package:drmobile/myActivitiesFolder/myMedicine.dart';
 import 'package:drmobile/staff_section/searchstaff.dart';
 
 import 'package:flutter/material.dart';
@@ -160,8 +161,7 @@ class _SMedicineListState extends State<SMedicineList> {
                               child: RaisedButton(
                                 child: Text("Buy"),
                                 color: Colors.orange,
-                                onPressed: ()  {
-                                  
+                                onPressed: () {
                                   showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
@@ -179,17 +179,38 @@ class _SMedicineListState extends State<SMedicineList> {
                                                 await db.insertMedicineOrder(
                                                     SMedicineList[index].med_id,
                                                     contact.text,
-                                                    SMedicineList[index]
-                                                        .generic_name);
-                                        
+                                                    "$userid",
+                                                     SMedicineList[index].generic_name);
 
                                             if (res == 200) {
+                                              
                                               showDialog(
                                                 context: context,
                                                 builder: (context) => AlertDialog(
                                                     title: Text(
-                                                        "Successfully (buyed) added to My Medicine, Go to my medicine inside my Activitis")),
+                                                        "Successfully (buyed) added to My Medicine, Go to my medicine inside my Activitis"),
+                                                        actions: [
+                                                          RaisedButton(
+                                                          child: Text("OK"),
+                                                          onPressed: () {
+
+                                                            Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          myMedicines()));
+
+
+                                                          },
+
+                                                          )
+                                                        ],),
+
+                                                       
                                               );
+                                               Navigator.pop(context);
+
+                                              
 
                                               print("success");
                                             } else {
@@ -201,6 +222,7 @@ class _SMedicineListState extends State<SMedicineList> {
                                       ],
                                     ),
                                   );
+                                   Navigator.pop(context);
                                 },
                               ),
                             ),

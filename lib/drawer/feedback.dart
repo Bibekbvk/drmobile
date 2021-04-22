@@ -81,7 +81,7 @@ class _feedbackState extends State<feedback> {
                         showDialog(
                           context: context,
                           builder: (context) =>
-                              AlertDialog(title: Text("Successful")),
+                              AlertDialog(title: Text("Successfully send")),
                         );
 
                         print("success");

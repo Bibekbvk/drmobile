@@ -1,312 +1,145 @@
-import 'package:flutter/material.dart';
 import 'package:drmobile/constant.dart';
-import 'dart:io';
 import 'package:drmobile/database.dart';
-
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class registerStaff extends StatefulWidget {
   @override
   _registerStaffState createState() => _registerStaffState();
 }
 
+DatabaseService db = DatabaseService();
+
+TextEditingController name = new TextEditingController();
+TextEditingController location = new TextEditingController();
+TextEditingController contact = new TextEditingController();
+TextEditingController reg_no = new TextEditingController();
+
+
+
 class _registerStaffState extends State<registerStaff> {
-  DatabaseService db = DatabaseService();
-  TextEditingController description = new TextEditingController();
-  File _image;
-  File _image1;
-  File _image2;
-  final picker = ImagePicker();
-
-  // For first Image
-  Future getPhotoCamera() async {
-    final pickedImage = await picker.getImage(source: ImageSource.camera);
-    if (pickedImage != null) {
-      _image = File(pickedImage.path);
-    } else {
-      print("Selected");
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => registerStaff()));
-    }
-    setState(() {
-      _image = File(pickedImage.path);
-    });
-  }
-
-  Future getPhotoStorage() async {
-    final pickedImage = await picker.getImage(source: ImageSource.gallery);
-
-    setState(() {
-      _image = File(pickedImage.path);
-    });
-  }
-
-  Future getPhotoCamera1() async {
-    final pickedImage1 = await picker.getImage(source: ImageSource.camera);
-
-    setState(() {
-      _image1 = File(pickedImage1.path);
-    });
-  }
-
-  Future getPhotoStorage1() async {
-    final pickedImage1 = await picker.getImage(source: ImageSource.gallery);
-
-    setState(() {
-      _image1 = File(pickedImage1.path);
-    });
-  }
-
-  Future getPhotoCamera2() async {
-    final pickedImage2 = await picker.getImage(source: ImageSource.camera);
-
-    setState(() {
-      _image2 = File(pickedImage2.path);
-    });
-  }
-
-  Future getPhotoStorage2() async {
-    final pickedImage2 = await picker.getImage(source: ImageSource.gallery);
-
-    setState(() {
-      _image2 = File(pickedImage2.path);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: ListView(
-        children: [
+        appBar: AppBar(
+          title: Text("Inset Abortion"),
+          actions: [Icon(Icons.feedback_rounded)],
+        ),
+        body: ListView(children: [
           Container(
               child: Text(
-                  "Please Upload the document, we will verify document and contact you after our aggrement you will be listed and start working with us")),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(22),
-                      border: Border.all(width: 2, color: Colors.green)),
-                  height: 350,
-                  width: 230,
-                  child: _image == null
-                      ? Text(
-                          " \n \n \n **Image is not uploaded",
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.green.shade600,
-                          ),
-                        )
-                      : Image.file(_image)),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  RaisedButton(
-                    color: Colors.green.shade600,
-                    splashColor: Colors.red,
-                    elevation: 22,
-                    child: Icon(Icons.camera_alt_outlined),
-                    textColor: Colors.white,
-                    onPressed: () {
-                      getPhotoCamera();
-                    },
-                  ),
-                  Text("Use Camera"),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  RaisedButton(
-                    splashColor: Colors.red,
-                    color: Colors.green.shade600,
-                    elevation: 22,
-                    textColor: Colors.white,
-                    child: Icon(Icons.storage_outlined),
-                    onPressed: () {
-                      getPhotoStorage();
-                    },
-                  ),
-                  Text("Upload Image")
-                ],
-              ),
-            ],
-          ),
-
-          SizedBox(
-            height: 20,
-          ),
-
-          // For second Image
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(22),
-                      border: Border.all(width: 2, color: Colors.green)),
-                  height: 350,
-                  width: 230,
-                  child: _image1 == null
-                      ? Text(
-                          " \n \n \n Upload your Certificate here",
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.green.shade600,
-                          ),
-                        )
-                      : Image.file(_image1)),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  RaisedButton(
-                    color: Colors.green.shade600,
-                    splashColor: Colors.red,
-                    elevation: 22,
-                    child: Icon(Icons.camera_alt_outlined),
-                    textColor: Colors.white,
-                    onPressed: () {
-                      getPhotoCamera1();
-                    },
-                  ),
-                  Text("Use Camera"),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  RaisedButton(
-                    splashColor: Colors.red,
-                    color: Colors.green.shade600,
-                    elevation: 22,
-                    textColor: Colors.white,
-                    child: Icon(Icons.storage_outlined),
-                    onPressed: () {
-                      getPhotoStorage1();
-                    },
-                  ),
-                  Text("Use Camera")
-                ],
-              ),
-            ],
-          ),
-
-          SizedBox(
-            height: 20,
-          ),
-          //for 3rd image
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(22),
-                      border: Border.all(width: 2, color: Colors.green)),
-                  height: 350,
-                  width: 230,
-                  child: _image2 == null
-                      ? Text(
-                          " \n \n \n Upload your Citizenship/ Passport ",
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.green.shade600,
-                          ),
-                        )
-                      : Image.file(_image2)),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  RaisedButton(
-                    color: Colors.green.shade600,
-                    splashColor: Colors.red,
-                    elevation: 22,
-                    child: Icon(Icons.camera_alt_outlined),
-                    textColor: Colors.white,
-                    onPressed: () {
-                      getPhotoCamera2();
-                    },
-                  ),
-                  Text("Use Camera"),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  RaisedButton(
-                    splashColor: Colors.red,
-                    color: Colors.green.shade600,
-                    elevation: 22,
-                    textColor: Colors.white,
-                    child: Icon(Icons.storage_outlined),
-                    onPressed: () {
-                      getPhotoStorage2();
-                    },
-                  ),
-                  Text("Use Storage")
-                ],
-              ),
-            ],
-          ),
-
-          SizedBox(
-            height: 20,
-          ),
+            "Insert Here......",
+            style: TextStyle(color: Colors.greenAccent.shade700, fontSize: 22),
+          )),
           Column(
             children: [
-              Text("Description/Message(Optional)"),
+              Text("Name"),
               Container(
                 padding: EdgeInsets.all(20),
                 child: TextFormField(
-                  controller: description,
-                  maxLines: 10,
+                  controller: name,
+                  maxLines: 1,
                   decoration: InputDecoration(
-                      labelText:
-                          "Write about Descrption/Message Regarding\n the presecription and medicine",
+                      labelText: "name",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(11))),
                 ),
               ),
+              Text("reg_no"),
+              Container(
+                padding: EdgeInsets.all(20),
+                child: TextFormField(
+                  controller: reg_no,
+                  maxLines: 1,
+                  decoration: InputDecoration(
+                      labelText: "location",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(11))),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text("contact"),
+              Container(
+                padding: EdgeInsets.all(20),
+                child: TextFormField(
+                  controller: contact,
+                  maxLines: 2,
+                  decoration: InputDecoration(
+                      labelText: "contact",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(11))),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text("location"),
+              Container(
+                padding: EdgeInsets.all(20),
+                child: TextFormField(
+                  controller: location,
+                  maxLines: 10,
+                  decoration: InputDecoration(
+                      labelText: "location",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(11))),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+         
               FlatButton.icon(
+                  icon: Icon(Icons.send_outlined),
+                  label: Text("Send"),
                   onPressed: () async {
-                    if (description.text == '') {
-                      showDialog(
-                        context: context,
-                        builder: (context) =>
-                            AlertDialog(title: Text("Staff Id is absense")),
-                      );
+                    if (name.text == '' ||
+                        location.text == '' ||
+                        contact.text == '' ||
+                        reg_no.text == '' 
+                       ) {
+                      _showDialogEmptyregisterStaff();
                     } else {
-                      var res = await db.insertRegistration(
+                      var res = await db.insertStaffReg(
                           userid,
-                          _image.toString(),
-                          _image1.toString(),
-                          _image2.toString(),
-                          description.text);
-                      print("${res}ressss");
-
-                      if (res == 200) {
-                        showDialog(
-                          context: context,
-                          builder: (context) =>
-                              AlertDialog(title: Text("Successful")),
-                        );
-
-                        print("success");
-                      } else {
-                        print("failure");
-                      }
+                          name.text,
+                          reg_no.text,
+                          contact.text,
+                          location.text,
+                          );
                     }
-                  },
-                  icon:
-                      Icon(Icons.send_outlined, size: 33, color: Colors.green),
-                  label: Text(
-                    "Send",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-                  ))
+                  })
             ],
           )
-        ],
-      ),
+        ]));
+  }
+
+  _showDialogEmptyregisterStaff() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text(
+            "Message",
+            style: TextStyle(color: Colors.purple[400], fontSize: 14),
+          ),
+          content: new Text(
+            "Some Fields are empty",
+            style: TextStyle(color: Colors.purple[400], fontSize: 14),
+          ),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

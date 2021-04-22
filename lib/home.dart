@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:drmobile/drawer/feedback.dart';
 import 'package:drmobile/emergency.dart';
+import 'package:drmobile/finalpres.dart';
 import 'package:drmobile/login/registration/registration.dart';
 import 'package:drmobile/login/registration/volunteer.dart';
 import 'package:drmobile/medicine/medicineList.dart';
@@ -272,7 +273,7 @@ class _homeState extends State<home> {
                     child: Icon(Icons.upload_rounded, size: 44),
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => sendPrescription()));
+                          MaterialPageRoute(builder: (context) => UploadingImageToFirebaseStorage()));
                     },
                   ),
                   Text("Send Prescription"),
