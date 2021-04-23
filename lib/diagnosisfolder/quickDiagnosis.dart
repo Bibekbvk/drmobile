@@ -1,5 +1,6 @@
 import 'package:drmobile/constant.dart';
 import 'package:drmobile/database.dart';
+import 'package:drmobile/myActivitiesFolder/MyQuestion.dart';
 import 'package:flutter/material.dart';
 
 class quickDiagnosis extends StatefulWidget {
@@ -93,6 +94,11 @@ class _quickDiagnosisState extends State<quickDiagnosis> {
                         );
 
                         print("success");
+
+                        Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => myquestions("")));
                       } else {
                         print("failure");
                       }

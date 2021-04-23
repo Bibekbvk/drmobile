@@ -1,6 +1,7 @@
 import 'package:drmobile/database.dart';
 import 'package:drmobile/home.dart';
 import 'package:drmobile/login/userRegistration.dart';
+import 'package:drmobile/menu/diagnosis.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -112,7 +113,7 @@ class SignInScreen extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => home()));
+                                    builder: (context) => diagnosis()));
                           },
                         )),
                         SizedBox(width: 20),
@@ -147,7 +148,7 @@ class SignInScreen extends StatelessWidget {
                                     context: context,
                                     builder: (context) => AlertDialog(
                                         title: Text(
-                                            "User and Passwor Do not match")),
+                                            "User and Password Do not match")),
                                   );
                                 } else {
                                   Navigator.push(

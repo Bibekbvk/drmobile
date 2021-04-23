@@ -2,6 +2,7 @@ import 'package:drmobile/database.dart';
 import 'package:drmobile/medicine/searchMedicine.dart';
 import 'package:drmobile/menu/medicalItem%20folder/searchMedicalItem.dart';
 import 'package:drmobile/module/Medicalitem.dart';
+import 'package:drmobile/myActivitiesFolder/myItems.dart';
 import 'package:flutter/material.dart';
 
 import '../constant.dart';
@@ -149,12 +150,12 @@ class _medicalItemListState extends State<medicalItemList> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text("Name:${medList[index].otherName}"),
-                            Text("Name:${medList[index].itm_id}"),
+                            Text("Name:${medList[index].name}"),
                             Text("Price:${medList[index].price}"),
                             Text("BY:${medList[index].company}"),
                             Container(
                               child: RaisedButton(
-                                child: Text("Invite"),
+                                child: Text("Buy"),
                                 color: Colors.orange,
                                 onPressed: () {
                                   showDialog(
@@ -186,6 +187,11 @@ class _medicalItemListState extends State<medicalItemList> {
                                               );
 
                                               print("success");
+
+                                               Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => myitems()));
                                             } else {
                                               print("failure");
                                             }

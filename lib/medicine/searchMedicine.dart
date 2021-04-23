@@ -5,7 +5,6 @@ import 'package:drmobile/menu/Help.dart';
 import 'package:drmobile/module/medicine.dart';
 import 'package:drmobile/module/staffs.dart';
 
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -21,13 +20,11 @@ class searchMedicine extends StatefulWidget {
 }
 
 class _searchMedicineState extends State<searchMedicine> {
-
   DatabaseService db = DatabaseService();
   List<Medicine> searchMedicine = new List();
   ScrollController _scrollController = new ScrollController();
   TextEditingController search = new TextEditingController();
-    TextEditingController contact = new TextEditingController();
-
+  TextEditingController contact = new TextEditingController();
 
   int offset = 0;
 
@@ -61,7 +58,7 @@ class _searchMedicineState extends State<searchMedicine> {
 
   @override
   Widget build(BuildContext context) {
-      print("${widget.name}naaaaam morororororor");
+    print("${widget.name}naaaaam morororororor");
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -90,9 +87,6 @@ class _searchMedicineState extends State<searchMedicine> {
 
               //       onPressed: (){
               //                      Navigator.push(context, MaterialPageRoute( builder: (context)=>searchMedicine(category:search.text)));
-
-
-
 
               //       },
               //   icon: Icon(
@@ -157,14 +151,14 @@ class _searchMedicineState extends State<searchMedicine> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text("Name:${searchMedicine[index].quantity}"),
-                            Text("Fees/day:${searchMedicine[index].description}"),
+                            Text(
+                                "Fees/day:${searchMedicine[index].description}"),
                             Text("Location:${searchMedicine[index].company}"),
                             Container(
                               child: RaisedButton(
                                 child: Text("Buy"),
                                 color: Colors.orange,
-                                onPressed: ()  {
-                                  
+                                onPressed: () {
                                   showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
@@ -180,12 +174,12 @@ class _searchMedicineState extends State<searchMedicine> {
                                           onPressed: () async {
                                             var res =
                                                 await db.insertMedicineOrder(
-                                                    searchMedicine[index].med_id,
+                                                    userid,
+                                                    searchMedicine[index]
+                                                        .med_id,
                                                     contact.text,
-                                                    "$username",
                                                     searchMedicine[index]
                                                         .generic_name);
-                                        
 
                                             if (res == 200) {
                                               showDialog(
@@ -218,7 +212,7 @@ class _searchMedicineState extends State<searchMedicine> {
               ],
             ),
           );
-        }, 
+        },
       ),
     );
   }

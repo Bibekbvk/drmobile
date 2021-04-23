@@ -174,43 +174,39 @@ class _SMedicineListState extends State<SMedicineList> {
                                       actions: [
                                         RaisedButton(
                                           child: Text("Submit"),
+                                          
                                           onPressed: () async {
                                             var res =
                                                 await db.insertMedicineOrder(
+                                                    userid,
                                                     SMedicineList[index].med_id,
-                                                    contact.text,
-                                                    "$userid",
-                                                     SMedicineList[index].generic_name);
+                                                    contact.text,                                                 
+                                                    SMedicineList[index].generic_name
+                                                        );
 
                                             if (res == 200) {
-                                              
                                               showDialog(
                                                 context: context,
-                                                builder: (context) => AlertDialog(
-                                                    title: Text(
-                                                        "Successfully (buyed) added to My Medicine, Go to my medicine inside my Activitis"),
-                                                        actions: [
-                                                          RaisedButton(
-                                                          child: Text("OK"),
-                                                          onPressed: () {
-
-                                                            Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          myMedicines()));
-
-
-                                                          },
-
-                                                          )
-                                                        ],),
-
-                                                       
+                                                builder: (context) =>
+                                                    AlertDialog(
+                                                  title: Text(
+                                                      "Successfully (buyed) added to My Medicine, Go to my medicine inside my Activitis"),
+                                                  actions: [
+                                                    RaisedButton(
+                                                      child: Text("OK"),
+                                                      onPressed: () {
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        myMedicines()));
+                                                      },
+                                                    )
+                                                  ],
+                                                ),
                                               );
-                                               Navigator.pop(context);
-
-                                              
+                                              Navigator.pop(context);
 
                                               print("success");
                                             } else {
@@ -218,11 +214,13 @@ class _SMedicineListState extends State<SMedicineList> {
                                             }
                                           },
                                         ),
-                                        RaisedButton(child: Text("Cancel"))
+
+                                        RaisedButton(
+                                          child: Text("Cancel"))
                                       ],
                                     ),
                                   );
-                                   Navigator.pop(context);
+                                  Navigator.pop(context);
                                 },
                               ),
                             ),

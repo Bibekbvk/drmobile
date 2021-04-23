@@ -153,12 +153,11 @@ class _staffListState extends State<staffList> {
                             Text("Name:${staffList[index].name}"),
                             Text("Fees/day:${staffList[index].fee}"),
                             Text("Location:${staffList[index].location}"),
-                             Container(
+                            Container(
                               child: RaisedButton(
                                 child: Text("Invite"),
                                 color: Colors.orange,
-                                onPressed: ()  {
-                                  
+                                onPressed: () {
                                   showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
@@ -172,15 +171,13 @@ class _staffListState extends State<staffList> {
                                         RaisedButton(
                                           child: Text("Submit"),
                                           onPressed: () async {
-                                            var res =
-                                                await db.insertInvite(
-                                                    2,
-                                                    userid,
-                                                    staffList[index].name,
-                                                    staffList[index].staff_id,
-                                                    contact.text,
-                                                       );
-                                        
+                                            var res = await db.insertInvite(
+                                              2,
+                                              userid,
+                                              staffList[index].name,
+                                              staffList[index].staff_id,
+                                              contact.text,
+                                            );
 
                                             if (res == 200) {
                                               showDialog(

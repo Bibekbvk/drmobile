@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:drmobile/constant.dart';
 import 'package:drmobile/database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -11,18 +12,17 @@ import 'package:path/path.dart';
 final Color yellow = Color(0xfffbc31b);
 final Color orange = Color(0xfffb6900);
 
-class UploadingImageToFirebaseStorage extends StatefulWidget {
+class Uploadpres extends StatefulWidget {
   @override
-  _UploadingImageToFirebaseStorageState createState() =>
-      _UploadingImageToFirebaseStorageState();
+  _UploadpresState createState() =>
+      _UploadpresState();
 }
 
-class _UploadingImageToFirebaseStorageState
-    extends State<UploadingImageToFirebaseStorage> {
+class _UploadpresState
+    extends State<Uploadpres> {
   File _imageFile;
 
-  ///NOTE: Only supported on Android & iOS
-  ///Needs image_picker plugin {https://pub.dev/packages/image_picker}
+
   final picker = ImagePicker();
   String imageurl = "";
   Future pickImage() async {
@@ -32,7 +32,7 @@ class _UploadingImageToFirebaseStorageState
       _imageFile = File(pickedFile.path);
     });
   }
-
+  TextEditingController contact = new TextEditingController();
   DatabaseService db = new DatabaseService();
   Future uploadImageToFirebase(BuildContext context) async {
     String fileName = basename(_imageFile.path);
@@ -44,9 +44,9 @@ class _UploadingImageToFirebaseStorageState
       print("Done: $value");
       imageurl = value;
        var res;
-      void insertfedback() async {
-        var res = await db.insertFeedback(
-            "userid", "$imageurl", "$imageurl", "$imageurl");
+      void insertPres() async {
+        var res = await db.insertprescption(
+            userid, contact.text, "$imageurl", "hello");
         print("${res}ressss");
             if (res == 200) {
         showDialog(
@@ -59,7 +59,7 @@ class _UploadingImageToFirebaseStorageState
         print("failure");
       }
       }
-      insertfedback();
+      insertPres();
   
     });
     
@@ -151,7 +151,50 @@ class _UploadingImageToFirebaseStorageState
                 ),
                 borderRadius: BorderRadius.circular(30.0)),
             child: FlatButton(
-              onPressed: () => uploadImageToFirebase(context),
+              onPressed: () => 
+                showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text(
+                                          "please enter you active number"),
+                                      content: TextField(
+                                        controller: contact,
+                                        decoration: InputDecoration(),
+                                      ),
+                                      actions: [
+                                        RaisedButton(
+                                          child: Text("Submit"),
+                                          onPressed: () async {
+                                                var res;
+                                              uploadImageToFirebase(context);
+                                            if (res == 200) {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) => AlertDialog(
+                                                    title: Text(
+                                                        "Successfully purchased, we will call you for more details")),
+                                              );
+
+                                              print("success");
+                                            } else {
+                                              print("failure");
+                                            }
+                                          },
+                                        ),
+                                        RaisedButton(child: Text("Cancel"))
+                                      ],
+                                    ),
+                                  ),
+              
+              
+
+
+
+              
+              
+              
+              
+             
               child: Text(
                 "Upload Image",
                 style: TextStyle(fontSize: 20),
@@ -163,143 +206,3 @@ class _UploadingImageToFirebaseStorageState
     );
   }
 }
-
-// import 'dart:convert';
-// import 'dart:io';
-// import 'package:http/http.dart' as http;
-// import 'package:flutter/material.dart';
-// import 'package:image_picker/image_picker.dart';
-
-// class sendpres extends StatefulWidget {
-//   @override
-//   _sendpresState createState() => _sendpresState();
-// }
-
-// class _sendpresState extends State<sendpres> {
-//   Future<File> file;
-//   String status = '';
-//   String base64Image;
-//   File tmpFile;
-//   String error = 'Error';
-
-//   chooseImage() {
-//     setState(() {
-//       file = ImagePicker.pickImage(source: ImageSource.gallery);
-//     });
-//     setStatus('');
-//   }
-
-//   setStatus(String message) {
-//     setState(() {
-//       status = message;
-//     });
-//   }
-
-//   uploadImg() {
-//     if (null == tmpFile) {
-//       setStatus(error);
-//       return;
-//     }
-
-//     String fileName = tmpFile.path.split('/').last;
-
-//     upload(fileName);
-//   }
-
-//   upload(String fileName) {
-//     http.post('http://finenut.in/demo/uploadData.php', body: {
-//       "image": base64Image,
-//       "name": fileName,
-//     }).then((result) {
-//       setStatus(result.statusCode == 200 ? result.body : error);
-//     }).catchError((error) {
-//       setStatus(error);
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Upload Image/Data'),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             FutureBuilder<File>(
-//               future: file,
-//               builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
-//                 if (snapshot.connectionState == ConnectionState.done &&
-//                     null != snapshot.data) {
-//                   tmpFile = snapshot.data;
-//                   base64Image = base64Encode(snapshot.data.readAsBytesSync());
-//                   return Container(
-//                     margin: EdgeInsets.all(15),
-//                     child: Material(
-//                       elevation: 3.0,
-//                       child: Image.file(
-//                         snapshot.data,
-//                         fit: BoxFit.fill,
-//                       ),
-//                     ),
-//                   );
-//                 } else if (null != snapshot.error) {
-//                   return const Text(
-//                     'Error!',
-//                     textAlign: TextAlign.center,
-//                   );
-//                 } else {
-//                   return Container(
-//                     margin: EdgeInsets.all(15),
-//                     child: Material(
-//                       elevation: 3.0,
-//                       child: Stack(
-//                         alignment: Alignment.topRight,
-//                         children: [
-//                           Container(
-//                             child: Image.asset('assets/dr.png'),
-//                           ),
-//                           InkWell(
-//                             onTap: () {
-//                               chooseImage();
-//                             },
-//                             child: Padding(
-//                               padding: EdgeInsets.only(top: 10.0, right: 10.0),
-//                               child: Icon(
-//                                 Icons.edit,
-//                                 size: 30.0,
-//                                 color: Colors.black54,
-//                               ),
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                   );
-//                 }
-//               },
-//             ),
-//             SizedBox(
-//               height: 10.0,
-//             ),
-//             Container(
-//               height: 50.0,
-//               width: 360.0,
-//               child: RaisedButton(
-//                 child: Text(
-//                   'Upload Image',
-//                   style: TextStyle(color: Colors.white, fontSize: 18.0),
-//                 ),
-//                 color: Colors.blue,
-//                 onPressed: () {
-//                   uploadImg();
-//                 },
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

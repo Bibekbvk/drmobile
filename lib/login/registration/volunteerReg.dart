@@ -2,9 +2,9 @@ import 'package:drmobile/constant.dart';
 import 'package:drmobile/database.dart';
 import 'package:flutter/material.dart';
 
-class registerStaff extends StatefulWidget {
+class volunteerReg extends StatefulWidget {
   @override
-  _registerStaffState createState() => _registerStaffState();
+  _volunteerRegState createState() => _volunteerRegState();
 }
 
 DatabaseService db = DatabaseService();
@@ -16,12 +16,12 @@ TextEditingController reg_no = new TextEditingController();
 
 
 
-class _registerStaffState extends State<registerStaff> {
+class _volunteerRegState extends State<volunteerReg> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Register as Staff"),
+          title: Text("Register as Volunteer"),
           actions: [Icon(Icons.feedback_rounded)],
         ),
         body: ListView(children: [
@@ -99,9 +99,9 @@ class _registerStaffState extends State<registerStaff> {
                         contact.text == '' ||
                         reg_no.text == '' 
                        ) {
-                      _showDialogEmptyregisterStaff();
+                      _showDialogEmptyvolunteerReg();
                     } else {
-                      var res = await db.insertStaffReg(
+                      var res = await db.insertVolunteerReg(
                           userid,
                           name.text,
                           reg_no.text,
@@ -110,7 +110,7 @@ class _registerStaffState extends State<registerStaff> {
                           );
 
 
-                           _showDialogregisterStaff();
+                           _showDialogvolunteerReg();
                           
                     }
                   })
@@ -119,7 +119,7 @@ class _registerStaffState extends State<registerStaff> {
         ]));
   }
 
-  _showDialogEmptyregisterStaff() {
+  _showDialogEmptyvolunteerReg() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -148,7 +148,7 @@ class _registerStaffState extends State<registerStaff> {
   }
 
    
-  _showDialogregisterStaff() {
+  _showDialogvolunteerReg() {
     showDialog(
       context: context,
       builder: (BuildContext context) {

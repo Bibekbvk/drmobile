@@ -449,10 +449,46 @@ class DatabaseService {
   }
 
 
+  
+  Future<int> insertprescption(
+     int user_id, String contact,  String imgUrl, String description) async {
+    var data = await http.get(
+      "$BASE_URL/api/insertprescption?user_id=${user_id}&contact=${contact}&imgUrl=${imgUrl}&description=${description}",
+    );
+    int code = data.statusCode;
+    var jsonData = json.decode((data.body));
+    String val = jsonData["error"];
+    if (val == null) {
+      val = "";
+    }
+    print(val);
+    return code;
+  }
+
+
+
+
   Future<int> insertStaffReg(
       int user_id, String name , String reg_no, String contact, String location) async {
     var data = await http.get(
       "$BASE_URL/api/insertStaffRegistration?user_id=${user_id}&Name=${name}&reg_no=${reg_no}&Contact=${contact}&location=${location}",
+    );
+    int code = data.statusCode;
+    var jsonData = json.decode((data.body));
+    String val = jsonData["error"];
+    if (val == null) {
+      val = "";
+    }
+    print(val);
+    return code;
+  }
+
+  
+
+  Future<int> insertVolunteerReg(
+      int user_id, String Name , String reg_no, String contact, String location) async {
+    var data = await http.get(
+      "$BASE_URL/api/insertVolunteerReg?user_id=${user_id}&Name=${Name}&reg_no=${reg_no}&contact=${contact}&location=${location}",
     );
     int code = data.statusCode;
     var jsonData = json.decode((data.body));
@@ -501,10 +537,10 @@ class DatabaseService {
   }
 
   Future<int> insertMedicineOrder(
-     int med_id, String user_contact, String userID, String userName) async {
-  
+     int userID, int med_id, String user_contact, String userName) async {
+
     var data = await http.get(
-      "$BASE_URL/api/insertMedicineOrder?user_id=${userid}&med_id=${med_id}&user_contact=${user_contact}&userName=${userID}",
+      "$BASE_URL/api/insertMedicineOrder?user_id=${userID}&med_id=${med_id}&user_contact=${user_contact}&userName=${userName}",
     );
      print("${userid}and${med_id}and${user_contact}");
     int code = data.statusCode;

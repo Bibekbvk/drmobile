@@ -1,5 +1,6 @@
 import 'package:drmobile/database.dart';
 import 'package:flutter/material.dart';
+import 'package:drmobile/myActivitiesFolder/MyQuestion.dart';
 
 class FinalDiagnosis extends StatefulWidget {
   final String symptoms;
@@ -64,7 +65,13 @@ class _FinalDiagnosisState extends State<FinalDiagnosis> {
                                   "Successfully send to admin, please view in my activities to see the answer")),
                         );
 
+                       
+
                         print("success");
+                        Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => myquestions("")));
                       } else {
                         print("failure");
                       }

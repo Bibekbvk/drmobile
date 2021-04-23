@@ -5,6 +5,7 @@ import 'package:drmobile/emergency.dart';
 import 'package:drmobile/finalpres.dart';
 import 'package:drmobile/login/registration/registration.dart';
 import 'package:drmobile/login/registration/volunteer.dart';
+import 'package:drmobile/login/registration/volunteerReg.dart';
 import 'package:drmobile/medicine/medicineList.dart';
 import 'package:drmobile/menu/abortion.dart';
 import 'package:drmobile/menu/contact.dart';
@@ -12,6 +13,7 @@ import 'package:drmobile/menu/diagnosis.dart';
 import 'package:drmobile/menu/medicalItem.dart';
 import 'package:drmobile/menu/prescription.dart';
 import 'package:drmobile/module/sexeducationinfo.dart';
+import 'package:drmobile/myActivitiesFolder/myItems.dart';
 import 'package:drmobile/myactivites.dart';
 import 'package:drmobile/newprescription.dart';
 import 'package:drmobile/sendpres.dart';
@@ -273,7 +275,7 @@ class _homeState extends State<home> {
                     child: Icon(Icons.upload_rounded, size: 44),
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => UploadingImageToFirebaseStorage()));
+                          MaterialPageRoute(builder: (context) => Uploadpres()));
                     },
                   ),
                   Text("Send Prescription"),

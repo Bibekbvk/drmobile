@@ -1,4 +1,5 @@
 import 'package:drmobile/database.dart';
+import 'package:drmobile/myActivitiesFolder/MyQuestion.dart';
 import 'package:flutter/material.dart';
 
 class finalDiagnosisCirculatory extends StatefulWidget {
@@ -94,6 +95,10 @@ class _finalDiagnosisCirculatoryState extends State<finalDiagnosisCirculatory> {
                         );
 
                         print("success");
+                        Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => myquestions("")));
                       } else {
                         print("failure");
                       }

@@ -1,4 +1,5 @@
 import 'package:drmobile/database.dart';
+import 'package:drmobile/myActivitiesFolder/MyQuestion.dart';
 import 'package:flutter/material.dart';
 
 class FinalDiagnosisEye extends StatefulWidget {
@@ -96,6 +97,10 @@ class _FinalDiagnosisEyeState extends State<FinalDiagnosisEye> {
                         );
 
                         print("success");
+                        Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => myquestions("")));
                       } else {
                         print("failure");
                       }
