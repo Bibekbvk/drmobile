@@ -3,6 +3,7 @@ import 'package:drmobile/login/registration/login.dart';
 import 'package:drmobile/login/userRegistration.dart';
 import 'package:drmobile/menu/Help.dart';
 import 'package:drmobile/module/staffs.dart';
+import 'package:drmobile/myActivitiesFolder/myInvitation.dart';
 import 'package:drmobile/staff_section/searchstaff.dart';
 
 import 'package:flutter/material.dart';
@@ -186,6 +187,11 @@ class _staffListState extends State<staffList> {
                                                     title: Text(
                                                         "Successfully invited, we will call you for more details")),
                                               );
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          userInvitation("")));
 
                                               print("success");
                                             } else {

@@ -119,7 +119,7 @@ class _userInvitationState extends State<userInvitation> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text("User_ID:${userInvitation[index].user_id}", style: TextStyle(
-                              fontSize:22
+                              fontSize:12
                             ),),
                           
                             Container(

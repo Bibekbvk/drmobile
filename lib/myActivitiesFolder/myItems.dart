@@ -129,7 +129,7 @@ class _myitemsState extends State<myitems> {
                                     showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
-                                          title: Text("Staff Id is absense")),
+                                          title: Text("user Id is absense")),
                                     );
                                   } else {
                                     var res = await db.deletemyItems(
@@ -169,7 +169,7 @@ class _myitemsState extends State<myitems> {
   fetch(String category, int offset) async {
     print("in fetch");
 
-    var data = await db.myitems(0);
+    var data = await db.myitems(userid);
     currentDataLength = data.length;
     print("below data");
 

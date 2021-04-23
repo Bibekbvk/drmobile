@@ -103,7 +103,7 @@ class SignInScreen extends StatelessWidget {
                         Container(
                             child: InkWell(
                           child: Text(
-                            "Use Annonomosly",
+                            "Use Anonymous",
                             style: TextStyle(
                                 fontSize: 22,
                                 color: Colors.green,

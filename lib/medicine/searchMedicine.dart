@@ -68,7 +68,7 @@ class _searchMedicineState extends State<searchMedicine> {
                 flex: 7,
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.white60,
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(90)),
                   child: TextFormField(
                     style: TextStyle(color: Colors.black),
@@ -104,7 +104,7 @@ class _searchMedicineState extends State<searchMedicine> {
         itemBuilder: (BuildContext context, int index) {
           return Container(
             padding: EdgeInsets.all(10),
-            color: Colors.black54,
+            color: Colors.white,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               // crossAxisAlignment: CrossAxisAlignment.start,

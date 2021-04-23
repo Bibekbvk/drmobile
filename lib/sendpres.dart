@@ -9,8 +9,8 @@ import 'package:path/path.dart';
 
 //void main() => runApp(MyApp());
 
-final Color yellow = Color(0xfffbc31b);
-final Color orange = Color(0xfffb6900);
+final Color yellow = Color(0xFF413E35);
+final Color orange = Color(0xFF8A827D);
 
 class Uploadpres extends StatefulWidget {
   @override
@@ -51,7 +51,7 @@ class _UploadpresState
             if (res == 200) {
         showDialog(
           context: context,
-          builder: (context) => AlertDialog(title: Text("Successful")),
+          builder: (context) => AlertDialog(title: Text("Successfully Send for Verification")),
         );
 
         print("success");
@@ -90,7 +90,7 @@ class _UploadpresState
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
                     child: Text(
-                      "Uploading Image to Firebase Storage",
+                      "Send Prescription",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 28,
@@ -113,11 +113,15 @@ class _UploadpresState
                               : FlatButton(
                                   child: Icon(
                                     Icons.add_a_photo,
-                                    size: 50,
+                                    size: 100,
                                   ),
+
+
                                   onPressed: () {
                                     pickImage();
                                   }),
+                                  
+                                
                         ),
                       ),
                     ],
@@ -147,7 +151,7 @@ class _UploadpresState
                 top: 30, left: 20.0, right: 20.0, bottom: 20.0),
             decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [yellow, orange],
+                  colors: [yellow, yellow],
                 ),
                 borderRadius: BorderRadius.circular(30.0)),
             child: FlatButton(
@@ -184,6 +188,7 @@ class _UploadpresState
                                         RaisedButton(child: Text("Cancel"))
                                       ],
                                     ),
+                                  
                                   ),
               
               
@@ -196,7 +201,7 @@ class _UploadpresState
               
              
               child: Text(
-                "Upload Image",
+                "Send prescription",
                 style: TextStyle(fontSize: 20),
               ),
             ),
