@@ -434,9 +434,9 @@ class DatabaseService {
   }
 
   Future<int> insertFeedback(
-      String uid, String contact, String name, String feedback) async {
+      int UID, String contact, String Name, String feedback) async {
     var data = await http.get(
-      "$BASE_URL/api/insertFeedback?user_id=${uid}&contact=${contact}&name=${name}&feedback=${feedback}",
+      "$BASE_URL/api/insertFeedback?UID=${UID}&contact=${contact}&Name=${Name}&feedback=${feedback}",
     );
     int code = data.statusCode;
     var jsonData = json.decode((data.body));
@@ -519,13 +519,14 @@ class DatabaseService {
     return code;
   }
 
-  Future<int> insertMedicalOrder( int user_id,
-      int itm_id, String user_contact, String user_name) async {
+  Future<int> insertMedicineOrder( int user_id,
+      int med_id, String user_contact, String userName) async {
     //var encodeduuid = Uri.encodeComponent(uuid)c
     //var encodeProduct_id = Uri.encodeComponent(product_id);
     var data = await http.get(
-      "$BASE_URL/api/insertMedicalOrder?${user_id}&itm_id=${itm_id}&user_contact=${user_contact}&user_name=${user_name}",
+      "$BASE_URL/api/insertMedicineOrder?user_id=${user_id}&med_id=${med_id}&user_contact=${user_contact}&userName=${userName}",
     );
+    print("lamooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
     int code = data.statusCode;
     var jsonData = json.decode((data.body));
     String val = jsonData["error"];
@@ -536,13 +537,16 @@ class DatabaseService {
     return code;
   }
 
-  Future<int> insertMedicineOrder(
-     int userID, int med_id, String user_contact, String userName) async {
-
+  
+  
+  Future<int> insertMedicalOrder( int user_id,
+      int med_id, String user_contact, String userName) async {
+    //var encodeduuid = Uri.encodeComponent(uuid)c
+    //var encodeProduct_id = Uri.encodeComponent(product_id);
     var data = await http.get(
-      "$BASE_URL/api/insertMedicineOrder?user_id=${userID}&med_id=${med_id}&user_contact=${user_contact}&userName=${userName}",
+      "$BASE_URL/api/insertMedicineOrder?user_id=${user_id}&med_id=${med_id}&user_contact=${user_contact}&userName=${userName}",
     );
-     print("${userid}and${med_id}and${user_contact}");
+    print("lamooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
     int code = data.statusCode;
     var jsonData = json.decode((data.body));
     String val = jsonData["error"];
@@ -552,7 +556,6 @@ class DatabaseService {
     print(val);
     return code;
   }
-
 
 
    Future<int> insertpres(

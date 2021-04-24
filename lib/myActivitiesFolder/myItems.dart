@@ -63,14 +63,7 @@ class _myitemsState extends State<myitems> {
       print("${widget.name}naaaaam morororororor");
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-         child: Row(
-            children: [
-           
-           
-            ],
-          ),
-        ),
+       title: Text("My items"),
       ),
       body: ListView.builder(
         controller: _scrollController,

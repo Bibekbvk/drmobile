@@ -1,31 +1,27 @@
 import 'package:drmobile/database.dart';
-import 'package:drmobile/login/registration/login.dart';
-import 'package:drmobile/login/userRegistration.dart';
 import 'package:drmobile/medicine/searchMedicine.dart';
-import 'package:drmobile/menu/Help.dart';
-import 'package:drmobile/module/medicine.dart';
-import 'package:drmobile/module/staffs.dart';
-import 'package:drmobile/myActivitiesFolder/myMedicine.dart';
-import 'package:drmobile/staff_section/searchstaff.dart';
-
+import 'package:drmobile/menu/medicalItem%20folder/searchMedicalItem.dart';
+import 'package:drmobile/module/Medicalitem.dart';
+import 'package:drmobile/myActivitiesFolder/myItems.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:drmobile/module/medicine.dart';
+import 'package:drmobile/myActivitiesFolder/myMedicine.dart';
 import '../constant.dart';
 
-class SMedicineList extends StatefulWidget {
+class medicineOrder extends StatefulWidget {
   @override
   final String category;
 
-  SMedicineList(this.category);
+  medicineOrder(this.category);
 
-  _SMedicineListState createState() => _SMedicineListState();
+  _medicineOrderState createState() => _medicineOrderState();
 }
 
-class _SMedicineListState extends State<SMedicineList> {
+class _medicineOrderState extends State<medicineOrder> {
   DatabaseService db = DatabaseService();
-  List<Medicine> SMedicineList = new List();
+  List<Medicine> medList = new List();
   ScrollController _scrollController = new ScrollController();
+
   TextEditingController search = new TextEditingController();
   TextEditingController contact = new TextEditingController();
 
@@ -36,15 +32,15 @@ class _SMedicineListState extends State<SMedicineList> {
   @override
   void initState() {
     super.initState();
-    fetch(widget.category, offset);
+    fetch(offset);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
         if (currentDataLength >= 10) {
           print("List bigger than 10");
 
-          offset = SMedicineList.length;
-          fetch(widget.category, offset);
+          offset = medList.length;
+          fetch(offset);
         }
 
         print("called again");
@@ -70,7 +66,7 @@ class _SMedicineListState extends State<SMedicineList> {
                 flex: 7,
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.white60,
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(90)),
                   child: TextFormField(
                     style: TextStyle(color: Colors.black),
@@ -104,30 +100,30 @@ class _SMedicineListState extends State<SMedicineList> {
       ),
       body: ListView.builder(
         controller: _scrollController,
-        itemCount: SMedicineList.length,
+        itemCount: medList.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
             padding: EdgeInsets.all(10),
             color: Colors.white,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Container(
+                      padding: EdgeInsets.all(5),
                       height: 120,
                       width: 100,
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.green, width: 5),
+                          border: Border.all(color: Colors.green, width: 4),
                           borderRadius: BorderRadius.circular(22)),
                       child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: Image.network(SMedicineList[index].images,
-                              fit: BoxFit.fill))),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          child: Image.network(medList[index].images,
+                              fit: BoxFit.cover))),
                   Container(
                     width: 100,
                     child: Text(
-                      "${SMedicineList[index].generic_name}",
+                      "${medList[index].brand_name}",
                       style: TextStyle(
                           fontSize: 12,
                           color: Colors.lightGreen,
@@ -137,7 +133,7 @@ class _SMedicineListState extends State<SMedicineList> {
                   Container(
                     width: 70,
                     child: Text(
-                      "${SMedicineList[index].company}",
+                      "${medList[index].quantity}",
                       style: TextStyle(
                           fontSize: 8,
                           color: Colors.lightGreen,
@@ -154,14 +150,17 @@ class _SMedicineListState extends State<SMedicineList> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("${SMedicineList[index].price}"),
-                            Text("${SMedicineList[index].quantity}"),
-                            Text("${SMedicineList[index].description}"),
+                            Text("Name:${medList[index].generic_name}"),
+                            Text("Name:${medList[index].price}"),
+                            Text("Price:${medList[index].description}"),
+                            Text("BY:${medList[index].company}"),
                             Container(
                               child: RaisedButton(
-                                child: Text("Buy"),
+                                
                                 color: Colors.orange,
                                 onPressed: () {
+
+                                  print("hello");
                                   showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
@@ -174,53 +173,42 @@ class _SMedicineListState extends State<SMedicineList> {
                                       actions: [
                                         RaisedButton(
                                           child: Text("Submit"),
-                                          
+                                        
                                           onPressed: () async {
+                                            
+                                       
                                             var res =
                                                 await db.insertMedicineOrder(
                                                     userid,
-                                                    SMedicineList[index].med_id,
-                                                    contact.text,                                                 
-                                                    SMedicineList[index].generic_name
-                                                        );
+                                                    userid,
+                                                    contact.text,
+                                                    medList[index]
+                                                        .generic_name);
 
                                             if (res == 200) {
                                               showDialog(
                                                 context: context,
-                                                builder: (context) =>
-                                                    AlertDialog(
-                                                  title: Text(
-                                                      "Successfully (buyed) added to My Medicine, Go to my medicine inside my Activitis"),
-                                                  actions: [
-                                                    RaisedButton(
-                                                      child: Text("OK"),
-                                                      onPressed: () {
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        myMedicines()));
-                                                      },
-                                                    )
-                                                  ],
-                                                ),
+                                                builder: (context) => AlertDialog(
+                                                    title: Text(
+                                                        "Successfully purchased, we will call you for more details")),
                                               );
-                                              Navigator.pop(context);
 
                                               print("success");
+
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          myMedicines()));
                                             } else {
                                               print("failure");
                                             }
                                           },
                                         ),
-
-                                        RaisedButton(
-                                          child: Text("Cancel"))
+                                       // RaisedButton(child: Text("Cancel"))
                                       ],
                                     ),
                                   );
-                                  Navigator.pop(context);
                                 },
                               ),
                             ),
@@ -239,7 +227,7 @@ class _SMedicineListState extends State<SMedicineList> {
     );
   }
 
-  fetch(String category, int offset) async {
+  fetch(int offset) async {
     print("in fetch");
 
     var data = await db.medicine();
@@ -250,7 +238,7 @@ class _SMedicineListState extends State<SMedicineList> {
 
     setState(() {
       for (Medicine p in data) {
-        SMedicineList.add(p);
+        medList.add(p);
       }
     });
   }

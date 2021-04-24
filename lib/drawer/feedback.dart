@@ -75,7 +75,7 @@ class _feedbackState extends State<feedback> {
                       _showDialogEmptyFeedback();
                     } else {
                       var res = await db.insertFeedback(
-                          "$userid", contact.text, name.text, feedbacks.text);
+                          userid, contact.text, name.text, feedbacks.text);
                       print("${res}ressss");
 
                       if (res == 200) {

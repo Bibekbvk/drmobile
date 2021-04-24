@@ -14,8 +14,6 @@ TextEditingController location = new TextEditingController();
 TextEditingController contact = new TextEditingController();
 TextEditingController reg_no = new TextEditingController();
 
-
-
 class _volunteerRegState extends State<volunteerReg> {
   @override
   Widget build(BuildContext context) {
@@ -89,7 +87,6 @@ class _volunteerRegState extends State<volunteerReg> {
               SizedBox(
                 height: 20,
               ),
-         
               FlatButton.icon(
                   icon: Icon(Icons.send_outlined),
                   label: Text("Send"),
@@ -97,21 +94,18 @@ class _volunteerRegState extends State<volunteerReg> {
                     if (name.text == '' ||
                         location.text == '' ||
                         contact.text == '' ||
-                        reg_no.text == '' 
-                       ) {
+                        reg_no.text == '') {
                       _showDialogEmptyvolunteerReg();
                     } else {
                       var res = await db.insertVolunteerReg(
-                          userid,
-                          name.text,
-                          reg_no.text,
-                          contact.text,
-                          location.text,
-                          );
+                        userid,
+                        name.text,
+                        reg_no.text,
+                        contact.text,
+                        location.text,
+                      );
 
-
-                           _showDialogvolunteerReg();
-                          
+                      _showDialogvolunteerReg();
                     }
                   })
             ],
@@ -147,7 +141,6 @@ class _volunteerRegState extends State<volunteerReg> {
     );
   }
 
-   
   _showDialogvolunteerReg() {
     showDialog(
       context: context,
@@ -175,6 +168,4 @@ class _volunteerRegState extends State<volunteerReg> {
       },
     );
   }
-
-
 }

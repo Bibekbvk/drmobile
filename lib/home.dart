@@ -237,7 +237,7 @@ class _homeState extends State<home> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SMedicineList("")));
+                              builder: (context) => medicineOrder("")));
                     },
                   ),
                   Text("Buy Medicine"),
