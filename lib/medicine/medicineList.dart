@@ -157,6 +157,7 @@ class _medicineOrderState extends State<medicineOrder> {
                             Container(
                               child: RaisedButton(
                                 
+                                child:Text("Buy"),
                                 color: Colors.orange,
                                 onPressed: () {
 
@@ -194,12 +195,21 @@ class _medicineOrderState extends State<medicineOrder> {
                                               );
 
                                               print("success");
-
-                                              Navigator.push(
+                                            
+                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
                                                           myMedicines()));
+                                                
+                                         
+                                              // Navigator.pop(context);
+                                              // Navigator.pop(context);
+                                              // Navigator.push(
+                                              //     context,
+                                              //     MaterialPageRoute(
+                                              //         builder: (context) =>
+                                              //             myMedicines()));
                                             } else {
                                               print("failure");
                                             }

@@ -22,7 +22,7 @@ class myMedicines extends StatefulWidget {
 
 class _myMedicinesState extends State<myMedicines> {
   DatabaseService db = DatabaseService();
-  List<MedicineOrder> myMedicines = new List();
+  List<MedicineOrder> myMedicineList = new List();
   ScrollController _scrollController = new ScrollController();
   TextEditingController search = new TextEditingController();
 
@@ -40,7 +40,7 @@ class _myMedicinesState extends State<myMedicines> {
         if (currentDataLength >= 10) {
           print("List bigger than 10");
 
-          offset = myMedicines.length;
+          offset = myMedicineList.length;
           fetch(widget.name, offset);
         }
 
@@ -69,7 +69,7 @@ class _myMedicinesState extends State<myMedicines> {
       ),
       body: ListView.builder(
         controller: _scrollController,
-        itemCount: myMedicines.length,
+        itemCount: myMedicineList.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
             padding: EdgeInsets.all(10),
@@ -85,7 +85,7 @@ class _myMedicinesState extends State<myMedicines> {
                       children: [
                         Container(
                           child: Text(
-                            "Medicine Id:${myMedicines[index].userName}",
+                            "Medicine Id:${myMedicineList[index].userName}",
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.lightGreen,
@@ -94,7 +94,7 @@ class _myMedicinesState extends State<myMedicines> {
                         ),
                         Container(
                           child: Text(
-                            "order-ID:${myMedicines[index].order_id}",
+                            "order-ID:${myMedicineList[index].order_id}",
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.lightGreen,
@@ -113,7 +113,7 @@ class _myMedicinesState extends State<myMedicines> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "User_ID:${myMedicines[index].user_id}",
+                              "User_ID:${myMedicineList[index].user_id}",
                               style: TextStyle(fontSize: 11),
                             ),
                             Container(
@@ -121,15 +121,16 @@ class _myMedicinesState extends State<myMedicines> {
                                 child: Text("Delete"),
                                 color: Colors.orange,
                                 onPressed: () async {
-                                  if (myMedicines[index].user_contact == '') {
+                                  if (myMedicineList[index].user_contact ==
+                                      '') {
                                     showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
                                           title: Text("Staff Id is absense")),
                                     );
                                   } else {
-                                    var res = await db.deleteInvitation(
-                                        myMedicines[index].user_id);
+                                    var res = await db.deleteMedicineOrder(
+                                        myMedicineList[index].order_id);
 
                                     print("${res}ressss");
 
@@ -140,6 +141,16 @@ class _myMedicinesState extends State<myMedicines> {
                                             title: Text(
                                                 "Successfully Deleted from the list")),
                                       );
+                                      Navigator.pop(context);
+                                      setState(() {
+                                         Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => myMedicines(
+                                                  name: "$userid")));
+                                        
+                                      });
+                                     
 
                                       print("success");
                                     } else {
@@ -175,7 +186,7 @@ class _myMedicinesState extends State<myMedicines> {
 
     setState(() {
       for (MedicineOrder p in data) {
-        myMedicines.add(p);
+        myMedicineList.add(p);
       }
     });
   }

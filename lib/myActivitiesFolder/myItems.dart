@@ -24,7 +24,7 @@ class myitems extends StatefulWidget {
 class _myitemsState extends State<myitems> {
 
   DatabaseService db = DatabaseService();
-  List<MyItems> myitems = new List();
+  List<MyItems> myitemsList = new List();
   ScrollController _scrollController = new ScrollController();
   TextEditingController search = new TextEditingController();
 
@@ -42,7 +42,7 @@ class _myitemsState extends State<myitems> {
         if (currentDataLength >= 10) {
           print("List bigger than 10");
 
-          offset = myitems.length;
+          offset = myitemsList.length;
           fetch(widget.name, offset);
         }
 
@@ -67,7 +67,7 @@ class _myitemsState extends State<myitems> {
       ),
       body: ListView.builder(
         controller: _scrollController,
-        itemCount: myitems.length,
+        itemCount: myitemsList.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
             padding: EdgeInsets.all(10),
@@ -81,7 +81,7 @@ class _myitemsState extends State<myitems> {
                   Container(
                      width: 150,
                     child: Text(
-                      "Name:${myitems[index].user_name}",
+                      "Name:${myitemsList[index].user_name}",
                       style: TextStyle(
                           fontSize: 18,
                           color: Colors.lightGreen,
@@ -92,7 +92,7 @@ class _myitemsState extends State<myitems> {
                     width: 150,
                 
                     child: Text(
-                      "User Contact:${myitems[index].user_contact}",
+                      "User Contact:${myitemsList[index].user_contact}",
                       style: TextStyle(
                           fontSize: 18,
                           color: Colors.lightGreen,
@@ -109,16 +109,16 @@ class _myitemsState extends State<myitems> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("ItemOrderID:${myitems[index].itmOrder_id}"),
-                             Text("Ordered by(User IDs):${myitems[index].user_id}"),
-                             Text("Item ID:${myitems[index].itm_id}"),
+                            Text("ItemOrderID:${myitemsList[index].itmOrder_id}"),
+                             Text("Ordered by(User IDs):${myitemsList[index].user_id}"),
+                             Text("Item ID:${myitemsList[index].itm_id}"),
                           
                             Container(
                               child: RaisedButton(
                                 child: Text("Delete"),
                                 color: Colors.orange,
                                 onPressed: () async {
-                                  if (myitems[index].user_id == '') {
+                                  if (myitemsList[index].user_id == '') {
                                     showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
@@ -126,7 +126,7 @@ class _myitemsState extends State<myitems> {
                                     );
                                   } else {
                                     var res = await db.deletemyItems(
-                                       myitems[index].itmOrder_id);
+                                       myitemsList[index].itmOrder_id);
                                     print("${res}ressss");
 
                                     if (res == 200) {
@@ -135,7 +135,8 @@ class _myitemsState extends State<myitems> {
                                         builder: (context) => AlertDialog(
                                             title: Text("Successfully deleted ")),
                                       );
-
+                                           Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => myitems()));
                                       print("success");
                                     } else {
                                       print("failure");
@@ -170,7 +171,7 @@ class _myitemsState extends State<myitems> {
 
     setState(() {
       for (MyItems p in data) {
-        myitems.add(p);
+        myitemsList.add(p);
       }
     });
   }

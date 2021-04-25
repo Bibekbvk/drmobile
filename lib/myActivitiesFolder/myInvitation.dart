@@ -23,7 +23,7 @@ class userInvitation extends StatefulWidget {
 class _userInvitationState extends State<userInvitation> {
 
   DatabaseService db = DatabaseService();
-  List<Invitation> userInvitation = new List();
+  List<Invitation> userInvitationList = new List();
   ScrollController _scrollController = new ScrollController();
   TextEditingController search = new TextEditingController();
 
@@ -41,7 +41,7 @@ class _userInvitationState extends State<userInvitation> {
         if (currentDataLength >= 10) {
           print("List bigger than 10");
 
-          offset = userInvitation.length;
+          offset = userInvitationList.length;
           fetch(widget.name, offset);
         }
 
@@ -74,7 +74,7 @@ class _userInvitationState extends State<userInvitation> {
       ),
       body: ListView.builder(
         controller: _scrollController,
-        itemCount: userInvitation.length,
+        itemCount: userInvitationList.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
             padding: EdgeInsets.all(10),
@@ -90,7 +90,7 @@ class _userInvitationState extends State<userInvitation> {
                     Container(
                    
                       child: Text(
-                        "StaffName:${userInvitation[index].name}",
+                        "StaffName:${userInvitationList[index].name}",
                         style: TextStyle(
                             fontSize: 16,
                             color: Colors.lightGreen,
@@ -100,7 +100,7 @@ class _userInvitationState extends State<userInvitation> {
                     Container(
                      
                       child: Text(
-                        "Invitation-ID:${userInvitation[index].I_id}",
+                        "Invitation-ID:${userInvitationList[index].I_id}",
                         style: TextStyle(
                             fontSize: 16,
                             color: Colors.lightGreen,
@@ -118,7 +118,7 @@ class _userInvitationState extends State<userInvitation> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("User_ID:${userInvitation[index].user_id}", style: TextStyle(
+                            Text("User_ID:${userInvitationList[index].user_id}", style: TextStyle(
                               fontSize:12
                             ),),
                           
@@ -127,7 +127,7 @@ class _userInvitationState extends State<userInvitation> {
                                 child: Text("Delete"),
                                 color: Colors.orange,
                                 onPressed: () async {
-                                  if (userInvitation[index].staff_id == '') {
+                                  if (userInvitationList[index].staff_id == '') {
                                     showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
@@ -135,7 +135,7 @@ class _userInvitationState extends State<userInvitation> {
                                     );
                                   } else {
                                     var res = await db.deleteInvitation(
-                                      userInvitation[index].I_id
+                                      userInvitationList[index].I_id
 
                                        );
 
@@ -147,7 +147,8 @@ class _userInvitationState extends State<userInvitation> {
                                         builder: (context) => AlertDialog(
                                             title: Text("Successfully Deleted from the list")),
                                       );
-
+                                     Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => userInvitation("")));
                                       print("success");
                                     } else {
                                       print("failure");
@@ -182,7 +183,7 @@ class _userInvitationState extends State<userInvitation> {
 
     setState(() {
       for (Invitation p in data) {
-        userInvitation.add(p);
+        userInvitationList.add(p);
       }
     });
   }

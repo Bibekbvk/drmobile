@@ -203,7 +203,7 @@ class DatabaseService {
 
   Future<List<MyItems>> myitems(int userid) async {
     var data = await http.get(
-      "$BASE_URL/api/myitems?user_id=?",
+      "$BASE_URL/api/myitems?user_id=${userid}?",
     );
 
     var jsonData = json.decode((data.body));
@@ -595,11 +595,11 @@ class DatabaseService {
     return data.statusCode;
   }
 
-  Future<int> deleteMedicine(int med_id) async {
-    //var encodeduuid = Uri.encodeComponent(uuid)c
+  Future<int> deleteMedicineOrder(int order_id) async {
+    //var encodeduuid = Uri.encodemponent(uuid)c
     //var encodeProduct_id = Uri.encodeComponent(product_id);
     var data = await http.get(
-      "$BASE_URL/api/deleteMedicine?med_id=${med_id}",
+      "$BASE_URL/api/deleteMedicineOrder?order_id=${order_id}",
     );
     return data.statusCode;
   }
